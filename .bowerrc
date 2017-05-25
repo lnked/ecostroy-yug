@@ -1,1 +1,11 @@
-/Users/edik/web/skeleton/.bowerrc
+{
+    "directory": "frontend/vendors/",
+    "scripts": {
+        "preinstall": "rm -rf ./frontend/vendors/*",
+        "postinstall": "bower cache clean && node_modules/.bin/bower install",
+        "preuninstall": ""
+    },
+    "save": true,
+    "save-exact": true,
+    "strict-ssl": true
+}
