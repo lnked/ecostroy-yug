@@ -5,11 +5,17 @@
 
     &__wrapper {
         @extend %layout;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        border: 1px solid blue;
     }
 
     &__logo {
-        position: absolute;
-        left: 0;
-        top: 0;
+        // position: absolute;
+        // left: 0;
+        // top: 0;
     }
 }

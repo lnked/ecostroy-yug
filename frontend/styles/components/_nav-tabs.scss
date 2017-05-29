@@ -1,0 +1,25 @@
+.nav-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+
+    &__link {
+        color: #2d2d2d;
+        height: 50px;
+        font-family: Roboto;
+        font-size: 18px;
+        font-weight: 700;
+        line-height: 50px;
+        margin: 0 4px;
+        padding: 0 40px;
+        text-decoration: none;
+
+        &--current {
+            width: 154px;
+            color: #ffffff;
+            background-color: #84c225;
+        }
+    }
+}
