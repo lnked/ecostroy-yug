@@ -141,7 +141,7 @@ html, body {
 html {
   quotes: "“" "”";
   font-size: 10px;
-  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-family: Roboto, sans-serif;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
@@ -466,6 +466,8 @@ img {
   position: relative;
   height: 100px;
   margin-top: -100px; }
+  .layout-footer__copiright {
+    color: #3b3b3b; }
 
 .layout-header {
   clear: both;
@@ -1499,6 +1501,32 @@ html .modal-lock {
   font-size: 18px;
   font-size: 1.8rem;
   line-height: 1.33; }
+
+.s-documents__list {
+  padding: 0 40px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-between; }
+  .s-documents__list__item {
+    width: 16.6666666667%;
+    text-align: center; }
+    .s-documents__list__item__link {
+      display: block;
+      text-decoration: none; }
+    .s-documents__list__item__image {
+      width: 120px;
+      height: 160px;
+      padding: 10px;
+      display: block;
+      margin: 0 auto 35px;
+      background-color: #c1dd9e; }
+    .s-documents__list__item__title {
+      color: #2d2d2d;
+      font-size: 16px;
+      font-size: 1.6rem;
+      line-height: 1.4;
+      text-align: center; }
 
 .s-payment {
   background-color: #f4f2ed; }
