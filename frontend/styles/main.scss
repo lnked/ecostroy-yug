@@ -1,18 +1,12 @@
 @charset "utf-8";
-
 @import "mixins/*";
-
 // Переменные
 @import "variable";
-
 // Шрифты
 @import "fonts/*";
-
 // Сброс стилей
 @import 'reset';
-
 @import "base";
-
 // Хелперы
 @import "helpers/button";
 @import "helpers/layout";
@@ -22,12 +16,9 @@
 @import "helpers/visible";
 @import "helpers/clearfix";
 @import "helpers/print";
-
 @import "modal/base";
 @import "modal/animation";
-
 @import "layouts/*";
-
 @import "typography/*";
-
 @import "components/*";
+@import "section/*";

@@ -1,0 +1,41 @@
+.bonus {
+    background-image: url(../images/bonus/bg.jpg);
+    height: 530px;
+    width: 1360px;
+    display: flex;
+    color: $bonus-color;
+    justify-content: center;
+    padding-right: 210px;
+    padding-left: 210px;
+    flex-wrap: wrap;
+    &__head{
+        text-align: center;
+        width: 100%;
+        font-size: 3rem;  
+        padding: 40px;          
+    }
+    &__items{
+       
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        
+        padding: 20px;
+        width: 25%;
+        
+        &__img{
+            width: 70px;
+            height: 70px; 
+            margin-bottom: 20px;   
+            
+        }
+        &__text{
+            text-align: center;
+            text-transform: uppercase;  
+            font-size: 1.3rem;
+            line-height: 1.13;
+        }
+    }
+}

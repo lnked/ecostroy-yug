@@ -1409,3 +1409,51 @@ html .modal-lock {
     .section {
       border: 2px solid red;
       background-color: lime; } }
+
+.bonus {
+  background-image: url(../images/bonus/bg.jpg);
+  height: 530px;
+  width: 1360px;
+  display: flex;
+  color: #ffffff;
+  justify-content: center;
+  padding-right: 210px;
+  padding-left: 210px;
+  flex-wrap: wrap; }
+  .bonus__head {
+    text-align: center;
+    width: 100%;
+    font-size: 30px;
+    font-size: 3rem;
+    padding: 40px; }
+  .bonus__items {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    padding: 20px;
+    width: 25%; }
+    .bonus__items__img {
+      width: 70px;
+      height: 70px;
+      margin-bottom: 20px; }
+    .bonus__items__text {
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 13px;
+      font-size: 1.3rem;
+      line-height: 1.13; }
+
+.footer {
+  display: flex;
+  height: 83px;
+  justify-content: center;
+  border: solid 1px red;
+  align-items: center; }
+  .footer__copyright {
+    display: flex;
+    font-size: 16px;
+    font-size: 1.6rem;
+    line-height: 3;
+    color: #3b3b3b; }
