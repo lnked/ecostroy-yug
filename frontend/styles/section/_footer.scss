@@ -2,18 +2,12 @@
     display: flex;
     height: 83px;
     justify-content: center;
-    border: solid 1px red;
     align-items: center;
-    //background-color: red;
     &__copyright {
         display: flex;
-       // vertical-align: middle; 
-      //  text-align: center;
-        //width: auto;
-        //height: 20px;
         font-size: 1.6rem;
         line-height: 3;
-        //text-align: center;
         color: $c-footer;
     }
+    
 }

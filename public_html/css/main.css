@@ -1412,7 +1412,6 @@ html .modal-lock {
 
 .advantages {
   padding: 0px 160px;
-  border: solid 1px red;
   display: flex;
   justify-content: center;
   flex-wrap: wrap; }
@@ -1440,7 +1439,6 @@ html .modal-lock {
     font-size: 15px;
     font-size: 1.5rem; }
   .advantages__item {
-    border-top: dashed 1px #dcdcdc;
     width: 33%;
     display: flex;
     justify-content: center;
@@ -1466,6 +1464,9 @@ html .modal-lock {
         font-size: 13px;
         font-size: 1.3rem;
         padding-left: 10px; }
+  .advantages__dash {
+    width: 100%;
+    border-top: dashed 1px #dcdcdc; }
 
 .bonus {
   background-image: url(/images/bonus/bg.jpg);
@@ -1504,7 +1505,6 @@ html .modal-lock {
   display: flex;
   height: 83px;
   justify-content: center;
-  border: solid 1px red;
   align-items: center; }
   .footer__copyright {
     display: flex;
@@ -1512,3 +1512,26 @@ html .modal-lock {
     font-size: 1.6rem;
     line-height: 3;
     color: #3b3b3b; }
+
+.location {
+  background-color: #e6e2d7;
+  background-color: rgba(230, 226, 215, 0.4); }
+  .location__items {
+    display: flex;
+    justify-content: center; }
+    .location__items__item {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      width: 10%; }
+      .location__items__item__img {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 10px; }
+      .location__items__item span {
+        color: #2d2d2d;
+        font-size: 13px;
+        font-size: 1.3rem;
+        text-align: center; }

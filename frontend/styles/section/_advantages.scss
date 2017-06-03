@@ -1,6 +1,5 @@
 .advantages {
     padding: 0px 160px;
-    border: solid 1px red;
     display: flex;
     justify-content: center;  
     flex-wrap: wrap;
@@ -35,7 +34,6 @@
     }
 
     &__item {
-        border-top: dashed 1px #dcdcdc;
         width: 33%;
         display: flex;
         justify-content: center;
@@ -68,6 +66,11 @@
 
         }
 
+    }
+
+    &__dash {
+        width: 100%;
+        border-top: dashed 1px #dcdcdc;
     }
     
 }
