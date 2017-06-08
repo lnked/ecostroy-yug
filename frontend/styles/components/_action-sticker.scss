@@ -1,0 +1,25 @@
+.action-sticker {
+    width: 93px;
+    height: 65px;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: fixed;
+    left: 0;
+    top: 180px;
+    z-index: 1200;
+    line-height: 52px;
+    background: url(/images/action.svg) 0 0 no-repeat;
+    background-size: 93px 65px;
+
+    &__text {
+        width: 100%;
+        color: #d9426b;
+        font-size: 1.7rem;
+        font-weight: 900;
+        line-height: 38px;
+        text-align: center;
+        display: inline-block;
+        vertical-align: bottom;
+        transform: rotate(-15deg);
+    }
+}

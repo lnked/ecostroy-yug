@@ -9,7 +9,7 @@ module.exports = function(config) {
     config = config || {};
 
     return function(callback) {
-        
+
         gulp.src(config.src)
             .pipe($.if(
                 !global.is.build,

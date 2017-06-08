@@ -40,10 +40,19 @@ textarea {
     box-sizing: border-box !important;
     box-shadow: inset 2px 2px 0 0 rgba(17, 17, 17, 0.3);
 
+    &--pure {
+        boc-shadow: none;
+        border-radius: 0;
+        border: 1px solid $c-border;
+    }
+
     &.error {
-        background: rgba(255, 0, 0, 0.1);
-        border-color: rgb(255, 0, 0);
-        border-color: rgba(255, 0, 0, 0.5);
+        color: #fff;
+        background: rgba(255,0,0,.6);
+
+        &::placeholder {
+            color: #fff;
+        }
     }
     
     &:disabled {

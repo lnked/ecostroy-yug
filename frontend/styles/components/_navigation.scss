@@ -25,10 +25,11 @@
     &__link {
         color: #090909;
         display: block;
+        height: $header-height;
         font-family: $font-condensed;
         font-size: 16px;
         font-weight: 700;
-        line-height: $header-height + 5px;
+        line-height: $header-height + 10px;
         position: relative;
         text-decoration: none;
 

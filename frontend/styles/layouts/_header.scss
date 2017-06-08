@@ -1,7 +1,6 @@
 .layout-header {
     clear: both;
     height: $header-height;
-    background-color: $c-white;
 
     position: fixed;
     top: 0;
@@ -13,15 +12,37 @@
         height: $header-height;
     }
 
+    &__container {
+        width: 100%;
+        position: relative;
+        z-index: 2;
+        background-color: $c-white;
+    }
+    
     &:after {
+        width: 100%;
+        height: 60px;
         content: "";
-        height: 25px;
         position: absolute;
         left: 0;
         right: 0;
         top: 100%;
-        background: url(../images/navigation-arc.png) 50% 100% no-repeat;
+        z-index: 1;
+        margin-top: -30px;
+        background-color: $c-white;
+        border-radius: 120% / 80px;
+        box-shadow: 0 4px 20px 0 rgba(0,0,0,0.1);
     }
+
+    // &:after {
+    //     content: "";
+    //     height: 25px;
+    //     position: absolute;
+    //     left: 0;
+    //     right: 0;
+    //     top: 100%;
+    //     background: url(../images/navigation-arc.png) 50% 100% no-repeat;
+    // }
 
     &__wrapper {
         @extend %space-between;

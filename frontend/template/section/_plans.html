@@ -2,53 +2,77 @@
     <div class="layout">
         <h2 class="section__title">ПЛАНИРОВКИ КВАРТИР В ЖК “ЕВРОПЕЙСКИЙ”</h2>
         
-        <div class="s-plans__tabs">
-            <a href="#floor-2" data-target="floor-2" class="s-plans__tabs__item j-tabs-trigger is-current">2 этаж</a>
-            <a href="#floor-3" data-target="floor-3" class="s-plans__tabs__item j-tabs-trigger">3 этаж</a>
-            <a href="#floor-4" data-target="floor-4" class="s-plans__tabs__item j-tabs-trigger">4 этаж</a>
-            <a href="#floor-5" data-target="floor-5" class="s-plans__tabs__item j-tabs-trigger">5 этаж</a>
-            <a href="#floor-6" data-target="floor-6" class="s-plans__tabs__item j-tabs-trigger">6 этаж</a>
-            <a href="#floor-7" data-target="floor-7" class="s-plans__tabs__item j-tabs-trigger">7 этаж</a>
-            <a href="#floor-8" data-target="floor-8" class="s-plans__tabs__item j-tabs-trigger">8 этаж</a>
+        <div class="s-plans__group">
+            <div class="s-plans__group__item">
+                <div class="s-plans__header">Литер 1</div>
+
+                <div class="s-plans__tabs">
+                    <a href="#liter-1-2" data-target="liter-1-2" class="s-plans__tabs__item j-tabs-trigger is-current">2 этаж</a>
+                    <a href="#liter-1-3" data-target="liter-1-3" class="s-plans__tabs__item j-tabs-trigger">3 этаж</a>
+                    <a href="#liter-1-4" data-target="liter-1-4" class="s-plans__tabs__item j-tabs-trigger">4 этаж</a>
+                    <a href="#liter-1-5" data-target="liter-1-5" class="s-plans__tabs__item j-tabs-trigger">5 этаж</a>
+                    <a href="#liter-1-6" data-target="liter-1-6" class="s-plans__tabs__item j-tabs-trigger">6 этаж</a>
+                    <a href="#liter-1-7" data-target="liter-1-7" class="s-plans__tabs__item j-tabs-trigger">7 этаж</a>
+                    <a href="#liter-1-8" data-target="liter-1-8" class="s-plans__tabs__item j-tabs-trigger">8 этаж</a>
+                </div>
+            </div>
+
+            <div class="s-plans__group__item">
+                <div class="s-plans__header">Литер 6</div>
+
+                <div class="s-plans__tabs">
+                    <a href="#liter-6-2-5" data-target="liter-6-2-5" class="s-plans__tabs__item j-tabs-trigger">2-5 этаж</a>
+                    <a href="#liter-6-6-9" data-target="liter-6-6-9" class="s-plans__tabs__item j-tabs-trigger">6-9 этаж</a>
+                </div>
+            </div>
         </div>
 
         <div class="s-plans__carousel">
-            <div class="s-plans__carousel__item j-tabs-content is-active" data-system="floor-2">
-                <img src="/images/demo-plan.jpg" alt="">
+
+            <div class="s-plans__carousel__item j-tabs-content" data-system="liter-6-2-5">
+                <img src="/images/plans/liter6/2-5.png" class="s-plans__carousel__item__image" alt="">
             </div>
 
-            <div class="s-plans__carousel__item j-tabs-content" data-system="floor-3">
-                <img src="/images/demo-plan.jpg" alt="">
+            <div class="s-plans__carousel__item j-tabs-content" data-system="liter-6-6-9">
+                <img src="/images/plans/liter6/6-9.png" class="s-plans__carousel__item__image" alt="">
             </div>
 
-            <div class="s-plans__carousel__item j-tabs-content" data-system="floor-4">
-                <img src="/images/demo-plan.jpg" alt="">
+            <div class="s-plans__carousel__item j-tabs-content is-active" data-system="liter-1-2">
+                <img src="/images/plans/liter1/floor-2.png" class="s-plans__carousel__item__image" alt="">
             </div>
 
-            <div class="s-plans__carousel__item j-tabs-content" data-system="floor-5">
-                <img src="/images/demo-plan.jpg" alt="">
+            <div class="s-plans__carousel__item j-tabs-content" data-system="liter-1-3">
+                <img src="/images/plans/liter1/floor-3.png" class="s-plans__carousel__item__image" alt="">
             </div>
 
-            <div class="s-plans__carousel__item j-tabs-content" data-system="floor-6">
-                <img src="/images/demo-plan.jpg" alt="">
+            <div class="s-plans__carousel__item j-tabs-content" data-system="liter-1-4">
+                <img src="/images/plans/liter1/floor-4.png" class="s-plans__carousel__item__image" alt="">
             </div>
 
-            <div class="s-plans__carousel__item j-tabs-content" data-system="floor-7">
-                <img src="/images/demo-plan.jpg" alt="">
+            <div class="s-plans__carousel__item j-tabs-content" data-system="liter-1-5">
+                <img src="/images/plans/liter1/floor-5.png" class="s-plans__carousel__item__image" alt="">
             </div>
 
-            <div class="s-plans__carousel__item j-tabs-content" data-system="floor-8">
-                <img src="/images/demo-plan.jpg" alt="">
+            <div class="s-plans__carousel__item j-tabs-content" data-system="liter-1-6">
+                <img src="/images/plans/liter1/floor-6.png" class="s-plans__carousel__item__image" alt="">
+            </div>
+
+            <div class="s-plans__carousel__item j-tabs-content" data-system="liter-1-7">
+                <img src="/images/plans/liter1/floor-7.png" class="s-plans__carousel__item__image" alt="">
+            </div>
+
+            <div class="s-plans__carousel__item j-tabs-content" data-system="liter-1-8">
+                <img src="/images/plans/liter1/floor-8.png" class="s-plans__carousel__item__image" alt="">
             </div>
         </div>
 
     </div>
 
-    <form method="post" action="/ajax/sendmail" class="request-form request-form--wide">
+    <form method="post" action="/api/send" class="form-ajax form-reset request-form request-form--wide">
         <div class="request-form__title">Уточните стоимость квартиры в отделе продаж</div>
 
         <div class="request-form__content">
-            <input type="text" name="phone" class="f-input" placeholder="Ваш телефон">
+            <input name="phone" class="f-input mask-phone" placeholder="Ваш телефон">
             <button type="submit" class="button">ЗАКАЗАТЬ ЗВОНОК</button>
         </div>
     </form>

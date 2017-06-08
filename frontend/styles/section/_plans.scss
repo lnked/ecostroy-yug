@@ -1,5 +1,32 @@
 .s-plans {
     padding-bottom: 0 !important;
+    
+    &__group {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        flex-direction: row;
+        justify-content: center;
+
+        &__item {
+            &:not(:last-child) {
+                margin-right: 10px;
+            }
+
+            &:not(:first-child) {
+                margin-left: 10px;
+            }
+        }
+    }
+
+    &__header {
+        color: #2d2d2d;
+        font-size: 1.6rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+    }
 
     &__tabs {
         display: flex;
@@ -40,6 +67,11 @@
 
             &.is-active {
                 display: block;
+            }
+
+            &__image {
+                max-width: 100%;
+                height: auto;
             }
         }
     }

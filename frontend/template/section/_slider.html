@@ -1,28 +1,24 @@
-<section class="s-slider">
-    <a href="#" class="s-slider__action">
-        <span class="s-slider__action__text">АКЦИЯ!</span>
-    </a>
-
+<section class="s-slider j-section" id="main-anchor">
     <div class="s-slider__item" style="background-image: url(../images/slider/1.jpg);">
         <div class="layout">
             <div class="s-slider__item__content">
 
                 <div class="s-slider__righter">
-                    <div class="s-slider__marked"><strong>Сдача первого дома</strong> - 01.02.2018</div>
+                    <div class="s-slider__marked"><strong>Сдача первого дома</strong> - 30.09.2017</div>
                 </div>
 
                 <div class="s-slider__title">ЖК “ЕВРОПЕЙСКИЙ”</div>
 
                 <div class="s-slider__form">
-                    <form method="post" action="/ajax/sendmail" class="request-form request-form--nobg">
+                    <form method="post" action="/api/send" class="form-ajax form-reset request-form request-form--nobg">
                         
                         <ul class="s-slider__form__check">
                             <li class="s-slider__form__check__item">Надежный застройщик на Юге России</li>
-                            <li class="s-slider__form__check__item">Минимальная цена от - <strong>1200 000</strong> <span class="s-slider__form__check__rouble">a</span></li>
+                            <li class="s-slider__form__check__item">Минимальная цена от - <strong>1 000 000</strong> <span class="rouble">a</span></li>
                         </ul>
 
                         <div class="request-form__content">
-                            <input type="text" name="phone" class="f-input" placeholder="Ваш телефон">
+                            <input name="phone" class="f-input mask-phone" placeholder="Ваш телефон">
                             <button type="submit" class="button">ЗАКАЗАТЬ ЗВОНОК</button>
                         </div>
                     </form>

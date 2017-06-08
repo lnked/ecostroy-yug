@@ -7,37 +7,48 @@
     }
 
     &__wrapper {
-        margin: 0 -10px;
+        padding: 0 40px;
         overflow: hidden;
+    }
+
+    .slick-list {
+        width: 100%;
+        max-width: 960px;
+        margin: 0 auto;
     }
 
     &__outer {
         overflow: hidden;
     }
-    
-    &__navigation {
-        width: 38px;
-        height: 38px;
+
+    &__nav {
         position: absolute;
         top: 50%;
-        border: 0;
-        outline: none;
-        z-index: 100;
+        color: #fff;
         cursor: pointer;
-        margin-top: -19px;
-        background-color: #197b30;
-        background-repeat: no-repeat;
-        background-position: 50% 50%;
-        background-size: 15px 23px;
-
-        &._prev {
-            left: 10px;
-            background-image: url(/images/left-arrow-button.png);
+        border: 0;
+        padding: 0;
+        outline: none;
+        background: none;
+        margin-top: -21px;
+        z-index: 1000;
+        transition: color $a-time;
+    
+        &:hover {
+            color: #ffe400;
         }
 
-        &._next {
-            right: 10px;
-            background-image: url(/images/right-arrow-button.png);
+        &__ico {
+            width: 23px;
+            height: 42px;
+        }
+
+        &--left {
+            left: 30px;
+        }
+
+        &--right {
+            right: 30px;
         }
     }
 
@@ -52,25 +63,22 @@
         }
 
         &__image {
-            padding: 13px;
+            padding: 3px;
             display: block;
             outline: none;
             background-color: #fff;
 
             &__src {
+                width: 100%;
+                object-fit: cover;
                 display: inline-block;
                 vertical-align: middle;
-                max-width: 100%;
-                max-height: 100%;
+                object-position: 50% 50%;
             }
         }
     }
 }
 
-@media only screen and (max-width: 1280px) {}
-@media only screen and (max-width: 1140px) {}
-@media only screen and (max-width: 1024px) {}
-@media only screen and (max-width: 960px) {}
 @media only screen and (max-width: 768px) {
     .carousel {
         &__item {

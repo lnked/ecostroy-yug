@@ -10,7 +10,7 @@ let app = app || {};
         years: null,
         months: null,
 
-        _initCarousel: function() {
+        _initCarousel () {
             var width = $(window).width(),
                 slides = $('#timeline-carousel').find('.slick-slide').length;
 
@@ -29,8 +29,8 @@ let app = app || {};
                     speed: 259,
                     slidesToShow: 4,
                     slidesToScroll: 1,
-                    prevArrow: '<button type="button" class="carousel__navigation _prev slick-prev"></button>',
-                    nextArrow: '<button type="button" class="carousel__navigation _next slick-next"></button>',
+                    prevArrow: '<button class="carousel__nav carousel__nav--left slick-prev"><svg class="carousel__nav__ico" role="image"><use xlink:href="#left-arrow"/></svg></button>',
+                    nextArrow: '<button class="carousel__nav carousel__nav--right slick-next"><svg class="carousel__nav__ico" role="image"><use xlink:href="#right-arrow"/></svg></button>',
                     responsive: [
                         {
                             breakpoint: 768,
@@ -59,17 +59,17 @@ let app = app || {};
             }
         },
 
-        _currentYear: function()
+        _currentYear ()
         {
             return parseInt(this.years.find('.is-current').data('value'));
         },
 
-        _currentMonth: function()
+        _currentMonth ()
         {
             return parseInt(this.months.find('.is-current').data('value'));
         },
 
-        _handle: function()
+        _handle ()
         {
             this.data.current = this._currentYear();
             this.data.months = [];
@@ -92,7 +92,7 @@ let app = app || {};
             });
         },
 
-        _reinitCarousel: function()
+        _reinitCarousel ()
         {
             var _self_ = this,
                 year = this._currentYear(),
@@ -102,33 +102,35 @@ let app = app || {};
                 $('#timeline-carousel').slick('unslick');
             }
 
-            $('#timeline-carousel').html('');
+            // $('#timeline-carousel').html('');
 
-            var count = $('#timeline-cache').find('.carousel__item.is-year-'+ year +'.is-month-'+month).length;
+            // var count = $('#timeline-cache').find('.carousel__item.is-year-'+ year +'.is-month-'+month).length;
 
-            $('#timeline-cache').find('.carousel__item.is-year-'+ year +'.is-month-'+month).each(function(k, item) {
-                $('#timeline-carousel').append($(this).clone());
+            // $('#timeline-cache').find('.carousel__item.is-year-'+ year +'.is-month-'+month).each(function(k, item) {
+            //     $('#timeline-carousel').append($(this).clone());
 
-                if ((k+1) == count) {
-                    setTimeout(function() {
-                        _self_._initCarousel();
-                    }, 50);
-                }
-            });
+            //     if ((k+1) == count) {
+            //         setTimeout(function() {
+            //             _self_._initCarousel();
+            //         }, 50);
+            //     }
+            // });
 
-            setTimeout(function() {
-                // $.app.initBlock('.j-timeline-slider');
-            }, 300);
+            // setTimeout(function() {
+            //     $('.zoom').fancybox();
+            // }, 300);
+
+            _self_._initCarousel();
         },
 
-        _changeFirstMonth: function()
+        _changeFirstMonth ()
         {
             this.months.find('.j-timeline-months-item.is-active:first').trigger('click');
         },
 
-        _match: function()
+        _match ()
         {
-            var _self_ = this;
+            const _self_ = this;
 
             this._handle();
 
@@ -143,9 +145,9 @@ let app = app || {};
             this.filter.addClass('is-active');
         },
 
-        _events: function()
+        _events ()
         {
-            var _self_ = this;
+            const _self_ = this;
 
             this.years.find('.j-timeline-years-item').on('click', function(e) {
                 e.preventDefault();
@@ -175,10 +177,8 @@ let app = app || {};
             });
         },
 
-        init: function()
+        init ()
         {
-            var _self_ = this;
-
             this.filter = $('#timeline-filter');
             this.years = this.filter.find('.j-timeline-years');
             this.months = this.filter.find('.j-timeline-months');

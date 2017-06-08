@@ -10,6 +10,13 @@
         background: none;
         padding: 35px 25px 25px;
     }
+    
+    &--clear {
+        border: 0;
+        padding: 0;
+        border-radius: 0;
+        background: none;
+    }
 
     &--wide {
         border: 0;

@@ -29,6 +29,7 @@
         line-height: 40px;
         text-align: center;
         margin-bottom: 40px;
+        text-transform: uppercase;
 
         &__ico {
             padding: 0 45px;
@@ -60,7 +61,7 @@
         clear: both;
         @extend %space-between;
         align-items: flex-start;
-        margin-bottom: 35px;
+        margin-bottom: 45px;
 
         &__col {
             width: 33.3333333333%;
@@ -103,9 +104,14 @@
                 line-height: 0;
                 display: inline-block;
 
-                &.youtube {
-                    width: 54px;
-                    height: 38px;
+                &.vkontakte {
+                    width: 74px;
+                    height: 42px;
+                }
+
+                &.google {
+                    width: 66px;
+                    height: 42px;
                 }
 
                 &.twitter {

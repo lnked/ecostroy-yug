@@ -27,13 +27,16 @@
         &__image {
             color: #84c225;
             font-size: 0;
-            line-height: 0;
+            height: 70px;
+            line-height: 70px;
             text-align: center;
             margin-bottom: 25px;
 
             &__src {
                 max-width: 70px;
                 max-height: 70px;
+                display: inline-block;
+                vertical-align: middle;
 
                 &--brush {
                     width: 67px;

@@ -6,32 +6,6 @@
     &__wrapper {
         @extend %space-between;
     }
-    
-    &__action {
-        width: 93px;
-        height: 65px;
-        text-transform: uppercase;
-        text-decoration: none;
-        position: absolute;
-        left: 0;
-        top: 180px;
-        z-index: 1200;
-        line-height: 52px;
-        background: url(/images/action.svg) 0 0 no-repeat;
-        background-size: 93px 65px;
-
-        &__text {
-            width: 100%;
-            color: #d9426b;
-            font-size: 1.7rem;
-            font-weight: 900;
-            line-height: 38px;
-            text-align: center;
-            display: inline-block;
-            vertical-align: bottom;
-            transform: rotate(-15deg);
-        }
-    }
 
     &__nav {
         position: absolute;
@@ -43,7 +17,10 @@
         outline: none;
         background: none;
         margin-top: -21px;
+        z-index: 1000;
         transition: color $a-time;
+
+        display: none;
     
         &:hover {
             color: #ffe400;
@@ -69,6 +46,8 @@
         left: 0;
         right: 0;
         bottom: 44px;
+
+        display: none;
 
         &__item {
             width: 10px;
@@ -186,13 +165,6 @@
                 margin-bottom: 15px;
                 padding-left: 40px;
                 background: url(/images/ico/check.png) 0 50% no-repeat;
-            }
-
-            &__rouble {
-                top: -1px;
-                position: relative;
-                display: inline-block;
-                font-family: "Rouble";
             }
         }
     }

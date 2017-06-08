@@ -1,0 +1,45 @@
+.banks {
+    clear: both;
+    font-size: 0;
+    margin-bottom: 20px;
+    text-align: center;
+
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: center;
+
+    &__item {
+        text-align: center;
+
+        &:not(:first-child) {
+            padding-left: 15px;
+        }
+
+        &:not(:last-child) {
+            padding-right: 15px;
+        }
+
+        &__logo {
+            line-height: 55px;
+
+            &:not(:last-child) {
+                margin-bottom: 10px;
+            }
+        }
+
+        &__src {
+            max-width: 100%;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        &__content {
+            padding: 0 20px;
+            font-size: 1.2rem;
+            line-height: 1.4;
+            font-weight: 400;
+        }
+    }
+}

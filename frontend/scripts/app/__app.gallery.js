@@ -1,14 +1,13 @@
-var app = app || {};
+let app = app || {};
 
-(function(body){
+((body => {
     "use strict";
 
     app.gallery = {
         init: function()
         {
-            
+            $('.zoom').fancybox();
         }
-
     };
 
-})(document.body);
+}))(document.body);

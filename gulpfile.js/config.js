@@ -1,6 +1,6 @@
 const src = './frontend/';
 const app = './public_html/';
-const markup = 'markup/';
+const markup = '/';
 const mainPage = 'index.html';
 
 module.exports.app  = app;
@@ -66,7 +66,7 @@ module.exports.tasks = {
     },
 
     'misc': {
-        src: src + 'misc/**/*.*',
+        src: [src + 'misc/**/.*', src + 'misc/**/*.*'],
         app: app
     },
     
