@@ -1,20 +1,53 @@
 <section class="s-slider">
+    <a href="#" class="s-slider__action">
+        <span class="s-slider__action__text">АКЦИЯ!</span>
+    </a>
+
     <div class="s-slider__item" style="background-image: url(../images/slider/1.jpg);">
         <div class="layout">
-            <h3>Сдача первого дома - 01.02.2018</h3>
+            <div class="s-slider__item__content">
 
-            <h1>ЖК “ЕВРОПЕЙСКИЙ”</h1>
-            Надежный застройщик на Юге России
-            Минимальная цена от - 1200 000 -->
+                <div class="s-slider__righter">
+                    <div class="s-slider__marked"><strong>Сдача первого дома</strong> - 01.02.2018</div>
+                </div>
+
+                <div class="s-slider__title">ЖК “ЕВРОПЕЙСКИЙ”</div>
+
+                <div class="s-slider__form">
+                    <form method="post" action="/ajax/sendmail" class="request-form request-form--nobg">
+                        
+                        <ul class="s-slider__form__check">
+                            <li class="s-slider__form__check__item">Надежный застройщик на Юге России</li>
+                            <li class="s-slider__form__check__item">Минимальная цена от - <strong>1200 000</strong> <span class="s-slider__form__check__rouble">a</span></li>
+                        </ul>
+
+                        <div class="request-form__content">
+                            <input type="text" name="phone" class="f-input" placeholder="Ваш телефон">
+                            <button type="submit" class="button">ЗАКАЗАТЬ ЗВОНОК</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
-<!--
-    АКЦИЯ!
+    <button class="s-slider__nav s-slider__nav--left">
+        <svg class="s-slider__nav__ico" role="image">
+            <use xlink:href="#left-arrow"/>
+        </svg>
+    </button>
 
-    Сдача первого дома - 01.02.2018
-    
-    <h1>ЖК “ЕВРОПЕЙСКИЙ”</h1>
-    Надежный застройщик на Юге России
-    Минимальная цена от - 1200 000 -->
+    <button class="s-slider__nav s-slider__nav--right">
+        <svg class="s-slider__nav__ico" role="image">
+            <use xlink:href="#right-arrow"/>
+        </svg>
+    </button>
+
+    <div class="s-slider__dots">
+        <a href="" class="s-slider__dots__item is-active"></a>
+        <a href="" class="s-slider__dots__item"></a>
+        <a href="" class="s-slider__dots__item"></a>
+        <a href="" class="s-slider__dots__item"></a>
+        <a href="" class="s-slider__dots__item"></a>
+    </div>
 </section>

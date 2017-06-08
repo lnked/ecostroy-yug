@@ -1,23 +1,23 @@
 .tabs-content {
     clear: both;
-    display: none;
     border-radius: 6px;
-    padding: 50px 20px;
+    padding: 50px 20px 20px;
     background-color: $c-white;
     border: 1px solid #a7a7a7;
 
-    &.is-active {
-        display: block;
-    }
-
-    &__text {
+    &__block {
         color: #2d2d2d;
+        display: none;
         padding: 0 40px;
         font-size: 1.8rem;
         line-height: 1.33;
 
         &:not(:last-child) {
             margin-bottom: 40px;
+        }
+
+        &.is-active {
+            display: block;
         }
     }
 }

@@ -17,7 +17,7 @@ let app = app || {};
             return source;
         },
 
-        bind() {
+        bind: function() {
             for(const _ in this)
             {
                 if (typeof (this[_]) == 'object' && typeof (this[_].init) !== 'undefined')
@@ -30,9 +30,9 @@ let app = app || {};
             }
         },
 
-        init() {
+        init: function() {
             this.bind();
         }
-
     };
+
 }))(document.body);

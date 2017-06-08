@@ -127,7 +127,13 @@
     }
 
     &__map {
+        clear: both;
         height: 392px;
-        border: 1px solid blue;
+        background-color: #efefef;
+
+        &__layout {
+            width: 100%;
+            height: 100%;
+        }
     }
 }

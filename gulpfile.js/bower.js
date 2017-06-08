@@ -6,6 +6,12 @@ module.exports.config = {
         "jquery": {
             "main": "dist/jquery.min.js"
         },
+        "slick-carousel": {
+            "main": [
+                "slick/slick.min.js",
+                "slick/slick.css"
+            ]
+        },
         "tingle": {
             "main": [
                 "dist/tingle.min.js",

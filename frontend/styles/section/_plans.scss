@@ -1,3 +1,46 @@
 .s-plans {
-    
+    padding-bottom: 0 !important;
+
+    &__tabs {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 30px;
+
+        &__item {
+            height: 38px;
+            margin: 0 3px;
+            color: #656565;
+            padding: 0 20px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            line-height: 38px;
+            display: inline-block;
+            text-decoration: none;
+            text-transform: uppercase;
+            background-color: #f3f3f3;
+            border-radius: 3px;
+        
+            &.is-current {
+                color: #fff;
+                background-color: #84c225;
+            }
+        }
+    }
+
+    &__carousel {
+        clear: both;
+        text-align: center;
+        margin-bottom: 30px;
+
+        &__item {
+            display: none;
+
+            &.is-active {
+                display: block;
+            }
+        }
+    }
 }

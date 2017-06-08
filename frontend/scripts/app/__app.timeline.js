@@ -117,7 +117,7 @@ let app = app || {};
             });
 
             setTimeout(function() {
-                $.app.initBlock('.j-timeline-slider');
+                // $.app.initBlock('.j-timeline-slider');
             }, 300);
         },
 
@@ -175,7 +175,7 @@ let app = app || {};
             });
         },
 
-        bind: function()
+        init: function()
         {
             var _self_ = this;
 

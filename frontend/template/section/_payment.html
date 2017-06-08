@@ -1,28 +1,39 @@
-<section class="section s-payment">
+<section class="section s-payment j-section" id="payment-anchor">
     <div class="layout j-tabs">
         <h2 class="section__title">Способы оплаты</h2>
         <div class="section__sub-title">Приобрести жилье можно несколькими способами</div>
     
         <nav class="nav-tabs">
-            <a href="#tab-cash" class="nav-tabs__link j-tabs-trigger" data-trigger="tab-cash">Наличные</a>
-            <a href="#tab-installment" class="nav-tabs__link j-tabs-trigger" data-trigger="tab-installment">Рассрочка</a>
-            <a href="#tab-mortgage" class="nav-tabs__link j-tabs-trigger is-current" data-trigger="tab-mortgage">Ипотека</a>
-            <a href="#tab-maternal-capital" class="nav-tabs__link j-tabs-trigger" data-trigger="tab-maternal-capital">Материнский капитал</a>
-            <a href="#tab-nonresident" class="nav-tabs__link j-tabs-trigger" data-trigger="tab-nonresident">Для иногородних</a>
+            <a href="#tab-cash" class="nav-tabs__link j-tabs-trigger" data-target="tab-cash">Наличные</a>
+            <a href="#tab-installment" class="nav-tabs__link j-tabs-trigger" data-target="tab-installment">Рассрочка</a>
+            <a href="#tab-mortgage" class="nav-tabs__link j-tabs-trigger is-current" data-target="tab-mortgage">Ипотека</a>
+            <a href="#tab-maternal-capital" class="nav-tabs__link j-tabs-trigger" data-target="tab-maternal-capital">Материнский капитал</a>
+            <a href="#tab-nonresident" class="nav-tabs__link j-tabs-trigger" data-target="tab-nonresident">Для иногородних</a>
         </nav>
+        <div class="tabs-content">
 
-        <div class="tabs-content j-tabs-content" id="tab-cash"></div>
-        <div class="tabs-content j-tabs-content" id="tab-installment"></div>
-        <div class="tabs-content j-tabs-content" id="tab-maternal-capital"></div>
-        <div class="tabs-content j-tabs-content" id="tab-nonresident"></div>
-
-        <div class="tabs-content j-tabs-content is-active" id="tab-mortgage">
-            <div class="tabs-content__text">
+            <div class="tabs-content__block j-tabs-content" data-system="tab-cash">
                 <p>Потребительские кредиты в Краснодаре. Полная информация о кредитах в Краснодаре - сравнить условия, процентные ставки, оформить онлайн заявку.</p>
             </div>
-            
+
+            <div class="tabs-content__block j-tabs-content" data-system="tab-installment">
+                <p>Потребительские кредиты в Краснодаре. Полная информация о кредитах в Краснодаре - сравнить условия, процентные ставки, оформить онлайн заявку.</p>
+            </div>
+
+            <div class="tabs-content__block j-tabs-content" data-system="tab-maternal-capital">
+                <p>Потребительские кредиты в Краснодаре. Полная информация о кредитах в Краснодаре - сравнить условия, процентные ставки, оформить онлайн заявку.</p>
+            </div>
+
+            <div class="tabs-content__block j-tabs-content" data-system="tab-nonresident">
+                <p>Потребительские кредиты в Краснодаре. Полная информация о кредитах в Краснодаре - сравнить условия, процентные ставки, оформить онлайн заявку.</p>
+            </div>
+
+            <div class="tabs-content__block j-tabs-content is-active" data-system="tab-mortgage">
+                <p>Потребительские кредиты в Краснодаре. Полная информация о кредитах в Краснодаре - сравнить условия, процентные ставки, оформить онлайн заявку.</p>
+            </div>
+
             <hr class="separator">
-            
+
             <form method="post" action="/ajax/sendmail" class="request-form">
                 <div class="request-form__title">Получите подробную консультацию у нашего специалиста</div>
 

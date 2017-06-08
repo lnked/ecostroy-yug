@@ -9,6 +9,10 @@
     right: 0;
     z-index: 1000;
 
+    &__similar {
+        height: $header-height;
+    }
+
     &:after {
         content: "";
         height: 25px;

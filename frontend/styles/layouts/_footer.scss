@@ -3,7 +3,6 @@
     position: relative;
     height: $footer-height;
     margin-top: -$footer-height;
-    border: 1px solid blue;
 
     &__wrapper {
         @extend %layout;
