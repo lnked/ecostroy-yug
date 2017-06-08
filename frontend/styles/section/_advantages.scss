@@ -1,76 +1,74 @@
-.advantages {
-    padding: 0px 160px;
-    display: flex;
-    justify-content: center;  
-    flex-wrap: wrap;
-    &__head {
-        text-align: center;
-        width: 100%;
-    }
-
+.s-advantages {
     &__text {
-        border-radius: 13px;
-        background-color: #f4f4eb;
-        border: solid 1px #e2e2d5;
         text-align: left;
+        font-size: 2rem;
+        line-height: 1.25;
         padding: 10px 20px;
+        margin-bottom: 15px;
+        border-radius: 13px;
+        background-color: rgba(#f4f4eb, 0.33);
+        border: 1px solid rgba(#e2e2d5, 0.33);
         
-        &__bold {
+        strong {
             color: #5b8f0c;
-            font-size: 2rem;
         }
-
-        &__normal {
-            line-height: 2.5rem;
-            font-size: 2rem;
-        }
-
     }
 
     &__smtxt {
+        padding: 0 20px;
+        font-size: 1.8rem;
         text-align: left;
-        padding: 20px;
-        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+
+    &__group {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+
+        &:not(:last-child) {
+            margin-bottom: 35px;
+        }
     }
 
     &__item {
-        width: 33%;
+        width: 33.3333333333%;
         display: flex;
-        justify-content: center;
-        align-content: flex-start;
         flex-wrap: wrap;
-        padding: 30px 0px;
+        align-items: center;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        padding: 0 30px;
+
         &__image {
-            background-color: #84c225;
-            border-radius: 50%;
             width: 70px;
             height: 70px;
-            position: relative;
             overflow: hidden;
+            position: relative;
+            border-radius: 50%;
+            background-color: #84c225;
+            margin-bottom: 35px;
+
             img {
-              position: absolute;
+                position: absolute;
             }
-
         }
 
-        &__text {
-            padding: 30px 0px;
-            display: flex;
-            align-items: flex-start;
+        &__title {
             width: 100%;
-            justify-content: center;
-            span {
-                font-size: 1.3rem;
-                padding-left: 10px;
+            display: block;
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-align: center;
+
+            &__ico {
+                text-align: left;
+                padding-left: 28px;
+                display: inline-block;
+                background: url(/images/advantages/check.png) 0 0 no-repeat;    
             }
-
         }
-
     }
-
-    &__dash {
-        width: 100%;
-        border-top: dashed 1px #dcdcdc;
-    }
-    
 }

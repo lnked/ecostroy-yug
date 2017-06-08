@@ -1,6 +1,6 @@
 .s-contacts {
-    border: 1px solid lime;
-    
+    padding-bottom: 0 !important;
+
     &__restriction {
         width: 100%;
         margin: 0 auto 35px;
@@ -53,6 +53,7 @@
 
     &__email {
         color: #598e08;
+        font-weight: 700;
     }
 
     &__table {

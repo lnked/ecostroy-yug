@@ -13,6 +13,19 @@
         text-transform: uppercase;
         background: url(/images/section-arrow.svg) 50% 100% no-repeat;
         background-size: 184px 10px;
+
+        &--white {
+            color: #fff;
+        }
+    }
+
+    &__name {
+        color: #2d2d2d;
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1.5;
+        text-align: center;
+        margin-bottom: 45px;
     }
 
     &__sub-title {

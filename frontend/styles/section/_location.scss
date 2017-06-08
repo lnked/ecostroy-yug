@@ -1,29 +1,17 @@
-.location {
-    background-color: $bg-location;
-    &__items {
-        display: flex;
-        justify-content: center;
-        &__item {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            align-items: flex-start;
-            width: 10%;
-            &__img {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                padding-bottom: 10px;
-            }
+.s-location {
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+    padding-bottom: 0 !important;
+    background: #f0ede5 url(/images/location-background.jpg) 100% 100% no-repeat;
 
-            span {
-                color: $c-location;
-                font-size: 1.3rem;
-                text-align: center;
-            }
-
-        }
-
+    &__layout {
+        width: 1360px;
+        margin: 0 auto;
+        position: relative;
     }
 
+    &__image {
+        margin-bottom: 60px;
+    }
 }

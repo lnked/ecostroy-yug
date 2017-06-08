@@ -1,8 +1,42 @@
 <section class="section s-timeline">
-    <h2 class="section__title">ход строительства</h2>
-    
-    2017
-    2016
+    <div class="layout">
+        <h2 class="section__title">ход строительства</h2>
 
-    Апрель     Май     ИЮНЬ
+        <!-- .carousel__item.slick-slide>a.carousel__item__image.zoom[onclick="return false" href="/images/timeline/$.jpg"]>img.carousel__item__image__src[src="/images/timeline/$-s.jpg"] -->
+
+        <div class="timeline__carousel carousel j-timeline" id="timeline-list">
+            <div class="carousel__outer">
+                <div class="carousel__wrapper j-timeline-slider" id="timeline-carousel"></div>
+
+                <div class="carousel__cache" id="timeline-cache">
+                    <div class="carousel__item slick-slide is-year-2017 is-month-5"><a href="/images/timeline/1.jpg" onclick="return false" class="carousel__item__image zoom"><img src="/images/timeline/1.jpg" alt="" class="carousel__item__image__src"></a></div>
+                    <div class="carousel__item slick-slide is-year-2017 is-month-5"><a href="/images/timeline/1.jpg" onclick="return false" class="carousel__item__image zoom"><img src="/images/timeline/1.jpg" alt="" class="carousel__item__image__src"></a></div>
+                    <div class="carousel__item slick-slide is-year-2017 is-month-5"><a href="/images/timeline/1.jpg" onclick="return false" class="carousel__item__image zoom"><img src="/images/timeline/1.jpg" alt="" class="carousel__item__image__src"></a></div>
+                    <div class="carousel__item slick-slide is-year-2017 is-month-5"><a href="/images/timeline/1.jpg" onclick="return false" class="carousel__item__image zoom"><img src="/images/timeline/1.jpg" alt="" class="carousel__item__image__src"></a></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="s-timeline__filter" id="s-timeline-filter">
+            <div class="s-timeline__filter__years j-timeline-years">
+                <a href="#" onclick="return false" class="s-timeline__filter__years__tab j-timeline-years-item is-current" data-value="2017">2017</a>
+                <a href="#" onclick="return false" class="s-timeline__filter__years__tab j-timeline-years-item" data-value="2018">2018</a>
+            </div>
+
+            <div class="s-timeline__filter__months j-timeline-months">
+                <a href="" data-if="2017" data-value="12" class="s-timeline__filter__months__tab j-timeline-months-item">Декабрь</a>
+                <a href="" data-if="2017" data-value="11" class="s-timeline__filter__months__tab j-timeline-months-item">Ноябрь</a>
+                <a href="" data-if="2017" data-value="10" class="s-timeline__filter__months__tab j-timeline-months-item">Октябрь</a>
+                <a href="" data-if="2017" data-value="9" class="s-timeline__filter__months__tab j-timeline-months-item">Сентябрь</a>
+                <a href="" data-if="2017" data-value="8" class="s-timeline__filter__months__tab j-timeline-months-item">Август</a>
+                <a href="" data-if="2017" data-value="7" class="s-timeline__filter__months__tab j-timeline-months-item">Июль</a>
+                <a href="" data-if="2017" data-value="6" class="s-timeline__filter__months__tab j-timeline-months-item">Июнь</a>
+                <a href="" data-if="2017" data-value="5" class="s-timeline__filter__months__tab j-timeline-months-item is-current">Май</a>
+                <a href="" data-if="2017" data-value="4" class="s-timeline__filter__months__tab j-timeline-months-item">Апрель</a>
+                <a href="" data-if="2017" data-value="3" class="s-timeline__filter__months__tab j-timeline-months-item">Март</a>
+                <a href="" data-if="2017" data-value="2" class="s-timeline__filter__months__tab j-timeline-months-item">Февраль</a>
+                <a href="" data-if="2017" data-value="1" class="s-timeline__filter__months__tab j-timeline-months-item">Январь</a>
+            </div>
+        </div>
+    </div>
 </section>

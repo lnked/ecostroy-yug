@@ -1,0 +1,69 @@
+.s-infrastructure {
+    padding: 50px 0 !important;
+    background-color: $bg-location;
+
+    &__items {
+        display: flex;
+        justify-content: center;
+
+        &__item {
+            width: 10%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            flex-direction: column;
+            justify-content: flex-start;
+
+            &__image {
+                width: 100%;
+                height: 60px;
+                font-size: 0;
+                line-height: 0;
+                text-align: center;
+                margin-bottom: 10px;
+
+                &__src {
+                    color: #84c225;
+                    max-width: 100%;
+                    max-height: 100%;
+
+                    &--hospital {
+                        width: 54px;
+                        height: 53px;
+                    }
+
+                    &--bear {
+                        width: 48px;
+                        height: 57px;
+                    }
+
+                    &--book {
+                        width: 59px;
+                        height: 45px;
+                    }
+
+                    &--pharm {
+                        width: 57px;
+                        height: 55px;
+                    }
+
+                    &--cart {
+                        width: 61px;
+                        height: 58px;
+                    }
+
+                    &--cup {
+                        width: 63px;
+                        height: 59px;
+                    }
+                }
+            }
+
+            &__title {
+                color: $c-location;
+                font-size: 1.3rem;
+                text-align: center;
+            }
+        }
+    }
+}

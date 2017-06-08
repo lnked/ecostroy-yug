@@ -1,3 +1,83 @@
 .s-timeline {
-    background-color: #c1dd9e;
+    background: #c1dd9e url(/images/timeline-leaf.png) 50% 50% no-repeat;
+
+    &__carousel {
+        clear: both;
+        height: 166px;
+        overflow: hidden;
+    }
+
+    &__filter {
+        clear: both;
+        display: none;
+        margin-top: 25px;
+
+        &.is-active {
+            display: block;
+        }
+
+        &__years,
+        &__months {
+            clear: both;
+            font-size: 0;
+            text-align: center;
+        }
+
+        &__years {
+            clear: both;
+            margin-bottom: 20px;
+
+            &__tab {
+                color: #6b6b6b;
+                height: 38px;
+                margin: 0 5px;
+                padding: 0 30px;
+                font-size: 1.4rem;
+                font-weight: 700;
+                line-height: 38px;
+                border-radius: 5px;
+                display: inline-block;
+                vertical-align: middle;
+                text-decoration: none;
+                transition: background-color .3s ease-in-out, color .3s ease-in-out;
+                background-color: #f3f3f3;
+
+                &.is-current {
+                    color: #fff;
+                    text-decoration: none;
+                }
+
+                &.is-current {
+                    background-color: #84c225;
+                }
+            }
+        }
+
+        &__months {
+            &__tab {
+                display: none;
+                vertical-align: middle;
+                color: #494848;
+                font-size: 1.4rem;
+                line-height: 1;
+                margin: 0 8px;
+                font-weight: 700;
+                text-transform: uppercase;
+                transition: color $a-time;
+
+                &:hover {
+                    color: #4f8200;
+                }
+
+                &.is-active {
+                    display: inline-block;
+                }
+
+                &.is-current {
+                    color: #4f8200;
+                    text-decoration: none;
+                }
+            }
+        }
+    }
 }
