@@ -1,3 +1,132 @@
 .s-contacts {
+    border: 1px solid lime;
     
+    &__restriction {
+        width: 100%;
+        margin: 0 auto 35px;
+        max-width: 980px;
+    }
+
+    &__content {
+        padding: 0 20px;
+    }
+
+    &__center {
+        @extend %space-between;
+        justify-content: center;
+    }
+
+    &__label {
+        color: #2d2d2d;
+        font-size: 1.8rem;
+        line-height: 1;
+        margin-right: 20px;
+    }
+
+    &__address {
+        color: #2d2d2d;
+        font-size: 1.8rem;
+        line-height: 40px;
+        text-align: center;
+        margin-bottom: 40px;
+
+        &__ico {
+            padding: 0 45px;
+            display: inline-block;
+            background: url(/images/ico/location-pin.svg) 0 0 no-repeat;
+            background-size: 29px 40px;
+        }
+    }
+    
+    &__phone {
+        color: #2d2d2d;
+        display: block;
+        font-size: 2.4rem;
+        font-weight: 700;
+        line-height: 1;
+        text-decoration: none;
+
+        &:not(:last-child) {
+            margin-bottom: 15px;
+        }
+    }
+
+    &__email {
+        color: #598e08;
+    }
+
+    &__table {
+        clear: both;
+        @extend %space-between;
+        align-items: flex-start;
+        margin-bottom: 35px;
+
+        &__col {
+            width: 33.3333333333%;
+            
+            &--center {
+                text-align: center;
+            }
+
+            color: #2d2d2d;
+
+            &__title {
+                font-size: 1.8rem;
+                line-height: 1;
+                margin-bottom: 15px;
+            }
+
+            &__text {
+                font-size: 1.8rem;
+                line-height: 1.33;
+            }
+        }
+    }
+
+    &__socials {
+        clear: both;
+        margin-bottom: 35px;
+        @extend %space-between;
+        justify-content: center;
+
+        &__item {
+            opacity: 0.5;
+            margin: 0 45px;
+            transition: opacity $a-time;
+
+            &:hover {
+                opacity: 1;
+            }
+
+            &__ico {
+                line-height: 0;
+                display: inline-block;
+
+                &.youtube {
+                    width: 54px;
+                    height: 38px;
+                }
+
+                &.twitter {
+                    width: 51px;
+                    height: 42px;
+                }
+
+                &.facebook {
+                    width: 42px;
+                    height: 42px;
+                }
+
+                &.instagram {
+                    width: 45px;
+                    height: 45px;
+                }
+            }
+        }
+    }
+
+    &__map {
+        height: 392px;
+        border: 1px solid blue;
+    }
 }

@@ -1,0 +1,28 @@
+.request-form {
+    padding: 15px;
+    border-radius: 6px;
+    background-color: rgba(#63ab0d, 0.2);
+    border: 1px solid rgba(#588d07, 0.2);
+
+    &__title {
+        color: #030303;
+        font-size: 2rem;
+        line-height: 1;
+        text-align: center;
+
+        &:not(:last-child) {
+            margin-bottom: 15px;
+        }
+    }
+
+    &__content {
+        width: 100%;
+        margin: 0 auto;
+        max-width: 580px;
+        @extend %space-between;
+
+        .f-input {
+            margin-right: 10px;
+        }
+    }
+}

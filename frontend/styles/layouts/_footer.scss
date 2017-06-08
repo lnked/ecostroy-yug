@@ -3,19 +3,19 @@
     position: relative;
     height: $footer-height;
     margin-top: -$footer-height;
+    border: 1px solid blue;
 
     &__wrapper {
         @extend %layout;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    &__copiright {
-        color: $c-footer-color;
-    }
-
-    &__navigation {
-        &__list {}
-        &__item {
-            &__link {}
-        }
+    &__copyright {
+        color: $c-footer;
+        font-size: 1.6rem;
+        line-height: 3;
     }
 }

@@ -1,10 +1,6 @@
 .navigation {
     height: 100%;
 
-    &__wrapper {
-
-    }
-
     &__list {
         height: 100%;
         display: flex;
@@ -12,26 +8,29 @@
         align-items: center;
         flex-direction: row;
         justify-content: center;
-        border: 1px solid red;
     }
     
     &__item {
         height: 100%;
-
+        
+        &:not(:first-child) {
+            margin-left: 10px;
+        }
+        
         &:not(:last-child) {
-            margin-right: 15px;
+            margin-right: 10px;
         }
     }
 
     &__link {
         color: #090909;
-        font-family: PTSans-Narrow;
+        display: block;
+        font-family: $font-condensed;
         font-size: 16px;
         font-weight: 700;
         line-height: 100px;
-        display: block;
-        text-decoration: none;
         position: relative;
+        text-decoration: none;
 
         &:before {
             position: absolute;
@@ -43,9 +42,10 @@
             content: "";
             opacity: 0;
             background-color: #84c225;
+            transition: opacity $a-time;
         }
 
-        &--current {
+        &.is-current {
             color: #84c225;
 
             &:before {
@@ -53,5 +53,4 @@
             }
         }    
     }
-    
 }

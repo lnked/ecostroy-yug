@@ -1,13 +1,23 @@
 .tabs-content {
-    width: 950px;
-    margin: 0 auto;
-    padding: 50px 65px;
+    clear: both;
+    display: none;
     border-radius: 6px;
-    background-color: #ffffff;
-    border: solid 1px #a7a7a7;
-    
-    color: #2d2d2d;
-    font-family: Roboto;
-    font-size: 1.8rem;
-    line-height: 1.33;
+    padding: 50px 20px;
+    background-color: $c-white;
+    border: 1px solid #a7a7a7;
+
+    &.is-active {
+        display: block;
+    }
+
+    &__text {
+        color: #2d2d2d;
+        padding: 0 40px;
+        font-size: 1.8rem;
+        line-height: 1.33;
+
+        &:not(:last-child) {
+            margin-bottom: 40px;
+        }
+    }
 }

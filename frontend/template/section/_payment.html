@@ -1,19 +1,36 @@
 <section class="section s-payment">
-    <h2 class="section__title">Способы оплаты</h2>
+    <div class="layout j-tabs">
+        <h2 class="section__title">Способы оплаты</h2>
+        <div class="section__sub-title">Приобрести жилье можно несколькими способами</div>
+    
+        <nav class="nav-tabs">
+            <a href="#tab-cash" class="nav-tabs__link j-tabs-trigger" data-trigger="tab-cash">Наличные</a>
+            <a href="#tab-installment" class="nav-tabs__link j-tabs-trigger" data-trigger="tab-installment">Рассрочка</a>
+            <a href="#tab-mortgage" class="nav-tabs__link j-tabs-trigger is-current" data-trigger="tab-mortgage">Ипотека</a>
+            <a href="#tab-maternal-capital" class="nav-tabs__link j-tabs-trigger" data-trigger="tab-maternal-capital">Материнский капитал</a>
+            <a href="#tab-nonresident" class="nav-tabs__link j-tabs-trigger" data-trigger="tab-nonresident">Для иногородних</a>
+        </nav>
 
-    Приобрести жилье можно несколькими способами
+        <div class="tabs-content j-tabs-content" id="tab-cash"></div>
+        <div class="tabs-content j-tabs-content" id="tab-installment"></div>
+        <div class="tabs-content j-tabs-content" id="tab-maternal-capital"></div>
+        <div class="tabs-content j-tabs-content" id="tab-nonresident"></div>
 
-    <nav class="nav-tabs">
-        <a href="" class="nav-tabs__link">Наличные</a>
-        <a href="" class="nav-tabs__link">Рассрочка</a>
-        <a href="" class="nav-tabs__link nav-tabs__link--current">Ипотека</a>
-        <a href="" class="nav-tabs__link">Материнский капитал</a>
-        <a href="" class="nav-tabs__link">Для иногородних</a>
-    </nav>
+        <div class="tabs-content j-tabs-content is-active" id="tab-mortgage">
+            <div class="tabs-content__text">
+                <p>Потребительские кредиты в Краснодаре. Полная информация о кредитах в Краснодаре - сравнить условия, процентные ставки, оформить онлайн заявку.</p>
+            </div>
+            
+            <hr class="separator">
+            
+            <form method="post" action="/ajax/sendmail" class="request-form">
+                <div class="request-form__title">Получите подробную консультацию у нашего специалиста</div>
 
-    <div class="tabs-content">
-        Потребительские кредиты в Краснодаре. Полная информация о кредитах в Краснодаре - сравнить условия, процентные ставки, оформить онлайн заявку.
-
-        Получите подробную консультацию у нашего специалиста
+                <div class="request-form__content">
+                    <input type="text" name="phone" class="f-input" placeholder="Ваш телефон">
+                    <button type="submit" class="button">ЗАКАЗАТЬ ЗВОНОК</button>
+                </div>
+            </form>
+        </div>
     </div>
 </section>

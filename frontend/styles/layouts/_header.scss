@@ -1,21 +1,25 @@
 .layout-header {
     clear: both;
-    position: relative;
     height: $header-height;
+    background-color: $c-white;
 
-    &__wrapper {
-        @extend %layout;
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: center;
-        flex-direction: row;
-        justify-content: space-between;
-        border: 1px solid blue;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+
+    &:after {
+        content: "";
+        height: 25px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 100%;
+        background: url(../images/navigation-arc.png) 50% 100% no-repeat;
     }
 
-    &__logo {
-        // position: absolute;
-        // left: 0;
-        // top: 0;
+    &__wrapper {
+        @extend %space-between;
     }
 }

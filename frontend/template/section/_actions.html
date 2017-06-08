@@ -1,3 +1,71 @@
 <section class="section s-actions">
-    <h2 class="section__title">АКЦИИ!</h2>
+    <div class="layout">
+        <h2 class="section__title">АКЦИИ!</h2>
+
+        <div class="s-actions__wrapper">
+            <div class="s-actions__special">
+                <div class="s-actions__special__title">Cпецпредложение!</div>
+                <div class="s-actions__special__text">
+                    Только 10 первых клиентов<br>получат дополнительную скидку 2%<br>
+                    <strong>Спешите, время акции ограничено!</strong>
+                </div>
+
+                <div class="s-actions__special__countdown">
+                    <div class="s-actions__special__countdown__title">осталось:</div>
+
+                    <div class="timer">
+                        <svg class="timer__icon" role="image">
+                            <use xlink:href="#timer"/>
+                        </svg>
+                        
+                        <div class="timer__parts">
+                            <div class="timer__parts__column">
+                                <div class="timer__parts__digit">14</div>
+                                <div class="timer__parts__caption">Часов</div>
+                            </div>
+
+                            <div class="timer__parts__column">
+                                <div class="timer__parts__digit">30</div>
+                                <div class="timer__parts__caption">Минут</div>
+                            </div>
+
+                            <div class="timer__parts__column">
+                                <div class="timer__parts__digit">16</div>
+                                <div class="timer__parts__caption">Секунд</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="s-actions__form">
+                <form method="post" action="/ajax/sendmail" class="action-form">
+                    <div class="action-form__content">
+                        <div class="action-form__header action-form__center">
+                            <span class="action-form__header__large">Оставьте заявку,</span>
+                            и наш менеджер подберет 
+                            лучшее решение!
+                        </div>
+                            
+                        <label class="f-label">
+                            <input type="text" class="f-input" placeholder="Ваше Имя">
+                        </label>
+                        
+                        <label class="f-label">
+                            <input type="text" class="f-input" placeholder="Ваш телефон">
+                        </label>
+                        
+                        <label class="f-label">
+                            <input type="text" class="f-input" placeholder="Е-mail">
+                        </label>
+                        
+                        <div class="action-form__center">
+                            <button type="submit" class="button">ЗАКАЗАТЬ ЗВОНОК</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
 </section>

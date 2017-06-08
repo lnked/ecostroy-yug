@@ -5,7 +5,7 @@
     position: relative;
 
     &:not(:last-child) {
-        margin-bottom: 20px;
+        margin-bottom: 16px;
     }
 
     &__row {
@@ -19,7 +19,7 @@
         float: left;
         position: relative;
         z-index: 10;
-        color: $c-label-color;
+        color: #000;
         display: block;
         font-size: 1.3rem;
         font-weight: 400;
@@ -74,13 +74,5 @@
             float: none;
             padding-left: 0;
         }
-    }
-}
-
-&.is-hidden {
-    display: none;
-
-    &.is-show {
-        display: block;
     }
 }

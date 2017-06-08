@@ -1,15 +1,26 @@
 .section {
-    padding: 90px 0;
-    border: 1px solid blue;
+    clear: both;
+    padding: 70px 0 80px;
 
     &__title {
         color: #2d2d2d;
-        font-family: Roboto;
         font-size: 3.6rem;
         font-weight: 700;
         line-height: 1.33;
         text-align: center;
-        margin-bottom: 45px;
+        margin-bottom: 40px;
+        padding-bottom: 25px;
         text-transform: uppercase;
+        background: url(/images/section-arrow.svg) 50% 100% no-repeat;
+        background-size: 184px 10px;
+    }
+
+    &__sub-title {
+        color: #2d2d2d;
+        font-size: 1.8rem;
+        line-height: 1;
+        text-align: center;
+        margin-top: -20px;
+        margin-bottom: 35px;
     }
 }

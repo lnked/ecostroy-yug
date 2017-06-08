@@ -1,21 +1,23 @@
 .button {
-    height: 48px;
-    padding: 0 42px;
+    height: 54px;
+    padding: 0 25px;
     
     color: #fff;
     font-size: 1.6rem;
     font-weight: 700;
     line-height: 52px;
     text-align: center;
+    white-space: nowrap;
     text-decoration: none;
     text-transform: uppercase;
 
     @extend %button;
 
     border: 0;
-    border-radius: 5px;
-    background-color: #f6171e;
-    box-shadow: 0 2px 0 0 #ae0005;
+    border-radius: 6px;
+    background-color: #84c225;
+    text-shadow: 1px 1px 0 #60910b;
+    box-shadow: 2px 2px 0 0 #588d07;
 
     &:visited {
         color: #fff;
@@ -28,7 +30,7 @@
 
     &:hover, &:focus {
         color: #fff;
-        background-color: darken(#f6171e, 10%);
+        background-color: darken(#84c225, 10%);
     }
 
     &.disabled {
