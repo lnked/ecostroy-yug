@@ -4,7 +4,7 @@ let app = app || {};
     "use strict";
 
     app.layzr = {
-        init: function()
+        init ()
         {
             $(window).lazyLoadXT({
                 edgeY:  200,

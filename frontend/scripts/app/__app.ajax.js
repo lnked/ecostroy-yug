@@ -22,7 +22,7 @@ var app = app || {};
 
         callback_stack: {},
 
-        extend: function(config)
+        extend (config)
         {
             _this = this;
 
@@ -37,7 +37,7 @@ var app = app || {};
             }
         },
 
-        default_handler: function(form, response)
+        default_handler (form, response)
         {
             _this = this;
 
@@ -86,7 +86,7 @@ var app = app || {};
 
         },
 
-        validation: function(form, errors, error_message)
+        validation (form, errors, error_message)
         {
             _this = this;
 
@@ -137,17 +137,17 @@ var app = app || {};
             }, 10);
         },
 
-        upload: function()
+        upload ()
         {
             _this = this;
 
             $body.on('submit', '.form-file-upload', function(e) {
                 return AIM.submit(this, {
-                    onStart: function()
+                    onStart ()
                     {
 
                     },
-                    onComplete: function(result)
+                    onComplete (result)
                     {
                         if (typeof result === 'object' && result.status === true && result.hasOwnProperty('photo_url'))
                         {
@@ -165,7 +165,7 @@ var app = app || {};
             });
         },
 
-        send: function(action, method, data, cb, err)
+        send (action, method, data, cb, err)
         {
 
             if (typeof cb !== 'function') {
@@ -199,7 +199,7 @@ var app = app || {};
 
         },
 
-        initLink: function()
+        initLink ()
         {
             _this = this;
 
@@ -249,7 +249,7 @@ var app = app || {};
             });
         },
 
-        initForm: function()
+        initForm ()
         {
             _this = this;
 
@@ -330,7 +330,7 @@ var app = app || {};
             });
         },
 
-        init: function(config)
+        init (config)
         {
             this.extend(config);
 

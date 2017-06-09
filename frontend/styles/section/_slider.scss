@@ -22,9 +22,15 @@
         background: none;
         margin-top: -21px;
         z-index: 1000;
-        transition: color $a-time;
+        transition: color $a-time, opacity $a-time ease-in-out;
 
-        display: none;
+        opacity: 0;
+        visibility: hidden;
+
+        &.is-active {
+            opacity: 1;
+            visibility: visible;
+        }
     
         &:hover {
             color: #ffe400;
@@ -35,11 +41,11 @@
             height: 42px;
         }
 
-        &--left {
+        &--prev {
             left: 30px;
         }
 
-        &--right {
+        &--next {
             right: 30px;
         }
     }
@@ -50,8 +56,16 @@
         left: 0;
         right: 0;
         bottom: 44px;
+        z-index: 1000;
+        transition: color $a-time, opacity $a-time ease-in-out;
 
-        display: none;
+        opacity: 0;
+        visibility: hidden;
+
+        &.is-active {
+            opacity: 1;
+            visibility: visible;
+        }
 
         &__item {
             width: 10px;
@@ -76,85 +90,47 @@
         }
     }
 
-    &__title {
-        color: #fff;
-        font-size: 7.2rem;
-        font-weight: 700;
-        line-height: 1;
-        margin-bottom: 30px;
-        text-align: center;
-
-        @media (max-width: 480px) {
-            font-size: 3.2rem;
-        }
-    }
-    
-    &__righter {
+    &__carousel {
         width: 100%;
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: center;
-        flex-direction: row;
-        justify-content: flex-end;
-        margin-bottom: 55px;
+        height: 100%;
+        position: absolute 0;
+        z-index: 1;
 
-        @media (max-width: 480px) {
-            justify-content: center;
-        }
-    }
-
-    &__marked {
-        padding: 0 20px;
-        height: 44px;
-        color: #fff;
-        position: relative;
-        background-color: #84c225;
-        font-size: 2rem;
-        line-height: 44px;
-
-        @media (max-width: 480px) {
-            font-size: 1.8rem;
-            padding: 0 15px;
-        }
-
-        &:before, &:after {
-            width: 81px;
-            height: 37px;
-            position: absolute;
-            content: "";
-            background-image: url(/images/marked-corners.png);
+        &__item {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: 1;
+            display: none;
+            position: absolute 0;
+            background-position: 50% 50%;
             background-repeat: no-repeat;
-            background-size: 81px 74px;
-        }
+            background-size: cover;
+            transform: scale(1.1);
+            transition: opacity .35s ease-in-out, transform 1s linear;
+            will-change: opacity, transform;
 
-        &:before {
-            right: 0;
-            bottom: 100%;
-            background-position: 0 0;
-        }
+            &.is-active {
+                z-index: 10;
+                display: block;
+            }
 
-        &:after {
-            left: 0;
-            top: 100%;
-            background-position: 0 100%;
-        }
+            &.is-last {
+                z-index: 20;
+            }
 
-        strong {
-            font-size: 1.8rem;
-            font-weight: 700;
-
-            @media (max-width: 480px) {
-                font-size: 1.6rem;
+            &.is-animate {
+                opacity: 1;
+                transform: scale(1);
             }
         }
     }
 
-    &__item {
+    &__container {
         width: 100%;
         height: 100%;
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
-        background-size: cover;
+        position: relative;
+        z-index: 10;
 
         &__content {
             width: 100%;
@@ -210,6 +186,80 @@
                     padding-left: 20px;
                     background-size: 12px 10px;
                 }
+            }
+        }
+    }
+
+    &__title {
+        color: #fff;
+        font-size: 7.2rem;
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 30px;
+        text-align: center;
+
+        @media (max-width: 480px) {
+            font-size: 3.2rem;
+        }
+    }
+    
+    &__righter {
+        width: 100%;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-bottom: 55px;
+
+        @media (max-width: 480px) {
+            justify-content: center;
+        }
+    }
+
+    &__marked {
+        padding: 0 20px;
+        height: 44px;
+        color: #fff;
+        position: relative;
+        background-color: #84c225;
+        font-size: 2rem;
+        line-height: 44px;
+
+        @media (max-width: 480px) {
+            font-size: 1.8rem;
+            padding: 0 15px;
+        }
+
+        &:before, &:after {
+            width: 81px;
+            position: absolute;
+            content: "";
+            background-image: url(/images/marked-corners.png);
+            background-repeat: no-repeat;
+            background-size: 81px 74px;
+        }
+
+        &:before {
+            right: 0;
+            bottom: 100%;
+            height: 38px;
+            background-position: 0 0;
+        }
+
+        &:after {
+            left: 0;
+            top: 100%;
+            height: 36px;
+            background-position: 0 100%;
+        }
+
+        strong {
+            font-size: 1.8rem;
+            font-weight: 700;
+
+            @media (max-width: 480px) {
+                font-size: 1.6rem;
             }
         }
     }

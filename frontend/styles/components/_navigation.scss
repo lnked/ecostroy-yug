@@ -31,11 +31,18 @@
         display: block;
         height: $header-height;
         font-family: $font-condensed;
-        font-size: 16px;
+        font-size: 1.6rem;
         font-weight: 700;
         line-height: $header-height + 10px;
         position: relative;
         text-decoration: none;
+
+        &__name {
+            line-height: 1.4;
+            text-align: center;
+            display: inline-block;
+            vertical-align: middle;
+        }
 
         &:before {
             position: absolute;
@@ -49,7 +56,7 @@
             background-color: #84c225;
             transition: opacity $a-time;
         }
-
+    
         &.is-current {
             color: #84c225;
 

@@ -1,0 +1,171 @@
+let app = app || {};
+
+((body => {
+    "use strict";
+
+    const $slider = $('#carousel-slider');
+
+    app.slider = {
+
+        count: 0,
+        current: 0,
+        timeout: 6500,
+        interval: null,
+
+        drop (callback) {
+            const $target = $slider.find('.j-slide.is-active');
+            $target.removeClass('is-last').removeClass('is-animate');
+            $target.removeClass('is-active');
+
+            callback();
+
+            // setTimeout(() => {
+            //     $target.removeClass('is-active');
+
+            //     setTimeout(() => {
+            //         callback();
+            //     }, 10)
+            // }, 350);
+        },
+
+        bind () {
+            console.log('go to: ', this.current);
+
+            const $target = $slider.find('.j-slide').eq((this.current - 1));
+
+            console.log('bind: ', $target, this.current - 1);
+
+            $target.addClass('is-active').addClass('is-last');
+            $target.addClass('is-animate');
+
+            this.startInterval();
+
+            // setTimeout(() => {
+            //     $target.addClass('is-animate');
+            // }, 10);
+        },
+
+        prev () {
+            const _this = this;
+
+            _this.stopInterval();
+
+            _this.drop(() => {
+                _this.current -= 1;
+
+                if (_this.current === 0) {
+                    _this.current = _this.count;
+                }
+
+                _this.bind();
+            });
+        },
+
+        next () {
+            const _this = this;
+
+            _this.stopInterval();
+
+            _this.drop(() => {
+                _this.current += 1;
+
+                if (_this.current >= _this.count) {
+                    _this.current = 0;
+                }
+
+                _this.bind();
+            });
+        },
+
+        goTo (index) {
+            const _this = this;
+
+            _this.stopInterval();
+
+            _this.drop(() => {
+                _this.current = index;
+                _this.bind();
+            });
+        },
+
+        dots () {
+            let i = 0;
+            let item = '';
+            const dots = [];
+            const _this = this;
+
+            for (i=0; i<_this.count; i++) {
+                if (i === 0) {
+                    item = '<a href="#'+i+'" class="s-slider__dots__item j-slider-goto is-active"></a>';
+                } else {
+                    item = '<a href="#'+i+'" class="s-slider__dots__item j-slider-goto"></a>';
+                }
+
+                dots.push(item);
+            }
+
+            _this.dotsItem.html(dots.join(''));
+            _this.dotsItem.addClass('is-active');
+
+            $('body').on('click', '.j-slider-goto', function(e) {
+                e.preventDefault();
+
+                if (!$(this).hasClass('is-active')) {
+                    _this.dotsItem.find('.j-slider-goto.is-active').removeClass('is-active');
+
+                    _this.goTo($(this).attr('href').substr(-1));
+
+                    $(this).addClass('is-active');
+                }
+            });
+        },
+
+        events () {
+            this.arrowPrev.on('click', (e) => {
+                e.preventDefault();
+                this.prev();
+            });
+
+            this.arrowNext.on('click', (e) => {
+                e.preventDefault();
+                this.next();
+            });
+        },
+
+        stopInterval () {
+            console.log('clearInterval');
+            clearInterval(this.interval);
+        },
+
+        startInterval () {
+            console.log('startInterval');
+            this.interval = setInterval(() => { this.next() }, this.timeout);
+        },
+
+        make () {
+            this.count = $slider.find('.j-slide').length;
+            this.current = $slider.find('.j-slide.is-active').index();
+
+            this.dotsItem = $('#carousel-slider--dots');
+            this.arrowPrev = $('#carousel-slider--prev');
+            this.arrowNext = $('#carousel-slider--next');
+
+            this.arrowPrev.addClass('is-active');
+            this.arrowNext.addClass('is-active');
+
+            this.dots();
+
+            this.events();
+
+            this.startInterval();
+        },
+
+        init () {
+            if ($slider.length && $slider.find('.j-slide').length) {
+                this.make();
+            }
+        }
+
+    };
+
+}))(document.body);

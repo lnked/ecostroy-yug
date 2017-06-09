@@ -4,7 +4,7 @@ let app = app || {};
     "use strict";
 
     app.gallery = {
-        init: function()
+        init ()
         {
             $('.zoom').fancybox();
         }

@@ -13,6 +13,7 @@
     <meta content="width=device-width,initial-scale=1,maximum-scale=5" name="viewport">
     <meta content="skype_toolbar_parser_compatible" name="skype_toolbar">
     <meta content="telephone=no" name="format-detection">
+    <meta name="yandex-verification" content="1da0468787e53eac" />
 
     <meta content="true" name="HandheldFriendly">
     <meta content="320" name="MobileOptimized">
@@ -154,25 +155,17 @@
 
 <div class="layout-wrapper">
 
-    <a href="#action-section" class="action-sticker j-navigation">
+    <a href="#action" class="action-sticker j-navigation">
         <span class="action-sticker__text">АКЦИЯ!</span>
     </a>
 
-    <!--
-<span class="sandwich js-sandwich-menu">
-	<span class="sandwich__layer">Menu</span>
-</span>
-
-<div class="menu-overlay" id="menu-overlay"></div>
--->
-
-<div class="layout-header__similar"></div>
+    <div class="layout-header__similar"></div>
 
 <header class="layout-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
 	<div class="layout-header__container">
 		<div class="layout-header__wrapper layout">
 
-			<a href="#main-section" class="layout-header__logo logo j-navigation" rel="home" itemprop="url" accesskey="1" data-instant>
+			<a href="#main" class="layout-header__logo logo j-navigation" rel="home" itemprop="url" accesskey="1" data-instant>
 				<span itemprop="name">ЭкоСтрой-Юг, ООО, строительная компания</span>
 			</a>
 
@@ -180,31 +173,37 @@
     <ul class="navigation__list">
         
         <li class="navigation__item" itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement">
-            <a href="#about-section" itemprop="url" class="navigation__link j-navigation is-current">
-                <span class="navigation__link__name" itemprop="name">О КОМПЛЕКСЕ</span>
+            <a href="/about" itemprop="url" class="navigation__link j-navigation">
+                <span class="navigation__link__name" itemprop="name">О&nbsp;КОМПЛЕКСЕ</span>
             </a>
         </li>
 
         <li class="navigation__item" itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement">
-            <a href="#location-section" itemprop="url" class="navigation__link j-navigation">
+            <a href="/location" itemprop="url" class="navigation__link j-navigation">
                 <span class="navigation__link__name" itemprop="name">РАСПОЛОЖЕНИЕ</span>
             </a>
         </li>
 
         <li class="navigation__item" itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement">
-            <a href="#payment-section" itemprop="url" class="navigation__link j-navigation">
+            <a href="/plans" itemprop="url" class="navigation__link j-navigation">
+                <span class="navigation__link__name" itemprop="name">ПЛАНИРОВКИ</span>
+            </a>
+        </li>
+
+        <li class="navigation__item" itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement">
+            <a href="/payment" itemprop="url" class="navigation__link j-navigation">
                 <span class="navigation__link__name" itemprop="name">СПОСОБЫ ОПЛАТЫ</span>
             </a>
         </li>
 
         <li class="navigation__item" itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement">
-            <a href="#documentation-section" itemprop="url" class="navigation__link j-navigation">
+            <a href="/documentation" itemprop="url" class="navigation__link j-navigation">
                 <span class="navigation__link__name" itemprop="name">ДОКУМЕНТАЦИЯ</span>
             </a>
         </li>
 
         <li class="navigation__item" itemscope="itemscope" itemtype="http://www.schema.org/SiteNavigationElement">
-            <a href="#contacts-section" itemprop="url" class="navigation__link j-navigation">
+            <a href="/contacts" itemprop="url" class="navigation__link j-navigation">
                 <span class="navigation__link__name" itemprop="name">КОНТАКТЫ</span>
             </a>
         </li>
@@ -225,9 +224,16 @@
 
         <!-- Слайдер -->
         <section class="s-slider j-section" id="main-anchor">
-    <div class="s-slider__item" style="background-image: url(/images/slider/1.jpg);">
+    
+    <div class="s-slider__carousel" id="carousel-slider">
+        <div class="s-slider__carousel__item j-slide is-last is-active is-animate" style="background-image: url(/images/slider/1.jpg);"></div>
+        <div class="s-slider__carousel__item j-slide" style="background-image: url(/images/slider/2.jpg);"></div>
+        <div class="s-slider__carousel__item j-slide" style="background-image: url(/images/slider/3.jpg);"></div>
+    </div>
+
+    <div class="s-slider__container">
         <div class="layout">
-            <div class="s-slider__item__content">
+            <div class="s-slider__container__content">
 
                 <div class="s-slider__righter">
                     <div class="s-slider__marked"><strong>Сдача первого дома</strong> - 30.09.2017</div>
@@ -253,29 +259,23 @@
         </div>
     </div>
 
-    <button class="s-slider__nav s-slider__nav--left">
+    <button class="s-slider__nav s-slider__nav--prev" id="carousel-slider--prev">
         <svg class="s-slider__nav__ico" role="image">
             <use xlink:href="#left-arrow"/>
         </svg>
     </button>
 
-    <button class="s-slider__nav s-slider__nav--right">
+    <button class="s-slider__nav s-slider__nav--next" id="carousel-slider--next">
         <svg class="s-slider__nav__ico" role="image">
             <use xlink:href="#right-arrow"/>
         </svg>
     </button>
 
-    <div class="s-slider__dots">
-        <a href="" class="s-slider__dots__item is-active"></a>
-        <a href="" class="s-slider__dots__item"></a>
-        <a href="" class="s-slider__dots__item"></a>
-        <a href="" class="s-slider__dots__item"></a>
-        <a href="" class="s-slider__dots__item"></a>
-    </div>
+    <div class="s-slider__dots" id="carousel-slider--dots"></div>
 </section>
 
         <!-- Преимущества -->
-        <section class="section s-advantages j-section" id="about-anchor">
+        <section class="section s-advantages j-section" id="about-anchor" data-title="Преимущества покупки квартиры - ЖК Европейский">
     <div class="layout">
         <h2 class="section__title">ПРЕИМУЩЕСТВА ПОКУПКИ КВАРТИРЫ В ЖК "ЕВРОПЕЙСКИЙ"</h2>
 
@@ -362,7 +362,7 @@
 </section>
 
         <!-- Расположение -->
-        <section class="section s-location j-section" id="location-anchor">
+        <section class="section s-location j-section" id="location-anchor" data-title="Месторасположение - ЖК Европейский">
     <h2 class="section__title">МЕСТОРАСПОЛОЖЕНИЕ ЖК “ЕВРОПЕЙСКИЙ”</h2>
 
     <div class="s-location__layout">
@@ -371,7 +371,7 @@
 </section>
 
         <!-- Инфраструктура -->
-        <section class="section s-infrastructure">
+        <section class="section s-infrastructure" data-title="Инфраструктура - ЖК Европейский">
     <div class="layout">
         <h3 class="section__name">В ШАГОВОЙ ДОСТУПНОСТИ РАСПОЛОЖЕНЫ</h3>
 
@@ -441,7 +441,7 @@
 </section>
     
         <!-- Планировки -->
-        <section class="section s-plans j-tabs">
+        <section class="section s-plans j-tabs j-section" id="plans-anchor" data-title="Планировки квартир - ЖК Европейский">
     <div class="layout">
         <h2 class="section__title">ПЛАНИРОВКИ КВАРТИР В ЖК “ЕВРОПЕЙСКИЙ”</h2>
         
@@ -612,7 +612,7 @@
 </section>
     
         <!-- Акции -->
-        <section class="section s-actions j-section" id="action-anchor">
+        <section class="section s-actions j-section" id="action-anchor" data-title="Cпецпредложение - ЖК Европейский">
     <div class="layout">
         <h2 class="section__title">АКЦИИ!</h2>
 
@@ -687,7 +687,7 @@
 </section>
 
         <!-- Способы оплаты -->
-        <section class="section s-payment j-section" id="payment-anchor">
+        <section class="section s-payment j-section" id="payment-anchor" data-title="Способы оплаты - ЖК Европейский">
     <div class="layout j-tabs">
         <h2 class="section__title">Способы оплаты</h2>
         <div class="section__sub-title">Приобрести жилье можно несколькими способами</div>
@@ -814,8 +814,8 @@
 
     
         <!-- Ход строительства -->
-        <section class="section s-timeline">
-    <h2 class="section__title">ход строительства</h2>
+        <section class="section s-timeline" data-title='Ход строительства - ЖК Европейский'>
+    <h2 class="section__title">Ход строительства</h2>
 
     <!-- .carousel__item.slick-slide>a.carousel__item__image.zoom[onclick="return false" href="/images/timeline/$.jpg"]>img.carousel__item__image__src[src="/images/timeline/$-s.jpg"] -->
 
@@ -866,7 +866,7 @@
 </section>
 
         <!-- Документация -->
-        <section class="section s-documents j-section" id="documentation-anchor">
+        <section class="section s-documents j-section" id="documentation-anchor" data-title="Документация - ЖК Европейский">
     <div class="layout">
         <h2 class="section__title">Документация</h2>
 
@@ -1295,7 +1295,7 @@
         <hr class="separator separator--pure">
 
         <!-- Контакты -->
-        <section class="section s-contacts j-section" id="contacts-anchor">
+        <section class="section s-contacts j-section" id="contacts-anchor" data-title="Контакты офиса продаж - ЖК Европейский">
     <div class="layout">
         <h2 class="section__title">Контакты офиса продаж</h2>
 
@@ -1397,6 +1397,36 @@
 <!--[if lt IE 9]>
 <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>
 <![endif]-->
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter44937940 = new Ya.Metrika({
+                    id:44937940,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/44937940" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 
 </body>
 </html>

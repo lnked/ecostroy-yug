@@ -785,5 +785,5 @@ FileETag None
 	RewriteCond %{REQUEST_FILENAME} !-l
 
 	RewriteCond $1 !\.(css|js|png|json|ico|jpe?g|gif|woff|eot|svg|ttf|txt)$ [NC]
-	RewriteRule ^(.*)$ index.html [L,QSA]
+	RewriteRule ^(.*)$ index.php [L,QSA]
 </IfModule>

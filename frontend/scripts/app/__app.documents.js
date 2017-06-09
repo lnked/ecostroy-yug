@@ -4,7 +4,7 @@ let app = app || {};
     "use strict";
 
     app.documents = {
-        init: function()
+        init ()
         {
             $('body').on('click', '.j-load-documents', function(e) {
                 const $button = $(this);
