@@ -9,6 +9,10 @@
         border-radius: 0;
         background: none;
         padding: 35px 25px 25px;
+
+        @media (max-width: 480px) {
+            padding: 20px;
+        }
     }
     
     &--clear {
@@ -40,8 +44,18 @@
         max-width: 580px;
         @extend %space-between;
 
+        @media (max-width: 480px) {
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+
         .f-input {
             margin-right: 10px;
+
+            @media (max-width: 480px) {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
         }
     }
 }

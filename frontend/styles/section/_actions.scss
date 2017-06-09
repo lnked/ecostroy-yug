@@ -2,6 +2,10 @@
     background: url('/images/leaf.jpg') calc(100% - 90px) -108px no-repeat;
     background-size: 809px 629px;
 
+    @media (max-width: 480px) {
+        display: none;
+    }
+
     &__wrapper {
         @extend %space-between;
     }

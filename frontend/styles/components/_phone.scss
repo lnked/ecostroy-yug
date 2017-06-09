@@ -6,4 +6,8 @@
     line-height: 1;
     margin-top: 5px;
     text-decoration: none;
+
+    @media (max-width: 480px) {
+        margin-top: 2px;
+    }
 }

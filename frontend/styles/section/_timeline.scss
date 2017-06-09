@@ -1,5 +1,9 @@
 .s-timeline {
     background: #c1dd9e url(/images/timeline-leaf.png) 50% 50% no-repeat;
+    
+    @media (max-width: 480px) {
+        display: none;
+    }
 
     &__carousel {
         clear: both;

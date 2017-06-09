@@ -4,8 +4,16 @@
     overflow: hidden;
     text-indent: -1000px;
     margin-top: -15px;
-    background-image: url(../images/logo.svg);
+    background-image: url(/images/logo.svg);
     background-repeat: no-repeat;
     background-size: 215px 59px;
     background-position: 50% 50%;
+
+    @media (max-width: 480px) {
+        width: 29px;
+        height: 38px;
+        margin-top: 0;
+        background-image: url(/images/logo-leaf.svg);
+        background-size: 29px 38px;
+    }
 }

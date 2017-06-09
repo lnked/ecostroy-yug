@@ -5,6 +5,10 @@
     padding-bottom: 0 !important;
     background: #f0ede5 url(/images/location-background.jpg) 100% 100% no-repeat;
 
+    @media (max-width: 480px) {
+        display: none;
+    }
+
     &__layout {
         width: 1360px;
         margin: 0 auto;

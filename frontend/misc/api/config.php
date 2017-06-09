@@ -23,6 +23,7 @@ return [
 
     'emails' => [
         'info@newtime.biz',
-        'ed.proff@gmail.com'
+        'ed.proff@gmail.com',
+        'ekostroi-yg@mail.ru'
     ]
 ];

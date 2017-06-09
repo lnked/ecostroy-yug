@@ -1,6 +1,10 @@
 .navigation {
     height: 100%;
 
+    @media (max-width: 480px) {
+        display: none;
+    }
+
     &__list {
         height: 100%;
         display: flex;

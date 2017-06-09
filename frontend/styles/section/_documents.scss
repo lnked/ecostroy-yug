@@ -1,5 +1,9 @@
 .s-documents {
 
+    @media (max-width: 480px) {
+        display: none;
+    }
+
     &__list {
         padding: 0 40px;
         display: flex;

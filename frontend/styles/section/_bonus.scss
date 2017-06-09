@@ -11,6 +11,12 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        margin-bottom: -35px;
+
+        @media (max-width: 480px) {
+            flex-direction: row;
+            margin-bottom: -35px;
+        }
     }
 
     &__item {
@@ -22,7 +28,12 @@
 
         width: 25%;
         padding: 0 20px;
-        margin-bottom: 40px;
+        margin-bottom: 35px;
+
+        @media (max-width: 480px) {
+            width: 50%;
+            padding: 0 15px;
+        }
 
         &__image {
             color: #84c225;

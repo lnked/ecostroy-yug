@@ -21,5 +21,21 @@
         display: inline-block;
         vertical-align: bottom;
         transform: rotate(-15deg);
+
+        @media (max-width: 480px) {
+            transform: none;
+        }
+    }
+
+    @media (max-width: 480px) {
+        width: auto;
+        height: 52px;
+        padding: 0 13px;
+        top: 0;
+        left: auto;
+        right: 0;
+        line-height: 45px;
+        border-radius: 0 0 100px 0 / 5px;
+        background-color: #FFE400;
     }
 }

@@ -1,6 +1,10 @@
 .s-plans {
     padding-bottom: 0 !important;
-    
+
+    @media (max-width: 480px) {
+        display: none;
+    }
+
     &__group {
         display: flex;
         flex-wrap: nowrap;
