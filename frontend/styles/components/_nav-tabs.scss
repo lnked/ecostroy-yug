@@ -8,8 +8,7 @@
     z-index: 10;
 
     @media (max-width: 480px) {
-        flex-wrap: wrap;
-        flex-direction: column;
+        display: none;
     }
 
     &__link {

@@ -20,6 +20,12 @@
         strong {
             color: #5b8f0c;
         }
+
+        @media (max-width: 480px) {
+            padding: 10px 15px;
+            font-size: 1.6rem;
+            line-height: 1.44;
+        }
     }
 
     &__smtxt {
@@ -27,6 +33,13 @@
         font-size: 1.8rem;
         text-align: left;
         margin-bottom: 30px;
+
+        @media (max-width: 480px) {
+            padding: 0 15px;
+            font-size: 1.4rem;
+            line-height: 1.44;
+            margin-bottom: 20px;
+        }
     }
 
     &__group {
@@ -93,6 +106,10 @@
             font-size: 1.6rem;
             font-weight: 700;
             text-align: center;
+
+            @media (max-width: 480px) {
+                font-size: 1.5rem;
+            }
 
             &__ico {
                 text-align: left;

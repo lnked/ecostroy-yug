@@ -3,12 +3,10 @@ let app = app || {};
 ((body => {
     "use strict";
 
-    let isAnimated = false;
-
     const History = window.History;
 
     const isMobile = $(window).width() <= 667;
-    const $hasScroll = $('html, body');
+    const $hasScroll = $('html,body');
     const $navigation = $('#navigation');
     const navHeight = $navigation.height();
     const winHeight = $(window).height();
@@ -16,6 +14,8 @@ let app = app || {};
     app.navigation = {
 
         elements: [],
+
+        isAnimated: false,
 
         compose () {
             this.elements = $('.j-section').map((key, item) => {
@@ -27,21 +27,30 @@ let app = app || {};
         },
 
         scrollToAnchor (hash, animate) {
+            const _this = this;
             hash = hash.split('?')[0];
 
             const $target = $(`#${hash}-anchor`);
 
             if ($target.length) {
-                isAnimated = true;
+                _this.isAnimated = true;
+
                 const top = $target.offset().top - navHeight;
 
                 if (animate) {
                     $hasScroll.stop().animate({ 'scrollTop': top }, 'medium', () => {
-                        isAnimated = false;
                         $navigation.removeClass('is-disabled');
+
+                        setTimeout(() => {
+                            _this.isAnimated = false;
+                        }, 100);
                     });
                 } else {
-                    $hasScroll.scrollTop(top);
+                    $(window).scrollTop(top);
+
+                    setTimeout(() => {
+                        _this.isAnimated = false;
+                    }, 100);
                 }
             }
         },
@@ -82,7 +91,10 @@ let app = app || {};
                 const slug = State.url.split('/')[3];
                 const $current = $navigation.find('.j-navigation[href="/' + slug + '"]');
 
-                this.setCurrent($current, slug, $(`#${slug}-anchor`).data('title'));
+                setTimeout(() => {
+                    this.scrollToAnchor(slug, false);
+                    this.setCurrent($current, slug, $(`#${slug}-anchor`).data('title'));
+                }, 200);
             }
         },
 
@@ -108,7 +120,7 @@ let app = app || {};
             let last = Date.now();
 
             $(window).scroll(() => {
-                if (!isAnimated) {
+                if (!_this.isAnimated) {
                     const differance = Date.now() - last;
 
                     if (differance >= 500) {

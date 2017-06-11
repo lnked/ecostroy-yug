@@ -44,4 +44,11 @@
             background: #ccc !important;
         }
     }
+
+    @media (max-width: 480px) {
+        height: 40px;
+        font-size: 1.5rem;
+        line-height: 40px;
+        border-radius: 2px;
+    }
 }

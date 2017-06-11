@@ -4,6 +4,10 @@
     background-color: rgba(#63ab0d, 0.2);
     border: 1px solid rgba(#588d07, 0.2);
 
+    @media (max-width: 480px) {
+        padding: 10px 15px 15px;
+    }
+
     &--nobg {
         border: 0;
         border-radius: 0;
@@ -35,6 +39,11 @@
 
         &:not(:last-child) {
             margin-bottom: 17px;
+        }
+
+        @media (max-width: 480px) {
+            font-size: 1.5rem;
+            line-height: 1.33;
         }
     }
 
