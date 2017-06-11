@@ -161,6 +161,11 @@
         background-repeat: no-repeat;
         background-position: 100% 0;
 
+        @media (max-width: 480px) {
+            border-radius: 3px;
+            background-position: 95% 0;
+        }
+
         &__check {
             padding: 0 15px;
             margin-bottom: 30px;
