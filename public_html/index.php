@@ -155,13 +155,14 @@
 
 <div class="layout-wrapper">
 
-    <a href="#action" class="action-sticker j-navigation">
-        <span class="action-sticker__text">АКЦИЯ!</span>
-    </a>
-
     <div class="layout-header__similar"></div>
 
 <header class="layout-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+
+	<a href="#action" class="action-sticker j-navigation">
+	    <span class="action-sticker__text">АКЦИЯ!</span>
+	</a>
+
 	<div class="layout-header__container">
 		<div class="layout-header__wrapper layout">
 
@@ -822,22 +823,44 @@
     <div class="timeline__carousel carousel j-timeline" id="timeline-list">
         <div class="carousel__outer">
             <div class="carousel__wrapper j-timeline-slider" id="timeline-carousel">
-                <div class="carousel__item slick-slide is-year-2017 is-month-6"><a href="/images/timeline/1.jpg" onclick="return false" class="carousel__item__image zoom"><img src="/images/timeline/1-s.jpg" alt="" class="carousel__item__image__src"></a></div>
-                <div class="carousel__item slick-slide is-year-2017 is-month-6"><a href="/images/timeline/2.jpg" onclick="return false" class="carousel__item__image zoom"><img src="/images/timeline/2-s.jpg" alt="" class="carousel__item__image__src"></a></div>
-                <div class="carousel__item slick-slide is-year-2017 is-month-6"><a href="/images/timeline/3.jpg" onclick="return false" class="carousel__item__image zoom"><img src="/images/timeline/3-s.jpg" alt="" class="carousel__item__image__src"></a></div>
-                <div class="carousel__item slick-slide is-year-2017 is-month-6"><a href="/images/timeline/4.jpg" onclick="return false" class="carousel__item__image zoom"><img src="/images/timeline/4-s.jpg" alt="" class="carousel__item__image__src"></a></div>
-                <div class="carousel__item slick-slide is-year-2017 is-month-6"><a href="/images/timeline/5.jpg" onclick="return false" class="carousel__item__image zoom"><img src="/images/timeline/5-s.jpg" alt="" class="carousel__item__image__src"></a></div>
-                <div class="carousel__item slick-slide is-year-2017 is-month-6"><a href="/images/timeline/6.jpg" onclick="return false" class="carousel__item__image zoom"><img src="/images/timeline/6-s.jpg" alt="" class="carousel__item__image__src"></a></div>
+                <div class="carousel__item slick-slide is-year-2017 is-month-6">
+                    <a href="/images/timeline/1.jpg" onclick="return false" class="carousel__item__image zoom">
+                        <img src="/images/timeline/1-s.jpg" class="carousel__item__image__src" alt="">
+                    </a>
+                </div>
+
+                <div class="carousel__item slick-slide is-year-2017 is-month-6">
+                    <a href="/images/timeline/2.jpg" onclick="return false" class="carousel__item__image zoom">
+                        <img src="/images/timeline/2-s.jpg" class="carousel__item__image__src" alt="">
+                    </a>
+                </div>
+
+                <div class="carousel__item slick-slide is-year-2017 is-month-6">
+                    <a href="/images/timeline/3.jpg" onclick="return false" class="carousel__item__image zoom">
+                        <img src="/images/timeline/3-s.jpg" class="carousel__item__image__src" alt="">
+                    </a>
+                </div>
+
+                <div class="carousel__item slick-slide is-year-2017 is-month-6">
+                    <a href="/images/timeline/4.jpg" onclick="return false" class="carousel__item__image zoom">
+                        <img src="/images/timeline/4-s.jpg" class="carousel__item__image__src" alt="">
+                    </a>
+                </div>
+
+                <div class="carousel__item slick-slide is-year-2017 is-month-6">
+                    <a href="/images/timeline/5.jpg" onclick="return false" class="carousel__item__image zoom">
+                        <img src="/images/timeline/5-s.jpg" class="carousel__item__image__src" alt="">
+                    </a>
+                </div>
+
+                <div class="carousel__item slick-slide is-year-2017 is-month-6">
+                    <a href="/images/timeline/6.jpg" onclick="return false" class="carousel__item__image zoom">
+                        <img src="/images/timeline/6-s.jpg" class="carousel__item__image__src" alt="">
+                    </a>
+                </div>
             </div>
 
-            <div class="carousel__cache" id="timeline-cache">
-                <div class="carousel__item slick-slide is-year-2017 is-month-6"><a href="/images/timeline/1.jpg" onclick="return false" class="carousel__item__image zoom"><img src="/images/timeline/1-s.jpg" alt="" class="carousel__item__image__src"></a></div>
-                <div class="carousel__item slick-slide is-year-2017 is-month-6"><a href="/images/timeline/2.jpg" onclick="return false" class="carousel__item__image zoom"><img src="/images/timeline/2-s.jpg" alt="" class="carousel__item__image__src"></a></div>
-                <div class="carousel__item slick-slide is-year-2017 is-month-6"><a href="/images/timeline/3.jpg" onclick="return false" class="carousel__item__image zoom"><img src="/images/timeline/3-s.jpg" alt="" class="carousel__item__image__src"></a></div>
-                <div class="carousel__item slick-slide is-year-2017 is-month-6"><a href="/images/timeline/4.jpg" onclick="return false" class="carousel__item__image zoom"><img src="/images/timeline/4-s.jpg" alt="" class="carousel__item__image__src"></a></div>
-                <div class="carousel__item slick-slide is-year-2017 is-month-6"><a href="/images/timeline/5.jpg" onclick="return false" class="carousel__item__image zoom"><img src="/images/timeline/5-s.jpg" alt="" class="carousel__item__image__src"></a></div>
-                <div class="carousel__item slick-slide is-year-2017 is-month-6"><a href="/images/timeline/6.jpg" onclick="return false" class="carousel__item__image zoom"><img src="/images/timeline/6-s.jpg" alt="" class="carousel__item__image__src"></a></div>
-            </div>
+            <div class="carousel__cache" id="timeline-cache"></div>
         </div>
     </div>
 
@@ -875,6 +898,7 @@
                 <a href="/images/documents/001.jpg" class="s-documents__list__item__link zoom" data-fancybox="gallery" target="_blank">
                     <span class="s-documents__list__item__image">
                         <img class="lazy" data-src="/images/documents/001-s.jpg" alt="">
+                        <noscript><img src="/images/documents/001-s.jpg" alt=""></noscript>
 
                         <svg class="s-documents__list__item__checked" role="image">
                             <use xlink:href="#checked"/>
@@ -889,6 +913,7 @@
                 <a href="/images/documents/002.jpg" class="s-documents__list__item__link zoom" data-fancybox="gallery" target="_blank">
                     <span class="s-documents__list__item__image">
                         <img class="lazy" data-src="/images/documents/002-s.jpg" alt="">
+                        <noscript><img src="/images/documents/002-s.jpg" alt=""></noscript>
 
                         <svg class="s-documents__list__item__checked" role="image">
                             <use xlink:href="#checked"/>
@@ -902,6 +927,7 @@
                 <a href="/images/documents/003.jpg" class="s-documents__list__item__link zoom" data-fancybox="gallery" target="_blank">
                     <span class="s-documents__list__item__image">
                         <img class="lazy" data-src="/images/documents/003-s.jpg" alt="">
+                        <noscript><img src="/images/documents/003-s.jpg" alt=""></noscript>
 
                         <svg class="s-documents__list__item__checked" role="image">
                             <use xlink:href="#checked"/>
@@ -916,6 +942,7 @@
                 <a href="/images/documents/004.jpg" class="s-documents__list__item__link zoom" data-fancybox="gallery" target="_blank">
                     <span class="s-documents__list__item__image">
                         <img class="lazy" data-src="/images/documents/004-s.jpg" alt="">
+                        <noscript><img src="/images/documents/004-s.jpg" alt=""></noscript>
 
                         <svg class="s-documents__list__item__checked" role="image">
                             <use xlink:href="#checked"/>
@@ -930,6 +957,7 @@
                 <a href="/images/documents/005.jpg" class="s-documents__list__item__link zoom" data-fancybox="gallery" target="_blank">
                     <span class="s-documents__list__item__image">
                         <img class="lazy" data-src="/images/documents/005-s.jpg" alt="">
+                        <noscript><img src="/images/documents/005-s.jpg" alt=""></noscript>
 
                         <svg class="s-documents__list__item__checked" role="image">
                             <use xlink:href="#checked"/>
@@ -944,6 +972,7 @@
                 <a href="/images/documents/006.jpg" class="s-documents__list__item__link zoom" data-fancybox="gallery" target="_blank">
                     <span class="s-documents__list__item__image">
                         <img class="lazy" data-src="/images/documents/006-s.jpg" alt="">
+                        <noscript><img src="/images/documents/006-s.jpg" alt=""></noscript>
 
                         <svg class="s-documents__list__item__checked" role="image">
                             <use xlink:href="#checked"/>
@@ -958,6 +987,7 @@
                 <a href="/images/documents/007.jpg" class="s-documents__list__item__link zoom" data-fancybox="gallery" target="_blank">
                     <span class="s-documents__list__item__image">
                         <img class="lazy" data-src="/images/documents/007-s.jpg" alt="">
+                        <noscript><img src="/images/documents/007-s.jpg" alt=""></noscript>
 
                         <svg class="s-documents__list__item__checked" role="image">
                             <use xlink:href="#checked"/>
@@ -1392,7 +1422,7 @@
 <script src="/js/libs.min.js"></script>
 <script src="/js/app.min.js"></script>
 
-<script src="//api-maps.yandex.ru/2.1/?lang=ru_RU&onload=yandexMap" type="text/javascript"></script>
+<script src="//api-maps.yandex.ru/2.1/?lang=ru_RU&onload=yandexMap" async></script>
 
 <!--[if lt IE 9]>
 <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js"></script>

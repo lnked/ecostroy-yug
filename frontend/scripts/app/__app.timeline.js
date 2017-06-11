@@ -20,9 +20,7 @@ let app = app || {};
                 (width > 375 && slides >= 2) ||
                 (width < 375 && slides >= 1)
             ) {
-
                 $('#timeline-carousel').slick({
-                    lazyLoad: 'ondemand',
                     dots: false,
                     infinite: true,
                     draggable: true,

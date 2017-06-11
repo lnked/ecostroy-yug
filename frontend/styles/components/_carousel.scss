@@ -79,6 +79,12 @@
     }
 }
 
+.lazy-hidden {
+    border: 1px solid red;
+    background: url(/images/preloader.gif) no-repeat 50% 50%;
+    background-size: 32px -32px;
+}
+
 @media only screen and (max-width: 768px) {
     .carousel {
         &__item {

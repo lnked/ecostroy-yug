@@ -9,40 +9,30 @@ let app = app || {};
 
         count: 0,
         current: 0,
-        timeout: 6500,
+        timeout: 6000,
         interval: null,
 
         drop (callback) {
             const $target = $slider.find('.j-slide.is-active');
-            $target.removeClass('is-last').removeClass('is-animate');
+
+            $target.addClass('is-last-active');
             $target.removeClass('is-active');
 
             callback();
-
-            // setTimeout(() => {
-            //     $target.removeClass('is-active');
-
-            //     setTimeout(() => {
-            //         callback();
-            //     }, 10)
-            // }, 350);
         },
 
         bind () {
-            console.log('go to: ', this.current);
-
             const $target = $slider.find('.j-slide').eq((this.current - 1));
 
-            console.log('bind: ', $target, this.current - 1);
+            $target.addClass('is-active');
 
-            $target.addClass('is-active').addClass('is-last');
-            $target.addClass('is-animate');
+            this.activateDot();
+
+            setTimeout(function(){
+                $slider.find('.j-slide.is-last-active').removeClass('is-last-active');
+            }, 1000);
 
             this.startInterval();
-
-            // setTimeout(() => {
-            //     $target.addClass('is-animate');
-            // }, 10);
         },
 
         prev () {
@@ -111,13 +101,14 @@ let app = app || {};
                 e.preventDefault();
 
                 if (!$(this).hasClass('is-active')) {
-                    _this.dotsItem.find('.j-slider-goto.is-active').removeClass('is-active');
-
                     _this.goTo($(this).attr('href').substr(-1));
-
-                    $(this).addClass('is-active');
                 }
             });
+        },
+
+        activateDot () {
+            this.dotsItem.find('.j-slider-goto.is-active').removeClass('is-active');
+            this.dotsItem.find('.j-slider-goto').eq(this.current).addClass('is-active');
         },
 
         events () {
@@ -133,12 +124,10 @@ let app = app || {};
         },
 
         stopInterval () {
-            console.log('clearInterval');
             clearInterval(this.interval);
         },
 
         startInterval () {
-            console.log('startInterval');
             this.interval = setInterval(() => { this.next() }, this.timeout);
         },
 
