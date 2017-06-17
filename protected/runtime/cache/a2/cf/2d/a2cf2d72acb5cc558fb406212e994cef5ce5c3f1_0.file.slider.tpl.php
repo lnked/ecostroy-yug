@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.32-dev-1, created on 2017-06-17 03:34:13
+/* Smarty version 3.1.32-dev-1, created on 2017-06-17 03:57:41
   from "/Users/edik/web/ecostroy.dev/protected/modules/slider/tpl/slider.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32-dev-1',
-  'unifunc' => 'content_594479050ae2b0_93218056',
+  'unifunc' => 'content_59447e8581c824_36989097',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_594479050ae2b0_93218056 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59447e8581c824_36989097 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="s-slider__carousel" id="carousel-slider"><?php if (!empty($_smarty_tpl->tpl_vars['slider']->value)) {
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['slider']->value, 'slide', false, NULL, 'slider', array (

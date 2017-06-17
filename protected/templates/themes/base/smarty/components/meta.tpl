@@ -16,6 +16,9 @@
     <meta content="320" name="MobileOptimized">
     <meta content="on" http-equiv="cleartype">
 
+    <meta name="cms" content="celebro.cms">
+    <meta name="author" content="https://celebro.ru/">
+
 	<meta content="{$_page.lang}" itemprop="inLanguage">
     <meta content="{$_page.robots}" name="robots">
     <meta content="{$_page.keywords}" name="keywords">

@@ -11,7 +11,7 @@
 		<div class="layout-header__wrapper layout">
 
 			<a href="/" class="layout-header__logo logo j-navigation" rel="home" itemprop="url" accesskey="1" data-instant>
-				<span itemprop="name">ЭкоСтрой-Юг, ООО, строительная компания</span>
+				<span itemprop="name">{unit item='11'}</span>
 			</a>
 			
 			{$accesskey = 1}
@@ -30,9 +30,7 @@
 			</nav>
 			{/if}
 
-			<a href="tel:8-800-200-38-58" class="layout-header__phone phone">
-				8 800 200 38 58
-			</a>
+			{unit item='10'}
 
 		</div>
 	</div>

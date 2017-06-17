@@ -1,1 +1,7 @@
 {"url":"\/plans","files":70,"time":"0.496","memory":"4.414","memory_peak":"4.910"}
+{"url":"\/advantages","files":86,"time":"0.762","memory":"4.768","memory_peak":"5.319"}
+{"url":"\/location","files":86,"time":"0.633","memory":"4.782","memory_peak":"5.325"}
+{"url":"\/actions","files":86,"time":"0.643","memory":"4.782","memory_peak":"5.325"}
+{"url":"\/infrastructure","files":86,"time":"0.697","memory":"4.782","memory_peak":"5.325"}
+{"url":"\/contacts","files":87,"time":"0.647","memory":"4.880","memory_peak":"5.325"}
+{"url":"\/contacts","files":87,"time":"0.669","memory":"4.880","memory_peak":"5.325"}

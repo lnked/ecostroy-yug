@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.32-dev-1, created on 2017-06-17 03:34:13
+/* Smarty version 3.1.32-dev-1, created on 2017-06-17 03:57:41
   from "/Users/edik/web/ecostroy.dev/protected/modules/timeline/tpl/timeline.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32-dev-1',
-  'unifunc' => 'content_59447905707a37_68318446',
+  'unifunc' => 'content_59447e85ea4fb5_20499167',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59447905707a37_68318446 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59447e85ea4fb5_20499167 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="s-timeline__carousel carousel j-timeline" id="timeline"><?php echo '<script'; ?>
 >var timelineConfig = <?php echo $_smarty_tpl->tpl_vars['json']->value;?>

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.32-dev-1, created on 2017-06-17 03:34:06
+/* Smarty version 3.1.32-dev-1, created on 2017-06-17 03:57:39
   from "/Users/edik/web/ecostroy.dev/protected/templates/admin/new.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32-dev-1',
-  'unifunc' => 'content_594478fe56a439_92595525',
+  'unifunc' => 'content_59447e83a788d1_77859926',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:system/include.code.tpl' => 1,
   ),
 ),false)) {
-function content_594478fe56a439_92595525 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59447e83a788d1_77859926 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_capi')) require_once '/Users/edik/web/ecostroy.dev/protected/core/lib/templaters/smarty/plugins_cms/modifier.capi.php';
 ?>
 <!DOCTYPE html>

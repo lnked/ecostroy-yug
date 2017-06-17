@@ -3,7 +3,7 @@
 	<div class="layout-footer__wrapper">
 
 		<span class="layout-footer__copyright">
-            <span class="layout-footer__copyright__text">&copy; 2017 Все права защищены <span class="layout-footer__copyright__br"></span>"ЭКОСТРОЙ ЮГ"</span>
+            <span class="layout-footer__copyright__text">{unit item='1'}</span>
         </span>
 		
 	</div>
