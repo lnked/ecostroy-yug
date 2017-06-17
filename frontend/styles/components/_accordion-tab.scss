@@ -1,15 +1,15 @@
 .accordion-tab {
     clear: both;
     width: 100%;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    flex-direction: row;
-    justify-content: center;
+    display: none;
     position: relative;
     margin-bottom: 5px;
     background-color: $c-white;
     border: 1px solid #84c225;
+
+    @media (max-width: 480px) {
+        display: block;
+    }
 
     &__link {
         width: 100%;

@@ -3,28 +3,27 @@ let app = app || {};
 ((body => {
     'use strict';
 
-    app.timeline = {
+    const $timeline = $('#timeline');
+    const $carousel = $('#timeline-carousel');
 
-        data: {},
-        filter: null,
-        years: null,
-        months: null,
+    app.timeline = {
 
         _initCarousel () {
             var width = $(window).width(),
-                slides = $('#timeline-carousel').find('.slick-slide').length;
+                slides = $carousel.find('.slick-slide').length;
 
-            if (
-                (width > 768 && slides >= 4) ||
+            if ((width > 768 && slides >= 4) ||
                 (width > 568 && slides >= 3) ||
                 (width > 375 && slides >= 2) ||
-                (width < 375 && slides >= 1)
-            ) {
-                $('#timeline-carousel').slick({
+                (width < 375 && slides >= 1)) {
+
+                $timeline.removeClass('is-centered');
+   
+                $carousel.slick({
                     dots: false,
+                    speed: 170,
                     infinite: true,
-                    draggable: true,
-                    speed: 259,
+                    draggable: false,
                     slidesToShow: 4,
                     slidesToScroll: 1,
                     prevArrow: '<button class="carousel__nav carousel__nav--left slick-prev"><svg class="carousel__nav__ico" role="image"><use xlink:href="#left-arrow"/></svg></button>',
@@ -33,157 +32,106 @@ let app = app || {};
                         {
                             breakpoint: 768,
                             settings: {
-                                slidesToShow: 3,
-                                slidesToScroll: 3,
+                                slidesToShow: 3
                             }
                         },
                         {
                             breakpoint: 568,
                             settings: {
-                                slidesToShow: 2,
-                                slidesToScroll: 2
+                                slidesToShow: 2
                             }
                         },
                         {
                             breakpoint: 375,
                             settings: {
-                                fade: true,
-                                slidesToShow: 1,
-                                slidesToScroll: 1
+                                draggable: true,
+                                slidesToShow: 1
                             }
                         }
                     ]
                 });
+            } else {
+                $timeline.addClass('is-centered');
             }
         },
 
-        _currentYear ()
-        {
-            return parseInt(this.years.find('.is-current').data('value'));
+        _reinitCarousel () {
+            if ($carousel.hasClass('slick-initialized')) {
+                $carousel.slick('unslick');
+            }
+
+            this._initCarousel();
         },
 
-        _currentMonth ()
-        {
-            return parseInt(this.months.find('.is-current').data('value'));
-        },
+        _render (data) {
+            const _this = this;
+            const html = [];
 
-        _handle ()
-        {
-            this.data.current = this._currentYear();
-            this.data.months = [];
-
-            this.months.find('.j-timeline-months-item').each((key, item) => {
-                var years = [], strings = $(item).data('if') + '';
-
-                if (typeof strings !== 'undefined' && strings !== '') {
-                    years = strings.split(',');
-
-                    for (var x in years) {
-                        years[x] = parseInt(years[x]);
+            if (data.length) {
+                $.each(data, (key, item) => {
+                    if (item.original && item.preview) {
+                        html.push(
+                            [
+                                '<div class="carousel__item slick-slide">',
+                                    '<a href="'+item.original+'" onclick="return false" class="carousel__item__image zoom">',
+                                        '<img src="'+item.preview+'" class="carousel__item__image__src" alt="">',
+                                    '</a>',
+                                '</div>'
+                            ].join('')
+                        );
                     }
-                }
-
-                this.data.months.push({
-                    item: item,
-                    year: years
                 });
-            });
-        },
 
-        _reinitCarousel ()
-        {
-            var _self_ = this,
-                year = this._currentYear(),
-                month = this._currentMonth();
+                $carousel.html('').append(html.join(''));
 
-            if ($('#timeline-carousel').hasClass('slick-initialized')) {
-                $('#timeline-carousel').slick('unslick');
+                setTimeout(() => {
+                    _this._reinitCarousel();
+                }, 10);
             }
-
-            // $('#timeline-carousel').html('');
-
-            // var count = $('#timeline-cache').find('.carousel__item.is-year-'+ year +'.is-month-'+month).length;
-
-            // $('#timeline-cache').find('.carousel__item.is-year-'+ year +'.is-month-'+month).each(function(k, item) {
-            //     $('#timeline-carousel').append($(this).clone());
-
-            //     if ((k+1) == count) {
-            //         setTimeout(function() {
-            //             _self_._initCarousel();
-            //         }, 50);
-            //     }
-            // });
-
-            // setTimeout(function() {
-            //     $('.zoom').fancybox();
-            // }, 300);
-
-            _self_._initCarousel();
         },
 
-        _changeFirstMonth ()
-        {
-            this.months.find('.j-timeline-months-item.is-active:first').trigger('click');
+        _change () {
+            const year = $timeline.find('.j-timeline-years-tab.is-current').data('value');
+            const month = $timeline.find('.j-timeline-months.is-active').find('.j-timeline-months-tab.is-current').data('value');
+            this._render(timelineConfig[year][month]);
         },
 
-        _match ()
-        {
-            const _self_ = this;
+        _events () {
+            const _this = this;
 
-            this._handle();
+            $timeline.on('click', '.j-timeline-years-tab', function(e) {
+                const $this = $(this);
 
-            this.months.find('.j-timeline-months-item').removeClass('is-active');
+                if (!$this.hasClass('is-current')) {
+                    const year = parseInt($this.data('value'));
 
-            $.each(this.data.months, (k, item) => {
-                if (item.year.indexOf(this.data.current) >= 0) {
-                    $(item.item).addClass('is-active');
+                    $timeline.find('.j-timeline-months.is-active').removeClass('is-active');
+                    $timeline.find(`.j-timeline-months[data-year="${year}"]`).addClass('is-active');
+
+                    $timeline.find('.j-timeline-years-tab.is-current').removeClass('is-current');
+                    $this.addClass('is-current');
+
+                    _this._change();
                 }
             });
 
-            this.filter.addClass('is-active');
-        },
+            $timeline.on('click', '.j-timeline-months-tab', function(e) {
+                const $this = $(this);
 
-        _events ()
-        {
-            const _self_ = this;
+                if (!$this.hasClass('is-current')) {
+                    const month = parseInt($this.data('value'));
 
-            this.years.find('.j-timeline-years-item').on('click', function(e) {
-                e.preventDefault();
+                    $timeline.find('.j-timeline-months.is-active').find('.j-timeline-months-tab.is-current').removeClass('is-current');
 
-                if (!$(this).hasClass('is-current')) {
-                    $('#timeline-filter').find('.j-timeline-years').find('.is-current').removeClass('is-current');
+                    $this.addClass('is-current');
 
-                    $(this).addClass('is-current');
-
-                    _self_._match();
-                    _self_._changeFirstMonth();
-                    _self_._reinitCarousel();
-                }
-            });
-
-            this.months.find('.j-timeline-months-item').on('click', function(e) {
-                e.preventDefault();
-
-                if (!$(this).hasClass('is-current')) {
-                    $('#timeline-filter').find('.j-timeline-months').find('.is-current').removeClass('is-current');
-
-                    $(this).addClass('is-current');
-
-                    _self_._match();
-                    _self_._reinitCarousel();
+                    _this._change();
                 }
             });
         },
 
-        init ()
-        {
-            this.filter = $('#timeline-filter');
-            this.years = this.filter.find('.j-timeline-years');
-            this.months = this.filter.find('.j-timeline-months');
-
-            this._match();
+        init () {
             this._events();
-
             this._reinitCarousel();
         }
     };

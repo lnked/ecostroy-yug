@@ -1,0 +1,138 @@
+{
+    "redactor": [
+        {
+            "name":     "Imperavi",
+            "system":   "imperavi",
+            "path":     "/wysiwyg/imperavi/",
+            "lib":      {
+                "style": [
+                    "redactor.css",
+                    "plugins/clips/clips.css"
+                ],
+                "script": [
+                    "redactor.min.js",
+                    "lang/ru.js",
+                    "plugins/clips/clips.js",
+                    "plugins/counter/counter.js",
+                    "plugins/definedlinks/definedlinks.js",
+                    "plugins/filemanager/filemanager.js",
+                    "plugins/fontcolor/fontcolor.js",
+                    "plugins/fontfamily/fontfamily.js",
+                    "plugins/fontsize/fontsize.js",
+                    "plugins/fullscreen/fullscreen.js",
+                    "plugins/imagemanager/imagemanager.js",
+                    "plugins/limiter/limiter.js",
+                    "plugins/table/table.js",
+                    "plugins/textdirection/textdirection.js",
+                    "plugins/textexpander/textexpander.js",
+                    "plugins/video/video.js"
+                ]
+            },
+            "default":  "1"
+        },
+        {
+            "name":     "Tinymce",
+            "system":   "tinymce",
+            "path":      "/wysiwyg/tinymce/",
+            "lib":      {
+                "script": [
+                    "tinymce.min.js"
+                ]
+            }
+        },
+        {
+            "name":     "Froala",
+            "system":   "froala",
+            "path":      "/wysiwyg/froala/",
+            "lib":      {
+                "style": [
+                    "css/froala_editor.pkgd.min.css",
+                    "css/froala_style.min.css",
+                    "css/plugins/char_counter.min.css",
+                    "css/plugins/code_view.min.css",
+                    "css/plugins/colors.min.css",
+                    "css/plugins/emoticons.min.css",
+                    "css/plugins/file.min.css",
+                    "css/plugins/fullscreen.min.css",
+                    "css/plugins/image.min.css",
+                    "css/plugins/image_manager.min.css",
+                    "css/plugins/line_breaker.min.css",
+                    "css/plugins/quick_insert.min.css",
+                    "css/plugins/special_characters.min.css",
+                    "css/plugins/table.min.css",
+                    "css/plugins/video.min.css",
+                    "css/themes/royal.min.css"
+                ],
+                "script": [
+                    "js/froala_editor.pkgd.min.js",
+                    "js/plugins/align.min.js",
+                    "js/plugins/char_counter.min.js",
+                    "js/plugins/code_view.min.js",
+                    "js/plugins/colors.min.js",
+                    "js/plugins/emoticons.min.js",
+                    "js/plugins/entities.min.js",
+                    "js/plugins/file.min.js",
+                    "js/plugins/font_family.min.js",
+                    "js/plugins/font_size.min.js",
+                    "js/plugins/fullscreen.min.js",
+                    "js/plugins/image.min.js",
+                    "js/plugins/image_manager.min.js",
+                    "js/plugins/inline_style.min.js",
+                    "js/plugins/line_breaker.min.js",
+                    "js/plugins/link.min.js",
+                    "js/plugins/lists.min.js",
+                    "js/plugins/paragraph_format.min.js",
+                    "js/plugins/paragraph_style.min.js",
+                    "js/plugins/print.min.js",
+                    "js/plugins/quick_insert.min.js",
+                    "js/plugins/quote.min.js",
+                    "js/plugins/save.min.js",
+                    "js/plugins/special_characters.min.js",
+                    "js/plugins/table.min.js",
+                    "js/plugins/url.min.js",
+                    "js/plugins/video.min.js",
+                    "js/languages/ru.js"
+                ]
+            }
+        },
+        {
+            "name":     "Cleditor",
+            "system":   "cleditor",
+            "path":      "/wysiwyg/cleditor/",
+            "lib":      {
+                "style": [
+                    "jquery.cleditor.css"
+                ],
+                "script": [
+                    "jquery.cleditor.min.js"
+                ]
+            }
+        }
+    ],
+    
+    "editor_mode": [
+        "htmlmixed",
+        "php",
+        "css",
+        "sql",
+        "xml",
+        "jsx",
+        "nginx",
+        "javascript",
+        "markdown",
+        "smarty",
+        "scheme",
+        "shell",
+        "sass"
+    ],
+
+    "editor": [
+        {
+            "name":     "Codemirror",
+            "system":   "codemirror",
+            "default":  "1"
+        }
+    ],
+
+    "themes": []
+}

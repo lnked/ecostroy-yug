@@ -1,0 +1,99 @@
+E_NOTICE [8] Undefined variable: cache in /Users/edik/web/ecostroy.dev/protected/core/controllers/modulesController.php:463
+#1 /Users/edik/web/ecostroy.dev/protected/core/controllers/modulesController.php(327): modulesController->createModuleFiles('/Users/edik/web...', 'plans')
+#2 /Users/edik/web/ecostroy.dev/protected/core/classes/cploader.class.php(101): modulesController->post(Array)
+#3 /Users/edik/web/ecostroy.dev/protected/core/classes/cploader.class.php(511): cpLoader->loadController()
+#4 /Users/edik/web/ecostroy.dev/public_html/cp/index.php(15): cpLoader->run()
+#5 {main}
+URL: ecostroy.dev/cp/modules/binds/add
+HTTP_REFERER: http://ecostroy.dev/cp/modules/binds/add
+POST: Array
+(
+    [module_action] => add_bind
+    [name] => Планировки
+    [func_name] => plans
+    [cache] => 1
+    [save] => 
+)
+
+COOKIE: Array
+(
+    [admin_struct] => a:2:{i:0;i:0;i:1;i:1;}
+    [_ym_uid] => 1497113804400287370
+    [PHPSESSID] => ppke2vspqlj0g1o8cuo2juoou7
+    [xdata-12_toogle_f3cab488277b31e2b09cc1bfa0d78140] => show
+    [page_data_toogle_965d517067eff7e60b1ad5fda678820c] =
+SESSION: Array
+(
+    [sql] => 9
+    [sql_log] => Array
+        (
+            [0] => SELECT `id`, `system`  FROM `#__shop_category` WHERE `pid`!=?i AND `visible`=?i
+            [1] => SELECT `id`, `system`  FROM `#__shop_manufacturer` WHERE `visible`=?i
+            
+uniqid: 594464abd5aa3
+E_NOTICE [8] Undefined variable: system in /Users/edik/web/ecostroy.dev/protected/core/controllers/modulesController.php:492
+#1 /Users/edik/web/ecostroy.dev/protected/core/controllers/modulesController.php(327): modulesController->createModuleFiles('/Users/edik/web...', 'plans')
+#2 /Users/edik/web/ecostroy.dev/protected/core/classes/cploader.class.php(101): modulesController->post(Array)
+#3 /Users/edik/web/ecostroy.dev/protected/core/classes/cploader.class.php(511): cpLoader->loadController()
+#4 /Users/edik/web/ecostroy.dev/public_html/cp/index.php(15): cpLoader->run()
+#5 {main}
+URL: ecostroy.dev/cp/modules/binds/add
+HTTP_REFERER: http://ecostroy.dev/cp/modules/binds/add
+POST: Array
+(
+    [module_action] => add_bind
+    [name] => Планировки
+    [func_name] => plans
+    [cache] => 1
+    [save] => 
+)
+
+COOKIE: Array
+(
+    [admin_struct] => a:2:{i:0;i:0;i:1;i:1;}
+    [_ym_uid] => 1497113804400287370
+    [PHPSESSID] => ppke2vspqlj0g1o8cuo2juoou7
+    [xdata-12_toogle_f3cab488277b31e2b09cc1bfa0d78140] => show
+    [page_data_toogle_965d517067eff7e60b1ad5fda678820c] =
+SESSION: Array
+(
+    [sql] => 9
+    [sql_log] => Array
+        (
+            [0] => SELECT `id`, `system`  FROM `#__shop_category` WHERE `pid`!=?i AND `visible`=?i
+            [1] => SELECT `id`, `system`  FROM `#__shop_manufacturer` WHERE `visible`=?i
+            
+uniqid: 594464abd5aa3
+E_NOTICE [8] Undefined variable: cache in /Users/edik/web/ecostroy.dev/protected/core/controllers/modulesController.php:494
+#1 /Users/edik/web/ecostroy.dev/protected/core/controllers/modulesController.php(327): modulesController->createModuleFiles('/Users/edik/web...', 'plans')
+#2 /Users/edik/web/ecostroy.dev/protected/core/classes/cploader.class.php(101): modulesController->post(Array)
+#3 /Users/edik/web/ecostroy.dev/protected/core/classes/cploader.class.php(511): cpLoader->loadController()
+#4 /Users/edik/web/ecostroy.dev/public_html/cp/index.php(15): cpLoader->run()
+#5 {main}
+URL: ecostroy.dev/cp/modules/binds/add
+HTTP_REFERER: http://ecostroy.dev/cp/modules/binds/add
+POST: Array
+(
+    [module_action] => add_bind
+    [name] => Планировки
+    [func_name] => plans
+    [cache] => 1
+    [save] => 
+)
+
+COOKIE: Array
+(
+    [admin_struct] => a:2:{i:0;i:0;i:1;i:1;}
+    [_ym_uid] => 1497113804400287370
+    [PHPSESSID] => ppke2vspqlj0g1o8cuo2juoou7
+    [xdata-12_toogle_f3cab488277b31e2b09cc1bfa0d78140] => show
+    [page_data_toogle_965d517067eff7e60b1ad5fda678820c] =
+SESSION: Array
+(
+    [sql] => 9
+    [sql_log] => Array
+        (
+            [0] => SELECT `id`, `system`  FROM `#__shop_category` WHERE `pid`!=?i AND `visible`=?i
+            [1] => SELECT `id`, `system`  FROM `#__shop_manufacturer` WHERE `visible`=?i
+            
+uniqid: 594464abd5aa3

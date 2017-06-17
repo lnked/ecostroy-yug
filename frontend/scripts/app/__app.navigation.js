@@ -59,7 +59,9 @@ let app = app || {};
             $navigation.find('.j-navigation.is-current').removeClass('is-current');
             $current.addClass('is-current');
 
-            History.pushState(null, title, slug);
+            if (slug !== 'main') {
+                History.pushState(null, title, slug);
+            }
         },
 
         changeItem (scrollTop) {

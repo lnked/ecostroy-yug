@@ -1,12 +1,10 @@
 .s-bonus {
     color: $c-bonus;
-    padding-bottom: 40px !important;
-
     background-image: url(/images/bonus/bg.jpg);
     background-repeat: no-repeat;
     background-position: 50% 50%;
     background-size: cover;
-    
+
     &__grid {
         display: flex;
         flex-wrap: wrap;

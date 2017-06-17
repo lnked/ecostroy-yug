@@ -33,6 +33,14 @@
         background-color: #98d934;
     }
 
+    &:active {
+        position: relative;
+        top: 1px;
+        left: 1px;
+        text-shadow: 2px 2px 0 #60910b;
+        box-shadow: 1px 1px 0 0 #588d07;
+    }
+
     &.disabled {
         background: #ccc !important;
         cursor: not-allowed !important;

@@ -1,3 +1,4 @@
+
 # Apache Server Configs v2.13.0 | MIT License
 
 # ######################################################################
@@ -211,6 +212,7 @@ Options -MultiViews
 # | Character encodings                                                |
 # ----------------------------------------------------------------------
 
+AddDefaultCharset utf-8
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -231,9 +233,71 @@ Options -MultiViews
                      .xml
 </IfModule>
 
+
+# ######################################################################
+# # REWRITES                                                           #
+# ######################################################################
+
+# ----------------------------------------------------------------------
+# | Rewrite engine                                                     |
+# ----------------------------------------------------------------------
+
+<IfModule mod_rewrite.c>
+
+    # (1)
+    RewriteEngine On
+
+    # (2)
+    Options +FollowSymlinks
+
+    # (3)
+    # Options +SymLinksIfOwnerMatch
+
+    # (4)
+    # RewriteBase /
+
+    # (5)
+    # RewriteOptions <options>
+
+    # (6)
+    RewriteCond %{HTTPS} =on
+    RewriteRule ^ - [env=proto:https]
+    RewriteCond %{HTTPS} !=on
+    RewriteRule ^ - [env=proto:http]
+
+</IfModule>
+
 # ----------------------------------------------------------------------
 # | Forcing `https://`                                                 |
 # ----------------------------------------------------------------------
+
+# ----------------------------------------------------------------------
+
+# RewriteEngine On
+# RewriteCond %{SERVER_PORT} !^443$
+# RewriteRule .* https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
+
+# OR
+
+# RewriteEngine On
+# RewriteCond %{HTTPS} =on 
+# RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [QSA,L]
+
+# OR
+
+# RewriteEngine On
+# RewriteCond %{ENV:HTTPS} !on
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# OR
+
+# RewriteEngine On
+# RewriteCond %{HTTPS} off
+# RewriteCond %{HTTP:X-Forwarded-Proto} !https
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ----------------------------------------------------------------------
+
 
 # <IfModule mod_rewrite.c>
 #    RewriteEngine On
@@ -284,7 +348,8 @@ Options -MultiViews
 
 <IfModule mod_headers.c>
     Header set X-Content-Type-Options nosniff
-    # Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-Frame-Options "SAMEORIGIN"
+    # Header set X-Frame-Options "ALLOW-FROM https://yandex.com/"
 
     # `mod_headers` cannot match based on the content-type, however,
     # the `X-Frame-Options` response header should be send only for
@@ -296,13 +361,13 @@ Options -MultiViews
 
 </IfModule>
 
-<IfModule mod_headers.c>
+# <IfModule mod_headers.c>
 #    Header add X-Content-Type-Options nosniff
 #    Header add Access-Control-Allow-Origin: *
 #    Header add Access-Control-Allow-Credentials: true
 #    Header add Access-Control-Allow-Headers: "origin, x-requested-with, content-type"
 #    Header add Access-Control-Allow-Methods: "PUT, GET, POST, DELETE, OPTIONS"
-</IfModule>
+# </IfModule>
 
 # ----------------------------------------------------------------------
 # | Content Security Policy (CSP)                                      |
@@ -442,51 +507,48 @@ ServerSignature Off
     # the core directives.
     #
     # https://httpd.apache.org/docs/current/mod/mod_filter.html#addoutputfilterbytype
-
     <IfModule mod_filter.c>
-        
         AddOutputFilter DEFLATE js css
 
-        AddOutputFilterByType DEFLATE "application/atom+xml" \
-                                      "application/javascript" \
-                                      "application/json" \
-                                      "application/ld+json" \
-                                      "application/manifest+json" \
-                                      "application/rdf+xml" \
-                                      "application/rss+xml" \
-                                      "application/schema+json" \
-                                      "application/vnd.geo+json" \
-                                      "application/vnd.ms-fontobject" \
-                                      "application/x-font-ttf" \
-                                      "application/x-font-otf" \
-                                      "application/x-javascript" \
-                                      "application/x-web-app-manifest+json" \
-                                      "application/xhtml+xml" \
-                                      "application/xml" \
-                                      "x-font/otf" \
-                                      "x-font/ttf" \
-                                      "x-font/eot" \
-                                      "font/eot" \
-                                      "font/ttf" \
-                                      "font/otf" \
-                                      "font/opentype" \
-                                      "font/truetype" \
-                                      "image/bmp" \
-                                      "image/svg+xml" \
-                                      "image/vnd.microsoft.icon" \
-                                      "image/x-icon" \
-                                      "text/cache-manifest" \
-                                      "text/css" \
-                                      "text/html" \
-                                      "text/javascript" \
-                                      "text/plain" \
-                                      "text/vcard" \
-                                      "text/vnd.rim.location.xloc" \
-                                      "text/vtt" \
-                                      "text/x-component" \
-                                      "text/x-cross-domain-policy" \
-                                      "text/xml"
-
+        AddOutputFilterByType DEFLATE "application/atom+xml"
+        AddOutputFilterByType DEFLATE "application/javascript"
+        AddOutputFilterByType DEFLATE "application/json"
+        AddOutputFilterByType DEFLATE "application/ld+json"
+        AddOutputFilterByType DEFLATE "application/manifest+json"
+        AddOutputFilterByType DEFLATE "application/rdf+xml"
+        AddOutputFilterByType DEFLATE "application/rss+xml"
+        AddOutputFilterByType DEFLATE "application/schema+json"
+        AddOutputFilterByType DEFLATE "application/vnd.geo+json"
+        AddOutputFilterByType DEFLATE "application/vnd.ms-fontobject"
+        AddOutputFilterByType DEFLATE "application/x-font-ttf"
+        AddOutputFilterByType DEFLATE "application/x-font-otf"
+        AddOutputFilterByType DEFLATE "application/x-javascript"
+        AddOutputFilterByType DEFLATE "application/x-web-app-manifest+json"
+        AddOutputFilterByType DEFLATE "application/xhtml+xml"
+        AddOutputFilterByType DEFLATE "application/xml"
+        AddOutputFilterByType DEFLATE "x-font/otf"
+        AddOutputFilterByType DEFLATE "x-font/ttf"
+        AddOutputFilterByType DEFLATE "x-font/eot"
+        AddOutputFilterByType DEFLATE "font/eot"
+        AddOutputFilterByType DEFLATE "font/ttf"
+        AddOutputFilterByType DEFLATE "font/otf"
+        AddOutputFilterByType DEFLATE "font/opentype"
+        AddOutputFilterByType DEFLATE "font/truetype"
+        AddOutputFilterByType DEFLATE "image/bmp"
+        AddOutputFilterByType DEFLATE "image/svg+xml"
+        AddOutputFilterByType DEFLATE "image/vnd.microsoft.icon"
+        AddOutputFilterByType DEFLATE "image/x-icon"
+        AddOutputFilterByType DEFLATE "text/cache-manifest"
+        AddOutputFilterByType DEFLATE "text/css"
+        AddOutputFilterByType DEFLATE "text/html"
+        AddOutputFilterByType DEFLATE "text/javascript"
+        AddOutputFilterByType DEFLATE "text/plain"
+        AddOutputFilterByType DEFLATE "text/vcard"
+        AddOutputFilterByType DEFLATE "text/vnd.rim.location.xloc"
+        AddOutputFilterByType DEFLATE "text/vtt"
+        AddOutputFilterByType DEFLATE "text/x-component"
+        AddOutputFilterByType DEFLATE "text/x-cross-domain-policy"
+        AddOutputFilterByType DEFLATE "text/xml"
 
         #The following lines are to avoid bugs with some browsers
         BrowserMatch ^Mozilla/4 gzip-only-text/html
@@ -728,62 +790,29 @@ FileETag None
     </FilesMatch>
 </IfModule>
 
-# ######################################################################
-# # REWRITES                                                           #
-# ######################################################################
-
-# ----------------------------------------------------------------------
-# | Rewrite engine                                                     |
-# ----------------------------------------------------------------------
-
 <IfModule mod_rewrite.c>
-
-    # (1)
     RewriteEngine On
+    
+    RewriteBase /
 
-    # (2)
-    Options +FollowSymlinks
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /(.*)index\.(php|htm|html)($|\ |\?)
+    RewriteRule ^ /%1 [R=301,L]
 
-    # (3)
-    # Options +SymLinksIfOwnerMatch
-
-    # (4)
-    # RewriteBase /
-
-    # (5)
-    # RewriteOptions <options>
-
-    # (6)
-    RewriteCond %{HTTPS} =on
-    RewriteRule ^ - [env=proto:https]
-    RewriteCond %{HTTPS} !=on
-    RewriteRule ^ - [env=proto:http]
-
-</IfModule>
-
-<IfModule mod_rewrite.c>
-	RewriteEngine On
-	
-	RewriteBase /
-
-	RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /(.*)index\.(php|htm|html)($|\ |\?)
-	RewriteRule ^ /%1 [R=301,L]
-
-	RewriteCond %{HTTP_USER_AGENT} .*\{.* [NC]
-	RewriteRule .* - [F,L]
+    RewriteCond %{HTTP_USER_AGENT} .*\{.* [NC]
+    RewriteRule .* - [F,L]
 
 #   Удаляет слэш на конце URL
-	RewriteCond %{HTTP_HOST} (.*)
-	RewriteCond %{REQUEST_URI} /$ [NC]
-	RewriteCond %{QUERY_STRING} ^$ [NC]
-	RewriteRule (.+)/$ /$1 [L,QSA,R=301]
+    RewriteCond %{HTTP_HOST} (.*)
+    RewriteCond %{REQUEST_URI} /$ [NC]
+    RewriteCond %{QUERY_STRING} ^$ [NC]
+    RewriteRule (.+)/$ /$1 [L,QSA,R=301]
 
-	RewriteCond %{REQUEST_FILENAME} !^favicon\.ico
+    RewriteCond %{REQUEST_FILENAME} !^favicon\.ico
 
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteCond %{REQUEST_FILENAME} !-l
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-l
 
-	RewriteCond $1 !\.(css|js|png|json|ico|jpe?g|gif|woff|eot|svg|ttf|txt)$ [NC]
-	RewriteRule ^(.*)$ index.php [L,QSA]
+    RewriteCond $1 !\.(css|js|png|ico|jpe?g|gif|woff|eot|svg|ttf|txt)$ [NC]
+    RewriteRule ^(.*)$ index.php [L,QSA]
 </IfModule>

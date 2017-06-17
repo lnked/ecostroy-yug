@@ -18,7 +18,8 @@
         background: url(/images/section-arrow.svg) 50% 100% no-repeat;
         background-size: 184px 10px;
 
-        &--white {
+        .s-bonus &,
+        .s-timeline & {
             color: #fff;
         }
 
