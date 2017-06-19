@@ -9,7 +9,7 @@ let app = app || {};
 
         count: 0,
         current: 0,
-        timeout: 26000,
+        timeout: 6000,
         interval: null,
 
         preload ($current) {
@@ -154,8 +154,10 @@ let app = app || {};
         },
 
         init () {
-            if ($slider.length && $slider.find('.j-slide').length) {
-                this.make();
+            if ($(window).width() >= 768) {
+                if ($slider.length && $slider.find('.j-slide').length) {
+                    this.make();
+                }
             }
         }
 

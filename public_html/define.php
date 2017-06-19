@@ -14,11 +14,6 @@ ini_set('display_errors', DEV_MODE);
 ini_set('display_startup_errors', DEV_MODE);
 ini_set('error_reporting', 32767);
 
-ini_set('session.gc_maxlifetime', 2678400);
-ini_set('session.cookie_lifetime', 2678400);
-ini_set('session.use_only_cookies', 1);
-ini_set('session.use_trans_sid', 0);
-
 defined('DS') || define('DS', DIRECTORY_SEPARATOR);
 
 define('IS_SPA',            true);

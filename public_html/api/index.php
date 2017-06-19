@@ -15,10 +15,10 @@ if( !empty( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && strtolower( $_SERVER['HTTP_X_
 	$path = preg_split('/\/+/', $parse_url['path'], -1, PREG_SPLIT_NO_EMPTY);
 	$controller = isset($path[1]) ? $path[1] : '';
 
-	$config = require __DIR__ . DS . 'config.php';
-
-	require_once  __DIR__ . DS . 'helpers.php';
-	require_once  __DIR__ . DS . 'mmail.class.php';
+	$config = require 'config.php';
+	
+	require 'mmail.class.php';
+	require 'helpers.php';
 
 	$model = 'message';
 

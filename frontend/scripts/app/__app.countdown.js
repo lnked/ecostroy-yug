@@ -57,26 +57,24 @@ let app = app || {};
     app.countdown = {
         init: function()
         {
-            // Акция длится не более 7 - 9 дней
-            // if (day < 7)
-            // {
-            //     t = new Date(year, month, 7, 23, 59, 59);
-            // }
-            // else if(7<=day && day<14)
-            // {
-            //     t = new Date(year, month, 14, 23, 59, 59);
-            // }
-            // else if(14<=day && day<21)
-            // {
-            //     t = new Date(year, month, 21, 23, 59, 59);
-            // }
-            // else if(21<=day && day<31)
-            // { // если в месяце меньше 31 дня, то Date просто перейдет на следующий месяц
-            //     t = new Date(year, month, 31, 23, 59, 59);
-            // }
+            const $countdown = $('#countdown');
 
-            // new Date(year, month, date, hours, minutes, seconds, ms)
-            new CountdownTimer('countdown', new Date(2017, 7, 1, 0, 0, 0));
+            if ($countdown.data('timestamp')) {
+                $('#countdown-holder').addClass('is-inited');
+
+                const timestamp = parseInt($countdown.data('timestamp')) * 1000;
+
+                const dateEnd = new Date(timestamp);
+
+                new CountdownTimer('countdown', new Date(
+                    dateEnd.getFullYear(), // year
+                    dateEnd.getMonth(), // month
+                    dateEnd.getDate(), // date
+                    0, // hours
+                    0, // minutes
+                    0 // seconds
+                ));
+            }
         }
     };
 

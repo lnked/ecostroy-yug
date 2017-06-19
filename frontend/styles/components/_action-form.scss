@@ -1,5 +1,6 @@
 .action-form {
     width: 380px;
+    max-width: 100%;
     overflow: hidden;
     border-radius: 13px;
     position: relative;
@@ -29,11 +30,20 @@
         line-height: 1.33;
         margin-bottom: 20px;
 
+        @media (max-width: 480px) {
+            padding: 0 5px;
+            font-size: 1.6rem;
+        }
+
         &__large {
             display: block;
             font-size: 3rem;
             line-height: 1.6;
             margin-bottom: -5px;
+
+            @media (max-width: 480px) {
+                font-size: 2.2rem;
+            }
         }
     }
 

@@ -1,29 +1,48 @@
-.s-actions {
+.s-action {
     background: url('/images/leaf.jpg') calc(100% - 90px) -108px no-repeat;
     background-size: 809px 629px;
 
     @media (max-width: 480px) {
-        display: none;
+        background-position: 50% -5%;
+        background-size: 680px auto;
     }
 
     &__wrapper {
         @extend %space-between;
+
+        @media (max-width: 480px) {
+            flex-direction: column;
+            justify-content: space-between;
+        }
     }
 
     &__special {
         width: 55%;
+
+        @media (max-width: 480px) {
+            width: 100%;
+            margin-bottom: 20px;
+        }
 
         &__title {
             color: #84c225;
             font-size: 3.6rem;
             line-height: 1.33;
             margin-bottom: 10px;
+
+            @media (max-width: 480px) {
+                font-size: 2.4rem;
+            }
         }
 
         &__text {
             color: #2d2d2d;
             font-size: 2.4rem;
             line-height: 1.25;
+
+            @media (max-width: 480px) {
+                font-size: 1.8rem;
+            }
 
             strong {
                 margin: 15px 0;
@@ -34,6 +53,12 @@
         }
 
         &__countdown {
+            display: none;
+
+            &.is-inited {
+                display: block;
+            }
+
             &__title {
                 font-size: 1.8rem;
                 line-height: 1;
@@ -44,5 +69,9 @@
 
     &__form {
         width: 45%;
+
+        @media (max-width: 480px) {
+            width: 100%;
+        }
     }
 }

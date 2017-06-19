@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.31, created on 2017-06-19 11:25:17
+/* Smarty version 3.1.31, created on 2017-06-19 12:22:54
   from "/Users/edik/web/ecostroy.dev/protected/modules/documents/tpl/documents.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_59478a6d9fa188_44597598',
+  'unifunc' => 'content_594797ee02db25_23322544',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59478a6d9fa188_44597598 (Smarty_Internal_Template $_smarty_tpl) {
+function content_594797ee02db25_23322544 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <ul class="s-documents__list j-documents" id="documents"><?php if (!empty($_smarty_tpl->tpl_vars['documents']->value)) {
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['documents']->value, 'doc', false, NULL, 'documents', array (

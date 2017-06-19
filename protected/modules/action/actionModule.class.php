@@ -4,46 +4,33 @@ class actionModule extends Module
 {
     public function index()
     {
-        return [
-            // 'action'    =>  $action,
-            'template'  =>  'action'
-        ];
-    }
-
-    public function listMethod()
-    {
-        # Пагинация
-        #
-        $pager = $this->pager($this->countItem(), $this->limit);
-        
         $cache = 'module.action.list';
 
         # Получение списка
         #
         if (!$this->mcache_enable || ($this->caching == 1 && !($action = $this->getCache())))
         {
-            $action = Q("SELECT * FROM `#_mdd_action` WHERE `visible`=1 ORDER BY STR_TO_DATE(`date`, '%d.%m.%Y') DESC, `ord` DESC")->all();
+            $action = Q("SELECT `id`, `name`, `dateend`, `description`
+                         FROM `#_mdd_actions`
+                         WHERE `visible`=1
+                         ORDER BY STR_TO_DATE(`dateend`, '%d.%m.%Y') DESC
+                         LIMIT 1")->row('1');
 
             if (!empty($action))
             {
-                foreach ($action as &$action_item)
-                {
-                    $action_item['date'] = Dates($action_item['date'], $this->locale);
+                $action['dateend'] = strtotime($action['dateend']);
+
+                if ($action['dateend'] <= time()) {
+                    unset($action['dateend']);
                 }
             }
 
             $this->setCache($cache, $action);
         }
 
-        # Мета теги
-        #
-        $meta = $this->metaData($action);
-
         return [
-            'meta'              =>  $meta,
-            'pager'             =>  $pager,
-            'action'         =>  $action,
-            'template'          =>  'list'
+            'action'    =>  $action,
+            'template'  =>  'action'
         ];
     }
 }
