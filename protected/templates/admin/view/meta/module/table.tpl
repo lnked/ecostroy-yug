@@ -14,7 +14,7 @@
                 {/if}
             {/if}
         {/foreach}
-        <col width="65">
+        <col width="50">
     </colgroup>
     {/if}
 
@@ -39,7 +39,7 @@
                     type        =   "checkbox"
                     addclass    =   "controll_single"
                     name        =   "checkall"
-                    onchange    =   "checkAll(this)"
+                    onchange    =   "Module.checkAll(this)"
                 }
             </td>
             {foreach item=item from=$meta_fields}
@@ -64,14 +64,15 @@
         
         {foreach item=item from=$result name=i}
             {assign var="index" value='0'}
-            <tr>
+            <tr data-id="{$item.id}" id="catalog-row-{$item.id}" class="module-table__row{if $marked == $item.id} module-table__row--marked{/if}">
                 <td class="module-table__column module-table__center">
                     {include file="system/controll.tpl"
                         type        =   "checkbox"
                         addclass    =   "controll_single"
                         ctrlclass   =   "check-all-spy"
                         name        =   "checked["|cat:$item.id|cat:"]"
-                        value       =   $item.id
+                        value       =   $item.id|cat:'_'|cat:$meta_module.id
+                        onchange    =   "Module.checkItem(this)"
                     }
                 </td>
                 {foreach item=it from=$item key=k}
@@ -91,8 +92,9 @@
                     {elseif $k != "id"}
                         <td class="module-table__column">
                             {if $index == '0'}
-                                {* <a href="{$base_path}/module/edit/{$meta_module.id}/{$item.id}{if isset($back_to_page) && $back_to_page !== '' && $back_to_page > 0}?back_to_page={$back_to_page}{/if}" title="Редактировать"><span class="catalog-edit icon icon-edit"></span> {$it|stripslashes}</a> *}
-                                <a href="{$base_path}/module/edit/{$meta_module.id}/{$item.id}?backuri={$_backuri}" title="Редактировать"><span class="catalog-edit icon icon-edit"></span> {$it|stripslashes}</a>
+                                <a href="{$base_path}/module/edit/{$meta_module.id}/{$item.id}?backuri={$_backuri}" title="Редактировать">
+                                    <span class="catalog-edit icon icon-edit"></span>{$it|stripslashes}
+                                </a>
                                 {assign var="index" value='1'}
                             {else}
                                 {$it|stripslashes}
@@ -107,9 +109,7 @@
                         <a href="icon icon-envelope"><a href="{$base_path}/module/dispatch/{$meta_module.id}/{$item.id}" title="Разослать"></a>
                     {/if}
 
-                    {* <a href="{$base_path}/module/edit/{$meta_module.id}/{$item.id}{if isset($back_to_page ) && $back_to_page !== '' && $back_to_page > 0}?back_to_page={$back_to_page}{/if}" class="icon icon-edit" title="Редактировать"></a> *}
-
-                    <a href="{$base_path}/module/del/{$meta_module.id}/{$item.id}?backuri={$_backuri}" class="catalog-remove remove-trigger" title="Удалить" onclick="return cp.dialog('Вы действительно хотите удалить?')" data-no-instant>
+                    <a href="{$base_path}/module/del/{$meta_module.id}/{$item.id}?backuri={$_backuri}" class="catalog-remove" title="Удалить" onclick="return Module.deleteQuestion(event, this)" data-no-instant>
                         <i class="icon icon-delete"></i>
                     </a>
                 </td>

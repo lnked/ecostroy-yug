@@ -2,521 +2,450 @@
 
 class cpLoader extends Initialize
 {
-	use Singleton, Tools;
+    use Singleton, Tools;
 
-	private $controller		=	'';
-	private $config			= 	null;
+    private $controller        =    '';
+    private $config            =    null;
 
-	protected $tpl_path		= 	'';
-	protected $tpl_exbody	=	'index';
-	protected $info_array	= 	[];
-	protected $submenu		= 	[];
+    protected $tpl_path        =    '';
+    protected $tpl_exbody    =    'index';
+    protected $info_array    =    [];
+    protected $submenu        =    [];
 
-	protected $module 		=	'meta';
-	protected $action 		=	'index';
-	protected $method 		=	'list';
-	protected $transfer		=	[];
-	protected $element		=	null;
-	protected $argument		=	0;
-	protected $base_path	= 	'';
-	protected $request_path	= 	'';
+    protected $module        =    'meta';
+    protected $action        =    'index';
+    protected $method        =    'list';
+    protected $transfer        =    [];
+    protected $element        =    null;
+    protected $argument        =    0;
+    protected $base_path    =    '';
+    protected $request_path    =    '';
 
-	public $tpl				=	array('base' => 'base', 'new' => 'new', 'auth' => 'auth');
-	public $parts			=	[];
-	public $localize		=	[];
-	public $language		=	'ru';
+    public $tpl                =    array('base' => 'base', 'new' => 'new', 'auth' => 'auth');
+    public $parts            =    [];
+    public $localize        =    [];
+    public $language        =    'ru';
 
-	public $error_hdr		=	'Ошибка';
-	public $error_msg		=	'Ошибка. Путь для модуля не задан.';
+    public $error_hdr        =    'Ошибка';
+    public $error_msg        =    'Ошибка. Путь для модуля не задан.';
 
     public function __construct()
-	{
-		$this->template_driver = 'Smarty';
-		$this->template_dir = 'admin';
-		
-		parent::__construct();
+    {
+        $this->template_driver = 'Smarty';
+        $this->template_dir = 'admin';
+        
+        parent::__construct();
 
-		$this->declaration();
+        $this->declaration();
 
-		if (defined('SYSTEM_LOCALE'))
-		{
-			$this->language = SYSTEM_LOCALE;
-		}
-	
-		if (isset($this->path[1]))
-		{
-			$this->module = $this->path[1];
-		}
+        if (defined('SYSTEM_LOCALE')) {
+            $this->language = SYSTEM_LOCALE;
+        }
+    
+        if (isset($this->path[1])) {
+            $this->module = $this->path[1];
+        }
 
-		if (isset($this->path[2]))
-		{
-			$this->action = str_replace('-', '_', $this->path[2]);
-		}
+        if (isset($this->path[2])) {
+            $this->action = str_replace('-', '_', $this->path[2]);
+        }
 
-		if (isset($this->path[3]))
-		{
-			$this->method = $this->path[3];
-		}
+        if (isset($this->path[3])) {
+            $this->method = $this->path[3];
+        }
 
-		if (isset($this->path[4]))
-		{
-			$this->element = $this->path[4];
-		}
+        if (isset($this->path[4])) {
+            $this->element = $this->path[4];
+        }
 
-		if (isset($this->path[5]))
-		{
-			$this->argument = $this->path[5];
-		}
+        if (isset($this->path[5])) {
+            $this->argument = $this->path[5];
+        }
 
-		$this->base_path = DS.ADMIN_DIR.DS.$this->module;
+        $this->base_path = DS.ADMIN_DIR.DS.$this->module;
 
-		if (count($_POST) && $this->module != 'ajax' && (empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest'))
-		{
-			$this->action = 'post';
-			$this->transfer = $_POST;
-		}
+        if (count($_POST) && $this->module != 'ajax' && (empty($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) !== 'xmlhttprequest')) {
+            $this->action = 'post';
+            $this->transfer = $_POST;
+        }
 
-		$this->tpl_path = PATH_TPL.DS.'admin'.DS.'view'.DS.$this->module;
-		$this->request_path = DS.implode(DS, $this->path);
+        $this->tpl_path = PATH_TPL.DS.'admin'.DS.'view'.DS.$this->module;
+        $this->request_path = DS.implode(DS, $this->path);
 
-		if ($this->query) {
-			$this->request_path .= '?'.$this->query;
-		}
-	}
+        if ($this->query) {
+            $this->request_path .= '?'.$this->query;
+        }
+    }
 
-	private function loadController()
-	{
-		$this->controller = $this->module . 'Controller';
-		
-		if (!class_exists($this->controller))
-		{
-			$this->errorPage();
-		}
-		else
-		{
-			$controller = new $this->controller;
-			
-			if (method_exists($controller, $this->action))
-			{
-				$data = $controller->{$this->action}($this->transfer);
+    private function loadController()
+    {
+        $this->controller = $this->module . 'Controller';
+        
+        if (!class_exists($this->controller)) {
+            $this->errorPage();
+        } else {
+            $controller = new $this->controller;
+            
+            if (method_exists($controller, $this->action)) {
+                $data = $controller->{$this->action}($this->transfer);
 
-				if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-				{
-					exit(json_encode($data, 64 | 256));
-				}
+                if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+                    exit(json_encode($data, 64 | 256));
+                }
 
-				if ($this->module == 'ajax')
-				{
-					if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest')
-					{
-						exit($data);
-					}
+                if ($this->module == 'ajax') {
+                    if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+                        exit($data);
+                    }
 
-					return true;
-				}
+                    return true;
+                }
 
-				$tpl_exbody = '';
+                $tpl_exbody = '';
 
-				if (!empty($data) && is_array($data))
-				{
-					foreach($data as $key => $value)
-					{
-						$this->viewer->assign($key, $value, false);	
-					}
+                if (!empty($data) && is_array($data)) {
+                    foreach ($data as $key => $value) {
+                        $this->viewer->assign($key, $value, false);
+                    }
 
-					if (isset($data['tpl_exbody']))
-					{
-						$tpl_exbody = $data['tpl_exbody'];
-					}
-				}
+                    if (isset($data['tpl_exbody'])) {
+                        $tpl_exbody = $data['tpl_exbody'];
+                    }
+                }
 
-				$this->info_array = [];
+                $this->info_array = [];
 
-				if (isset($this->localize[$this->action . '_name']))
-				{
-					$this->info_array['name']	= $this->localize[$this->action . '_name'];
-				}
-				else if (isset($this->localize[$this->module . '_name']))
-				{
-					$this->info_array['name']	= $this->localize[$this->module . '_name'];
-				}
+                if (isset($this->localize[$this->action . '_name'])) {
+                    $this->info_array['name']    = $this->localize[$this->action . '_name'];
+                } elseif (isset($this->localize[$this->module . '_name'])) {
+                    $this->info_array['name']    = $this->localize[$this->module . '_name'];
+                }
 
-				if (isset($this->localize[$this->action . '_header']))
-				{
-					$this->info_array['header']	= $this->localize[$this->action . '_header'];
-				}
-				else if (isset($this->localize[$this->module . '_header']))
-				{
-					$this->info_array['header']	= $this->localize[$this->module . '_header'];
-				}
+                if (isset($this->localize[$this->action . '_header'])) {
+                    $this->info_array['header']    = $this->localize[$this->action . '_header'];
+                } elseif (isset($this->localize[$this->module . '_header'])) {
+                    $this->info_array['header']    = $this->localize[$this->module . '_header'];
+                }
 
-				foreach($this->info_array as $k=>$v)
-				{
-					$this->viewer->assign($k, $v);
-				}
+                foreach ($this->info_array as $k=>$v) {
+                    $this->viewer->assign($k, $v);
+                }
 
-				$tpl_exbody = $this->moduleTemplate($tpl_exbody);
-				
-				if (!file_exists($tpl_exbody . '.tpl' ))
-				{
-					$this->errorPage();
-				}
-				else
-				{
-					$this->viewer->assign('content', $this->viewer->fetch($tpl_exbody), true);
-		        }
-			}
-		}
-	}
+                $tpl_exbody = $this->moduleTemplate($tpl_exbody);
+                
+                if (!file_exists($tpl_exbody . '.tpl')) {
+                    $this->errorPage();
+                } else {
+                    $this->viewer->assign('content', $this->viewer->fetch($tpl_exbody), true);
+                }
+            }
+        }
+    }
 
-	private function moduleTemplate($tpl_exbody = '')
-	{
-		if ($tpl_exbody)
-		{
-			$this->tpl_exbody = $tpl_exbody;
-		}
-		else
-		{
-			if ($this->action == 'list' && !$this->method)
-			{
-				$this->tpl_exbody = $this->tpl_exbody;
-			}
-			else
-			{
-				$action = $this->action;
+    private function moduleTemplate($tpl_exbody = '')
+    {
+        if ($tpl_exbody) {
+            $this->tpl_exbody = $tpl_exbody;
+        } else {
+            if ($this->action == 'list' && !$this->method) {
+                $this->tpl_exbody = $this->tpl_exbody;
+            } else {
+                $action = $this->action;
 
-				if ($this->action == 'post')
-				{
-					$action = 'index';
-				}
+                if ($this->action == 'post') {
+                    $action = 'index';
+                }
 
-				if ($this->method == 'list')
-				{
-					$this->tpl_exbody =  $action.DS.'index';
-				}
-				else
-				{
-					$this->tpl_exbody =  $action.DS.$this->method;
-				}
-			}
-		}
-		
-		if (!file_exists($this->tpl_path.DS.$this->tpl_exbody) && !in_array($this->method, array('visible', 'del', 'delete')))
-		{
-			//exit($this->tpl_path.DS.$this->tpl_exbody);
-		}
+                if ($this->method == 'list') {
+                    $this->tpl_exbody =  $action.DS.'index';
+                } else {
+                    $this->tpl_exbody =  $action.DS.$this->method;
+                }
+            }
+        }
+        
+        if (!file_exists($this->tpl_path.DS.$this->tpl_exbody) && !in_array($this->method, array('visible', 'del', 'delete'))) {
+            //exit($this->tpl_path.DS.$this->tpl_exbody);
+        }
 
-		return $this->tpl_path.DS.$this->tpl_exbody;
-	}
+        return $this->tpl_path.DS.$this->tpl_exbody;
+    }
 
-	private function errorPage()
-	{
-		$this->viewer->assign('header', $this->error_hdr);
+    private function errorPage()
+    {
+        $this->viewer->assign('header', $this->error_hdr);
         $this->viewer->assign('content', $this->error_msg);
-	}
+    }
 
-	/**
-	 * @return string
-	 */
-	public function navigation($pid = 0)
-	{
-		if (!$this->mcache_enable || ($this->mcache_enable && !$slice = $this->getCache('cp_structure_' . $pid)))
-		{
-			$slice = Q("SELECT `id`, `name`, `sys_name` as `root`, `icon`, `dir`, `bonds`, `groups` as `group` FROM `#__cp_structure` WHERE `visible`=1 AND `pid`=?i ORDER BY `ord`",  array( $pid ))->all('root');
+    /**
+     * @return string
+     */
+    public function navigation($pid = 0)
+    {
+        if (!$this->mcache_enable || ($this->mcache_enable && !$slice = $this->getCache('cp_structure_' . $pid))) {
+            $slice = Q("SELECT `id`, `name`, `sys_name` as `root`, `icon`, `dir`, `bonds`, `groups` as `group` FROM `#__cp_structure` WHERE `visible`=1 AND `pid`=?i ORDER BY `ord`", array( $pid ))->all('root');
 
-			if (!empty($slice))
-			{
-				foreach($slice as $k => &$str)
-				{
-					if (isset($this->localize[$str['name']]))
-					{
-						$str['name'] = $this->localize[$str['name']];
-					}
+            if (!empty($slice)) {
+                foreach ($slice as $k => &$str) {
+                    if (isset($this->localize[$str['name']])) {
+                        $str['name'] = $this->localize[$str['name']];
+                    }
 
-					if ($str['group'] !== '' && isset($_SESSION['userinf']['gid']) && !in_array($_SESSION['userinf']['gid'], explode(',', $str['group'])))
-				    {
-				        unset($slice[$k]);
-				    }
+                    if ($str['group'] !== '' && isset($_SESSION['userinf']['gid']) && !in_array($_SESSION['userinf']['gid'], explode(',', $str['group']))) {
+                        unset($slice[$k]);
+                    }
 
-				    if ($str['root'] == 'tasks' || $str['root'] == 'shopping')
-				    {
-				    	$str['count'] = Q("SELECT COUNT(*) AS `count` FROM `#__cp_tasks` LIMIT 1")->row('count');
-				    }
-				}
-			}
-			
-			if ($this->mcache_enable)
-			{
-				$this->setCache('cp_structure_' . $pid, $slice);
-			}
-		}
+                    if ($str['root'] == 'tasks' || $str['root'] == 'shopping') {
+                        $str['count'] = Q("SELECT COUNT(*) AS `count` FROM `#__cp_tasks` LIMIT 1")->row('count');
+                    }
+                }
+            }
+            
+            if ($this->mcache_enable) {
+                $this->setCache('cp_structure_' . $pid, $slice);
+            }
+        }
 
-		if ($pid == 0)
-		{
-			$this->parts = $slice;
-		}
+        if ($pid == 0) {
+            $this->parts = $slice;
+        }
 
-		return $slice;
-	}
+        return $slice;
+    }
 
-	private function localization()
-	{
-		if (!$this->mcache_enable || ($this->mcache_enable && !$this->localize = $this->getCache('localization')))
-		{
-			$this->localize = Q("SELECT `key`, `val` FROM `#__str_dictionary` WHERE `locale`=?s AND `system`=?i", array(
-				$this->language, 1
-			))->all('key');
+    private function localization()
+    {
+        if (!$this->mcache_enable || ($this->mcache_enable && !$this->localize = $this->getCache('localization'))) {
+            $this->localize = Q("SELECT `key`, `val` FROM `#__str_dictionary` WHERE `locale`=?s AND `system`=?i", array(
+                $this->language, 1
+            ))->all('key');
 
-			if (!empty($this->localize))
-			{
-				foreach($this->localize as $key => $arr)
-				{
-					$this->localize[$key] = $arr['val'];
-				}
-			}
+            if (!empty($this->localize)) {
+                foreach ($this->localize as $key => $arr) {
+                    $this->localize[$key] = $arr['val'];
+                }
+            }
 
-			if ($this->mcache_enable)
-			{
-				$this->setCache('localization', $this->localize);
-			}
-		}
-	}
+            if ($this->mcache_enable) {
+                $this->setCache('localization', $this->localize);
+            }
+        }
+    }
 
-	public function configure()
-	{
-		if (!isset($_SESSION['configuration']) || empty($_SESSION['configuration']))
-		{
-			if (file_exists(ADMIN_PATH.DS.'json'.DS.'config.json'))
-			{
-				$_SESSION['configuration'] = json_decode(file_get_contents(ADMIN_PATH.DS.'json'.DS.'config.json'), true);
-			}
-			else {
-				$_SESSION['configuration'] = [];	
-			}
-		}
+    public function configure()
+    {
+        if (!isset($_SESSION['configuration']) || empty($_SESSION['configuration'])) {
+            if (file_exists(ADMIN_PATH.DS.'json'.DS.'config.json')) {
+                $_SESSION['configuration'] = json_decode(file_get_contents(ADMIN_PATH.DS.'json'.DS.'config.json'), true);
+            } else {
+                $_SESSION['configuration'] = [];
+            }
+        }
 
-		$this->config = $_SESSION['configuration'];
-	}
+        $this->config = $_SESSION['configuration'];
+    }
 
-	public function clearCache($request = [])
-	{
-		if (!empty($request['server']))
-		{
-		    $this->server = $request['server'];
-		}
+    public function clearCache($request = [])
+    {
+        if (!empty($request['server'])) {
+            $this->server = $request['server'];
+        }
 
-		$allow = array( 'task', 'config', 'smarty', 'scripts', 'styles', 'memory', 'all' ); 
+        $allow = array( 'task', 'config', 'smarty', 'scripts', 'styles', 'memory', 'all' );
 
-		if (isset($_GET['cleancache']) && !empty($_GET['cleancache']))
-		{
-			$cleancache = $_GET['cleancache'];
+        if (isset($_GET['cleancache']) && !empty($_GET['cleancache'])) {
+            $cleancache = $_GET['cleancache'];
 
-			if (in_array($cleancache, $allow))
-			{
-				$cache = new Cache;
+            if (in_array($cleancache, $allow)) {
+                $cache = new Cache;
 
-				switch ($cleancache)
-				{
-					case 'all':
-						
-						$cache->clearFiles(array('php', 'css', 'js'));
-						$cache->clearMemory();
-						$cache->clearSession(array('site_menu', 'configuration'));
+                switch ($cleancache) {
+                    case 'all':
+                        
+                        $cache->clearFiles(array('php', 'css', 'js'));
+                        $cache->clearMemory();
+                        $cache->clearSession(array('site_menu', 'configuration'));
 
-					break;
-					
-					case 'smarty':
+                    break;
+                    
+                    case 'smarty':
 
-						$cache->clearSmarty();
+                        $cache->clearSmarty();
 
-					break;
+                    break;
 
-					case 'styles':
-					
-						$cache->clearStyles();
-					
-					break;
+                    case 'styles':
+                    
+                        $cache->clearStyles();
+                    
+                    break;
 
-					case 'scripts':
+                    case 'scripts':
 
-						$cache->clearScripts();
+                        $cache->clearScripts();
 
-					break;
-					
-					case 'memory':
+                    break;
+                    
+                    case 'memory':
 
-						$cache->clearMemory();
+                        $cache->clearMemory();
 
-					break;
-					
-					case 'task':
-						
-					break;
-					
-					case 'config':
-						
-						$cache->clearSession(array('site_menu', 'configuration'));
+                    break;
+                    
+                    case 'task':
+                        
+                    break;
+                    
+                    case 'config':
+                        
+                        $cache->clearSession(array('site_menu', 'configuration'));
 
-					break;
-				}
-			}
+                    break;
+                }
+            }
 
-		    $backuri = DS.ADMIN_DIR.DS.'meta';
+            $backuri = DS.ADMIN_DIR.DS.'meta';
 
-		    if (isset($_GET['backuri']) && $_GET['backuri'] !== '')
-		    {
-		    	$backuri = base64_decode($_GET['backuri']);
-		    }
+            if (isset($_GET['backuri']) && $_GET['backuri'] !== '') {
+                $backuri = base64_decode($_GET['backuri']);
+            }
 
-		    redirect($backuri);
-		}
-	}
+            redirect($backuri);
+        }
+    }
 
-	public function breadcrumbs()
-	{
-		$bc = [];
-		$link = '';
-		$index = 0;
+    public function breadcrumbs()
+    {
+        $bc = [];
+        $link = '';
+        $index = 0;
 
-		foreach ($this->path as $system)
-		{
-			$name = '';
-			$link .= DS.$system;
+        foreach ($this->path as $system) {
+            $name = '';
+            $link .= DS.$system;
 
-			if ($index == 0)
-			{
-				$name = '<i class="icon icon-view-dashboard"></i>';
-			}
+            if ($index == 0) {
+                $name = '<i class="icon icon-view-dashboard"></i>';
+            }
 
-			if ($index == 1 && isset($this->parts[$system]['name']))
-			{
-				$name = $this->parts[$system]['name'];
-			}
+            if ($index == 1 && isset($this->parts[$system]['name'])) {
+                $name = $this->parts[$system]['name'];
+            }
 
-			if ($index == 2 && isset($this->submenu[$system]['name']))
-			{
-				$name = $this->submenu[$system]['name'];
-			}
+            if ($index == 2 && isset($this->submenu[$system]['name'])) {
+                $name = $this->submenu[$system]['name'];
+            }
 
-			if ($name !== '')
-			{
-				$bc[] = array(
-					'name' => $name,
-					'link' => $link
-				);
-			}
+            if ($name !== '') {
+                $bc[] = array(
+                    'name' => $name,
+                    'link' => $link
+                );
+            }
 
-			$index++;
-		}
+            $index++;
+        }
 
-		if ($this->module == 'meta' && $this->element)
-		{
-			$mdd = new Mdd();
-			$module = $mdd->getModuleItem($this->element);
+        if ($this->module == 'meta' && $this->element) {
+            $mdd = new Mdd();
+            $module = $mdd->getModuleItem($this->element);
 
-			$bc[] = array(
-				'name' => $module['name'],
-				'link' => $this->base_path.DS.$this->action.DS.'list'.DS.$this->element
-			);
-		}
+            $bc[] = array(
+                'name' => $module['name'],
+                'link' => $this->base_path.DS.$this->action.DS.'list'.DS.$this->element
+            );
+        }
 
-		if (in_array('edit', $this->path))
-		{
-			$bc[] = array(
-				'name' => 'Редактирование',
-				'link' => ''
-			);
-		}
+        if (in_array('edit', $this->path)) {
+            $bc[] = array(
+                'name' => 'Редактирование',
+                'link' => ''
+            );
+        }
 
-		if (in_array('add', $this->path))
-		{
-			$bc[] = array(
-				'name' => 'Добавление',
-				'link' => ''
-			);
-		}
+        if (in_array('add', $this->path)) {
+            $bc[] = array(
+                'name' => 'Добавление',
+                'link' => ''
+            );
+        }
 
-		return $bc;
-	}
+        return $bc;
+    }
 
-	public function run()
-	{
+    public function run()
+    {
         $this->headers(false);
-		$this->configure();
+        $this->configure();
 
-		$user = new Person();
-		
-		$this->clearCache($_REQUEST);
-		
-		if ($user->getAdminAccess() && !isset($this->path[1]))
-		{
-			redirect(DS.ADMIN_DIR.DS.'dashboard');
-		}
+        $user = new Person();
+        
+        $this->clearCache($_REQUEST);
+        
+        if ($user->getAdminAccess() && !isset($this->path[1])) {
+            redirect(DS.ADMIN_DIR.DS.'dashboard');
+        }
 
-		$this->localization();
-		$menu = $this->navigation();
+        $this->localization();
+        $menu = $this->navigation();
 
-		if ($this->module !== '' && !empty($this->parts[$this->module]['id']))
-		{
-			$this->submenu = $this->navigation($this->parts[$this->module]['id']);
-		}
+        if ($this->module !== '' && !empty($this->parts[$this->module]['id'])) {
+            $this->submenu = $this->navigation($this->parts[$this->module]['id']);
+        }
 
-		$site_temp = explode('.', $_SERVER['HTTP_HOST']);
-		$site_name = [];
-		$site_name[] = array_pop($site_temp);
-		$site_name[] = array_pop($site_temp);
-		
-		$site_name = array_reverse($site_name);
+        $site_temp = explode('.', $_SERVER['HTTP_HOST']);
+        $site_name = [];
+        $site_name[] = array_pop($site_temp);
+        $site_name[] = array_pop($site_temp);
+        
+        $site_name = array_reverse($site_name);
 
-		$breadcrumbs = $this->breadcrumbs();
+        $breadcrumbs = $this->breadcrumbs();
 
-		$this->config['redactor_list'] = [];
+        $this->config['redactor_list'] = [];
 
-		if (isset($this->config['redactor']))
-		{
-			foreach($this->config['redactor'] as $item)
-			{
-				$rd = [];
+        if (isset($this->config['redactor'])) {
+            foreach ($this->config['redactor'] as $item) {
+                $rd = [];
 
-				$rd['default']	= isset($item['default']) ? true : false;
-				$rd['value']	= $item['system'];
-				$rd['text']		= $item['name'];
+                $rd['default']    = isset($item['default']) ? true : false;
+                $rd['value']    = $item['system'];
+                $rd['text']        = $item['name'];
 
-				$this->config['redactor_list'][] = $rd;
-			}
-		}
+                $this->config['redactor_list'][] = $rd;
+            }
+        }
 
-		$this->viewer->assign('_path', $this->path);
-		$this->viewer->assign('request_path', $this->request_path, false);
-		$this->viewer->assign('base_path', $this->base_path, false);
-		$this->viewer->assign('_config', $this->config);
-		$this->viewer->assign('TPL_PATH', $this->tpl_path);
-		$this->viewer->assign('PATH_HASH', @md5('|'.implode('|', $this->path).'|'));
-		$this->viewer->assign('PATH_PUBLIC', DS.'apps');
-		$this->viewer->assign('PATH_ROOT', PATH_ROOT);
-		$this->viewer->assign('ADMIN_DIR', ADMIN_DIR);
-		$this->viewer->assign('ADMIN_LOCALE', $this->language);
-		$this->viewer->assign('navigation', $menu);
-		$this->viewer->assign('submenu', $this->submenu);
-		$this->viewer->assign('breadcrumbs', $breadcrumbs, true);
-		$this->viewer->assign('_backuri', base64_encode($_SERVER['REQUEST_URI']), true);
-		$this->viewer->assign('_site_name', $site_name, false);
-		$this->viewer->assign('locale', $this->localize);
-		$this->viewer->assign('page_count', [5, 10, 15, 20, 25, 30, 40, 50]);
+        $this->viewer->assign('_path', $this->path);
+        $this->viewer->assign('request_path', $this->request_path, false);
+        $this->viewer->assign('base_path', $this->base_path, false);
+        $this->viewer->assign('_config', $this->config);
+        $this->viewer->assign('TPL_PATH', $this->tpl_path);
+        $this->viewer->assign('PATH_HASH', @md5('|'.implode('|', $this->path).'|'));
+        $this->viewer->assign('PATH_PUBLIC', DS.'apps');
+        $this->viewer->assign('PATH_ROOT', PATH_ROOT);
+        $this->viewer->assign('ADMIN_DIR', ADMIN_DIR);
+        $this->viewer->assign('ADMIN_LOCALE', $this->language);
+        $this->viewer->assign('navigation', $menu);
+        $this->viewer->assign('submenu', $this->submenu);
+        $this->viewer->assign('breadcrumbs', $breadcrumbs, true);
+        $this->viewer->assign('_backuri', base64_encode($_SERVER['REQUEST_URI']), true);
+        $this->viewer->assign('_site_name', $site_name, false);
+        $this->viewer->assign('locale', $this->localize);
+        $this->viewer->assign('page_count', [5, 10, 15, 20, 25, 30, 40, 50]);
 
-		$this->viewer->assign('_module', $this->module);
-		$this->viewer->assign('_action', $this->action);
-		$this->viewer->assign('_method', $this->method);
+        $this->viewer->assign('_module', $this->module);
+        $this->viewer->assign('_action', $this->action);
+        $this->viewer->assign('_method', $this->method);
 
-		$this->loadController();
+        $this->loadController();
 
-		$tpl = $this->tpl['auth'];
+        $tpl = $this->tpl['auth'];
 
-		if ($user->getAdminAccess())
-		{
-			$tpl = $this->tpl['new'];
-		}
-		
-		$this->viewer->display($tpl);
-	}
+        if ($user->getAdminAccess()) {
+            $tpl = $this->tpl['new'];
+        }
+        
+        $this->viewer->display($tpl);
+    }
 }

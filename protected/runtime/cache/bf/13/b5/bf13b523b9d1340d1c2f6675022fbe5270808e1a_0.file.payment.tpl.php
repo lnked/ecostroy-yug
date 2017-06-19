@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.32-dev-1, created on 2017-06-19 10:59:14
+/* Smarty version 3.1.31, created on 2017-06-19 11:25:17
   from "/Users/edik/web/ecostroy.dev/protected/modules/payment/tpl/payment.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '3.1.32-dev-1',
-  'unifunc' => 'content_59478452e13a28_17165275',
+  'version' => '3.1.31',
+  'unifunc' => 'content_59478a6d8cdea1_98405111',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59478452e13a28_17165275 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59478a6d8cdea1_98405111 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="section__sub-title">Приобрести жилье можно несколькими способами</div>
 

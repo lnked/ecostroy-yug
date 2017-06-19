@@ -21,22 +21,13 @@ class Message extends PHPMailer
 
         $this->template->setCaching(false);
 
-        $this->template->setCacheDir(PATH_RUNTIME.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR);
-        $this->template->setCompileDir(PATH_RUNTIME.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR);
-        $this->template->setTemplateDir(PATH_TPL.DIRECTORY_SEPARATOR.'themes'.DIRECTORY_SEPARATOR);
+        $this->template->setCacheDir(PATH_RUNTIME.DS.'cache'.DS);
+        $this->template->setCompileDir(PATH_RUNTIME.DS.'cache'.DS);
+        $this->template->setTemplateDir(PATH_TPL.DS.'themes'.DS);
 
-        $pluginsDir = array(
-            PATH_CORE.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'templaters'.DIRECTORY_SEPARATOR.'smarty'.DIRECTORY_SEPARATOR.'plugins'.DIRECTORY_SEPARATOR,
-            PATH_CORE.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'templaters'.DIRECTORY_SEPARATOR.'smarty'.DIRECTORY_SEPARATOR.'plugins_cms'.DIRECTORY_SEPARATOR
+        $this->template->addPluginsDir(
+            PATH_CORE.DS.'lib'.DS.'smarty.plugins'.DS
         );
-
-        foreach ($pluginsDir as $plugin)
-        {
-            if (is_dir($plugin))
-            {
-                $this->template->addPluginsDir($plugin);
-            }
-        }
     }
 
     public function setDebug($debug = 1)
@@ -61,8 +52,7 @@ class Message extends PHPMailer
 
     public function setSubject($subject = '')
     {
-
-                $this->mail->Subject = $subject;
+        $this->mail->Subject = $subject;
         $this->subject = $subject;
     }
 
@@ -84,24 +74,18 @@ class Message extends PHPMailer
 
     public function setTo($to)
     {
-        if (is_array($to))
-        {
-            foreach ($to as $email => $value)
-            {
+        if (is_array($to)) {
+            foreach ($to as $email => $value) {
                 $email = trim($email);
 
-                if (is_email($email))
-                {
+                if (is_email($email)) {
                     $this->mail->AddAddress($email);
                 }
             }
-        }
-        else
-        {
+        } else {
             $to = trim($to);
 
-            if (is_email($to))
-            {
+            if (is_email($to)) {
                 $this->mail->AddAddress(trim($to));
             }
         }
@@ -109,37 +93,30 @@ class Message extends PHPMailer
     
     public function addAttachment($attachment)
     {
-        if (is_array($attachment))
-        {
-            foreach ($attachment as $file)
-            {
-                if (file_exists(PATH_ROOT.$file))
-                {
+        if (is_array($attachment)) {
+            foreach ($attachment as $file) {
+                if (file_exists(PATH_ROOT.$file)) {
                     $this->mail->addAttachment($file);
                 }
             }
-        }
-        else
-        {
+        } else {
             $this->mail->addAttachment($attachment);
         }
     }
 
     public function send()
     {
-        $domain = str_replace(array('http://', 'www.', 'www') , '', $this->server['SERVER_NAME']);
+        $domain = str_replace(array('http://', 'www.', 'www'), '', $this->server['SERVER_NAME']);
 
-        try
-        {
-            $tpl->assign('domain',  $this->domain);
+        try {
+            $tpl->assign('domain', $this->domain);
             $tpl->assign('subject', $this->subject);
             $tpl->assign('message', $this->message);
 
             $this->mail->CharSet = 'utf-8';
             $this->mail->IsHTML($this->ishtml);
             
-            if ($this->issmtp)
-            {
+            if ($this->issmtp) {
                 $this->mail->IsSMTP();
 
                 $this->mail->SMTPSecure       = "ssl";
@@ -157,30 +134,20 @@ class Message extends PHPMailer
             
             $this->mail->msgHTML($tpl->fetch(PATH_TPL . $this->sendfile));
 
-            if ($this->mail->send())
-            {
+            if ($this->mail->send()) {
                 return true;
-            }
-            else
-            {
-                if ($this->debug == 1)
-                {
+            } else {
+                if ($this->debug == 1) {
                     echo "Mailer Error: " . $this->mail->ErrorInfo;
                 }
             }
             
             $this->mail->ClearAddresses();
             $this->mail->ClearAttachments();
-
-        }
-        catch (phpmailerException $e)
-        {
+        } catch (phpmailerException $e) {
             echo $e->errorMessage();
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
-
     }
 }

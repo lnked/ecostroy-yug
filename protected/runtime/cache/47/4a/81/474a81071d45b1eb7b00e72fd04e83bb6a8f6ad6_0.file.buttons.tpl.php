@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.32-dev-1, created on 2017-06-19 11:10:27
+/* Smarty version 3.1.31, created on 2017-06-19 11:25:15
   from "/Users/edik/web/ecostroy.dev/protected/templates/admin/system/buttons.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '3.1.32-dev-1',
-  'unifunc' => 'content_594786f370f524_57209006',
+  'version' => '3.1.31',
+  'unifunc' => 'content_59478a6b96ccd0_10088746',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_594786f370f524_57209006 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59478a6b96ccd0_10088746 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="button-container"><button class="button is-save" name="save" type="submit" onclick="return CheckAndSubmit('form_mdd')"><i class="icon icon-save"></i><?php echo t('buttons.save.and.close');?>
 </button><button class="button is-apply" name="apply" type="submit" onclick="return CheckAndSubmit('form_mdd')"><i class="icon icon-check-square"></i><?php echo t('buttons.save');?>

@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.32-dev-1, created on 2017-06-19 10:59:15
+/* Smarty version 3.1.31, created on 2017-06-19 11:25:17
   from "/Users/edik/web/ecostroy.dev/protected/templates/themes/base/smarty/components/meta.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '3.1.32-dev-1',
-  'unifunc' => 'content_59478453096737_49566618',
+  'version' => '3.1.31',
+  'unifunc' => 'content_59478a6da8abf8_93282578',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59478453096737_49566618 (Smarty_Internal_Template $_smarty_tpl) {
-if (!is_callable('smarty_function_compress')) require_once '/Users/edik/web/ecostroy.dev/protected/core/lib/templaters/smarty/plugins_cms/function.compress.php';
+function content_59478a6da8abf8_93282578 (Smarty_Internal_Template $_smarty_tpl) {
+if (!is_callable('smarty_function_compress')) require_once '/Users/edik/web/ecostroy.dev/protected/core/lib/smarty.plugins/function.compress.php';
 ?>
 <!DOCTYPE html>
 <!-- (c) lnk. Celebro Studio | https://celebro.ru -->

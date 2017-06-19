@@ -15,16 +15,13 @@ final class shoppingController extends cpLoader
 
     private function getSettings($key = '')
     {
-        if (!$this->mcache_enable || !($settings = $this->getCache('_shop_settings_')))
-        {
+        if (!$this->mcache_enable || !($settings = $this->getCache('_shop_settings_'))) {
             $settings = [];
 
             $temp = $this->shopping->getSettings();
 
-            if (!empty($temp))
-            {
-                foreach ($temp as $item)
-                {
+            if (!empty($temp)) {
+                foreach ($temp as $item) {
                     $settings[$item['class']][$item['value']] = $item;
                 }
             }
@@ -32,8 +29,7 @@ final class shoppingController extends cpLoader
             $this->setCache('_sitemap_', $settings);
         }
 
-        if (isset($key) && isset($settings[$key]))
-        {
+        if (isset($key) && isset($settings[$key])) {
             return $settings[$key];
         }
 
@@ -77,20 +73,17 @@ final class shoppingController extends cpLoader
 
     public function index()
     {
-        if ($this->method == 'list')
-        {
+        if ($this->method == 'list') {
             redirect($this->base_path . '/orders');
         }
     }
 
     public function delete()
     {
-        if (count($_POST))
-        {
+        if (count($_POST)) {
             $id = $_POST['id'];
 
-            if ($id)
-            {
+            if ($id) {
                 $this->shopping->deleteProduct($id, true);
             }
         }
@@ -98,8 +91,7 @@ final class shoppingController extends cpLoader
 
     public function update()
     {
-        if (count($_POST))
-        {
+        if (count($_POST)) {
             $data = $_POST;
 
             $available = [
@@ -122,8 +114,7 @@ final class shoppingController extends cpLoader
         $backuri = isset($_GET['backuri']) ? base64_decode($_GET['backuri']) : '';
         $addurl  = isset($_GET['backuri']) ? '?backuri=' . $_GET['backuri'] : '';
         
-        switch ($this->method)
-        {
+        switch ($this->method) {
             case 'item':
             case 'print':
 
@@ -136,12 +127,9 @@ final class shoppingController extends cpLoader
             case 'del':
                 $this->shopping->deleteOrder($this->element);
 
-                if ($backuri)
-                {
+                if ($backuri) {
                     redirect($backuri);
-                }
-                else
-                {
+                } else {
                     redirect($this->base_path . '/orders');
                 }
                 
@@ -150,24 +138,19 @@ final class shoppingController extends cpLoader
             default:
                 $orders = $this->shopping->getOrders(0, 300);
 
-                if (!empty($orders))
-                {
-                    foreach ($orders as &$rec)
-                    {
+                if (!empty($orders)) {
+                    foreach ($orders as &$rec) {
                         $rec['user']        = $this->getUser($rec['user']);
 
-                        if (isset($settings['payment'][$rec['payment']]['variable']))
-                        {
+                        if (isset($settings['payment'][$rec['payment']]['variable'])) {
                             $rec['payment'] = $settings['payment'][$rec['payment']]['variable'];
                         }
                         
-                        if (isset($settings['delivery'][$rec['delivery']]['variable']))
-                        {
+                        if (isset($settings['delivery'][$rec['delivery']]['variable'])) {
                             $rec['delivery'] = $settings['delivery'][$rec['delivery']]['variable'];
                         }
 
-                        if (isset($settings['status_delivery'][$rec['status_delivery']]['variable']))
-                        {
+                        if (isset($settings['status_delivery'][$rec['status_delivery']]['variable'])) {
                             $rec['status_delivery'] = $settings['status_delivery'][$rec['status_delivery']]['variable'];
                         }
                         
@@ -191,8 +174,7 @@ final class shoppingController extends cpLoader
         $backuri = isset($_GET['backuri']) ? base64_decode($_GET['backuri']) : '';
         $addurl  = isset($_GET['backuri']) ? '?backuri=' . $_GET['backuri'] : '';
 
-        switch ($this->method)
-        {
+        switch ($this->method) {
             case 'list':
 
                 $query = '';
@@ -288,20 +270,16 @@ final class shoppingController extends cpLoader
             case 'del':
                 $this->shopping->deleteProduct($this->element);
                 
-                if ($backuri)
-                {
+                if ($backuri) {
                     redirect($backuri);
-                }
-                else
-                {
+                } else {
                     redirect($this->base_path . '/catalog');
                 }
                 
             break;
         }
 
-        if (in_array($this->method, array('add', 'edit')))
-        {
+        if (in_array($this->method, array('add', 'edit'))) {
             $info['catalog_tabs'] = [
                 'description'           => 'Описание',
                 'ingredients'           => 'Ингредиенты',
@@ -312,8 +290,6 @@ final class shoppingController extends cpLoader
             $info['category_list'] = $this->shopping->categoryTree();
         }
 
-        // exit(__debug($info));
-
         return $info;
     }
 
@@ -322,13 +298,11 @@ final class shoppingController extends cpLoader
         $info = [];
         $backuri = isset($_GET['backuri']) ? base64_decode($_GET['backuri']) : '';
 
-        if (in_array($this->method, array('add', 'edit')))
-        {
+        if (in_array($this->method, array('add', 'edit'))) {
             $info['category_list'] = $this->shopping->categoryTree();
         }
 
-        switch ($this->method)
-        {
+        switch ($this->method) {
             case 'list':
 
                 $info['category'] = $this->shopping->categoryTree();
@@ -355,12 +329,9 @@ final class shoppingController extends cpLoader
 
                 $this->shopping->deleteCategory($this->element, true);
                 
-                if (!empty($backuri))
-                {
+                if (!empty($backuri)) {
                     redirect($backuri);
-                }
-                else
-                {
+                } else {
                     redirect($this->base_path . '/category');
                 }
                 
@@ -375,13 +346,10 @@ final class shoppingController extends cpLoader
         $info = [];
         $backuri = isset($_GET['backuri']) ? base64_decode($_GET['backuri']) : '';
 
-        if (in_array($this->method, array('add', 'edit')))
-        {
-            
+        if (in_array($this->method, array('add', 'edit'))) {
         }
 
-        switch ($this->method)
-        {
+        switch ($this->method) {
             case 'list':
 
                 $info['discounts'] = $this->shopping->getDiscountList(0, 10);
@@ -402,12 +370,9 @@ final class shoppingController extends cpLoader
 
                 $this->shopping->deleteDiscount($this->element, true);
 
-                if (!empty($backuri))
-                {
+                if (!empty($backuri)) {
                     redirect($backuri);
-                }
-                else
-                {
+                } else {
                     redirect($this->base_path . '/discounts');
                 }
                 
@@ -419,7 +384,6 @@ final class shoppingController extends cpLoader
     
     public function sale()
     {
-        
     }
 
     public function fileUpload()
@@ -427,13 +391,11 @@ final class shoppingController extends cpLoader
         $group_id = $_POST['groupid'];
         $settings = [];
 
-        if (isset($_POST['settings']))
-        {
+        if (isset($_POST['settings'])) {
             $settings = json_decode($_POST['settings'], true);
         }
         
-        if (!empty($_FILES['file']))
-        {
+        if (!empty($_FILES['file'])) {
             F($_FILES['file'])
                 ->upload($group_id)
                 ->resize($settings);
@@ -469,13 +431,10 @@ final class shoppingController extends cpLoader
         $info = [];
         $backuri = isset($_GET['backuri']) ? base64_decode($_GET['backuri']) : '';
 
-        if (in_array($this->method, array('add', 'edit')))
-        {
-            
+        if (in_array($this->method, array('add', 'edit'))) {
         }
 
-        switch ($this->method)
-        {
+        switch ($this->method) {
             case 'list':
 
                 $info['users'] = $this->shopping->getUsers(0, 10);
@@ -501,12 +460,9 @@ final class shoppingController extends cpLoader
 
                 $this->shopping->deleteUser($this->element, true);
 
-                if (!empty($backuri))
-                {
+                if (!empty($backuri)) {
                     redirect($backuri);
-                }
-                else
-                {
+                } else {
                     redirect($this->base_path . '/customers');
                 }
                 
@@ -533,8 +489,7 @@ final class shoppingController extends cpLoader
 
         $data = [];
     
-        if (in_array($action, array('add_category', 'edit_category')))
-        {
+        if (in_array($action, array('add_category', 'edit_category'))) {
             # meta
 
             $data['s:meta_title']           = $_POST['meta_title'];
@@ -555,8 +510,7 @@ final class shoppingController extends cpLoader
             $data['i:visible']              = $_POST['visible'];
         }
 
-        if (in_array($action, array('add_discount', 'edit_discount')))
-        {
+        if (in_array($action, array('add_discount', 'edit_discount'))) {
             # data
 
             $data['s:name']                 = $_POST['name'];
@@ -569,8 +523,7 @@ final class shoppingController extends cpLoader
             $data['i:active']               = $_POST['active'];
         }
 
-        if (in_array($action, array('add_customers', 'edit_customers')))
-        {
+        if (in_array($action, array('add_customers', 'edit_customers'))) {
             # data
 
             $data['s:name']                 = $_POST['name'];
@@ -587,8 +540,7 @@ final class shoppingController extends cpLoader
             $data['address']                = $_POST['address'];
         }
 
-        if (in_array($action, array('add', 'edit')))
-        {
+        if (in_array($action, array('add', 'edit'))) {
             # meta
 
             $data['s:meta_title']           = $_POST['meta_title'];
@@ -638,16 +590,11 @@ final class shoppingController extends cpLoader
                 
                 $last_id = $this->shopping->addProduct($data);
 
-                if (isset($_POST['apply']) && $last_id)
-                {
+                if (isset($_POST['apply']) && $last_id) {
                     redirect($this->base_path . '/catalog/edit/' . $last_id . '/?msg=apply'.$addurl);
-                }
-                elseif ($backuri)
-                {
+                } elseif ($backuri) {
                     redirect($backuri);
-                }
-                else
-                {
+                } else {
                     redirect($this->base_path . '/catalog');
                 }
 
@@ -657,16 +604,11 @@ final class shoppingController extends cpLoader
 
                 $this->shopping->editProduct($data, $this->element);
 
-                if (isset($_POST['apply']))
-                {
+                if (isset($_POST['apply'])) {
                     redirect($this->base_path . '/catalog/edit/' . $this->element . '/?msg=apply'.$addurl);
-                }
-                elseif ($backuri)
-                {
+                } elseif ($backuri) {
                     redirect($backuri);
-                }
-                else
-                {
+                } else {
                     redirect($this->base_path . '/catalog');
                 }
 
@@ -679,16 +621,11 @@ final class shoppingController extends cpLoader
 
                 $last_id = $this->shopping->addBuyers($data);
 
-                if (isset($_POST['apply']) && $last_id)
-                {
+                if (isset($_POST['apply']) && $last_id) {
                     redirect($this->base_path . '/customers/edit/' . $last_id . '/?msg=apply'.$addurl);
-                }
-                elseif ($backuri)
-                {
+                } elseif ($backuri) {
                     redirect($backuri);
-                }
-                else
-                {
+                } else {
                     redirect($this->base_path . '/customers');
                 }
 
@@ -698,16 +635,11 @@ final class shoppingController extends cpLoader
 
                 $last_id = $this->shopping->editBuyers($data, $this->element);
 
-                if (isset($_POST['apply']))
-                {
+                if (isset($_POST['apply'])) {
                     redirect($this->base_path . '/customers/edit/' . $this->element . '/?msg=apply'.$addurl);
-                }
-                elseif ($backuri)
-                {
+                } elseif ($backuri) {
                     redirect($backuri);
-                }
-                else
-                {
+                } else {
                     redirect($this->base_path . '/customers');
                 }
 
@@ -715,21 +647,16 @@ final class shoppingController extends cpLoader
 
             /**
              * Категории
-             */ 
+             */
             case 'add_category':
 
                 $last_id = $this->shopping->addCategory($data);
 
-                if (isset($_POST['apply']) && $last_id)
-                {
+                if (isset($_POST['apply']) && $last_id) {
                     redirect($this->base_path . '/category/edit/' . $last_id . '/?msg=apply'.$addurl);
-                }
-                elseif ($backuri)
-                {
+                } elseif ($backuri) {
                     redirect($backuri);
-                }
-                else
-                {
+                } else {
                     redirect($this->base_path . '/category');
                 }
 
@@ -739,16 +666,11 @@ final class shoppingController extends cpLoader
 
                 $this->shopping->editCategory($data, $this->element);
 
-                if (isset($_POST['apply']))
-                {
+                if (isset($_POST['apply'])) {
                     redirect($this->base_path . '/category/edit/' . $this->element . '/?msg=apply'.$addurl);
-                }
-                elseif ($backuri)
-                {
+                } elseif ($backuri) {
                     redirect($backuri);
-                }
-                else
-                {
+                } else {
                     redirect($this->base_path . '/category');
                 }
             break;
@@ -760,16 +682,11 @@ final class shoppingController extends cpLoader
 
                 $last_id = $this->shopping->addDiscount($data);
 
-                if (isset($_POST['apply']) && $last_id)
-                {
+                if (isset($_POST['apply']) && $last_id) {
                     redirect($this->base_path . '/discounts/edit/' . $last_id . '/?msg=apply'.$addurl);
-                }
-                elseif ($backuri)
-                {
+                } elseif ($backuri) {
                     redirect($backuri);
-                }
-                else
-                {
+                } else {
                     redirect($this->base_path . '/discounts');
                 }
 
@@ -779,16 +696,11 @@ final class shoppingController extends cpLoader
 
                 $last_id = $this->shopping->editDiscount($data, $this->element);
 
-                if (isset($_POST['apply']))
-                {
+                if (isset($_POST['apply'])) {
                     redirect($this->base_path . '/discounts/edit/' . $this->element . '/?msg=apply'.$addurl);
-                }
-                elseif ($backuri)
-                {
+                } elseif ($backuri) {
                     redirect($backuri);
-                }
-                else
-                {
+                } else {
                     redirect($this->base_path . '/discounts');
                 }
 

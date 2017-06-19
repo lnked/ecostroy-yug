@@ -144,11 +144,22 @@
         </tr>
 
         <tr style="display: none;">
+            <td class="h hl va_m">Локализация</td>
+            <td>
+                {include file="system/group.tpl"
+                    name    = "stc_locale"
+                    check   = $stc_page.locale
+                    list    = $languages
+                }
+            </td>
+        </tr>
+
+        <tr style="display: none;">
             <td class="h hl va_m">Шаблон страницы</td>
             <td>
                 {if isset($templates_list)}
-                <div class="width-50" style="position: relative">
-                    <div id="select_field">
+                <div class="add-template">
+                    <div class="add-template__select" id="select_field">
                         <select name="stc_tid" id="templates_list">
                         {foreach item=item from=$templates_list}
                             <option value="{$item.id}" {if isset($stc_page.tid) && $stc_page.tid == $item.id}selected="selected"{/if}>{$item.name}</option>
@@ -156,7 +167,9 @@
                         </select>
                     </div>
                     {if isset($smarty.session.userinf.gid) && $smarty.session.userinf.gid == 10}
-                    <a href="#" class="button button-blue button-icon" onclick="addTemplate(event);return false" style="position: absolute; left: 100%; margin-left: 2px; top: 0;"><span class="icon icon-plus-square"></span></a>
+                    <button type="button" class="button button-icon add-template__button" onclick="cp.addTemplate(event);">
+                        <span class="icon icon-plus-square"></span>
+                    </button>
                     {/if}
                 </div>
                 {/if}
@@ -176,7 +189,7 @@
                     
                     <div class="width-25 fl">
                         <div style="padding: 0 0 0 2px;">
-                            <button class="button button-green" onclick="return addTemplateFile({if isset($stc_page.tid)}{$stc_page.tid}{else}''{/if});">Добавить</button>
+                            <button type="button" class="button button-green" onclick="cp.addTemplateFile({if isset($stc_page.tid)}{$stc_page.tid}{else}''{/if});">Добавить</button>
                         </div>
                     </div>
                 </div>

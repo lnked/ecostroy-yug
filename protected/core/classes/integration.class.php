@@ -2,12 +2,11 @@
 
 final class Integration extends Crawler
 {
-	use Singleton;
-	private $args 				= array();
+    use Singleton;
+    private $args                = [];
 
-	public function __construct()
-	{
-		parent::__construct();
-		
-	}
+    public function __construct()
+    {
+        parent::__construct();
+    }
 }

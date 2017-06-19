@@ -14,8 +14,7 @@ final class modulesController extends cpLoader
 
     public function index()
     {
-        if (in_array($this->method, array( 'add', 'edit' )))
-        {
+        if (in_array($this->method, array( 'add', 'edit' ))) {
             $info['storage'] = array(
                 'InnoDB'    =>  'InnoDB',
                 'MyISAM'    =>  'MyISAM',
@@ -35,18 +34,13 @@ final class modulesController extends cpLoader
             // }
         }
 
-        if ($this->method == 'add')
-        {
+        if ($this->method == 'add') {
             $info['mmd_fields_type'] = $this->mdd->getFieldsType();
-        }
-        elseif ($this->method == 'edit')
-        {
+        } elseif ($this->method == 'edit') {
             $info['mdd_module'] = $this->mdd->getModules($this->element);
             $info['mdd_fields'] = $this->mdd->getFields($this->element);
             $info['mmd_fields_type'] = $this->mdd->getFieldsType();
-        }
-        elseif ($this->method == 'del')
-        {
+        } elseif ($this->method == 'del') {
             $this->mdd->dropTable($this->element);
             $this->mdd->removeFields($this->element);
             $this->mdd->removeBinds($this->element);
@@ -55,18 +49,15 @@ final class modulesController extends cpLoader
             redirect($this->base_path);
         }
 
-        if (in_array($this->method, array('add', 'list', 'edit')))
-        {
+        if (in_array($this->method, array('add', 'list', 'edit'))) {
             $info['module_id'] = $this->element;
             $info['modules_list'] = $this->mdd->getModules(0, false, false);
 
             
-            if (!empty($info['modules_list']))
-            {
+            if (!empty($info['modules_list'])) {
                 $modules = array();
 
-                foreach ($info['modules_list'] as $module)
-                {
+                foreach ($info['modules_list'] as $module) {
                     $id = $module['id'];
                     unset($module['id'], $module['type'], $module['pager'], $module['ord_type'], $module['active'], $module['storage'], $module['order']);
                     $modules[$id] = $module;
@@ -81,27 +72,20 @@ final class modulesController extends cpLoader
 
     public function binds()
     {
-        if ($this->method == 'add')
-        {
+        if ($this->method == 'add') {
             $info['mdd_bind'] = array(
                 'func_code' => 'require PATH_MODULE . "/module/module.php";";',
                 'template'  => '{include file="$PATH_MODULE/module/module.tpl"}'
             );
-        }
-        elseif ($this->method == 'edit')
-        {
+        } elseif ($this->method == 'edit') {
             $info['mdd_bind'] = $this->mdd->getBinds($this->element);
-        }
-        elseif ($this->method == 'del')
-        {
-            if (!empty($_SESSION['userinf']['gid']) && $_SESSION['userinf']['gid'] == 10)
-            {
+        } elseif ($this->method == 'del') {
+            if (!empty($_SESSION['userinf']['gid']) && $_SESSION['userinf']['gid'] == 10) {
                 $this->mdd->delBind($this->element);
             }
         
             redirect($this->base_path);
-        }
-        else {
+        } else {
             $info['binds'] = Q("SELECT * FROM `#__mdd_binds`")->all();
         }
 
@@ -121,7 +105,6 @@ final class modulesController extends cpLoader
 
     public function import()
     {
-
     }
     
     public function export()
@@ -132,23 +115,16 @@ final class modulesController extends cpLoader
 
     public function group()
     {
-        if ($this->method == 'add')
-        {
+        if ($this->method == 'add') {
             $info['modules_list'] = $this->mdd->getModules();
             $info['mdd_next_order'] = $this->mdd->getNextGroupOrder();
-        }
-        elseif ($this->method == 'edit')
-        {
+        } elseif ($this->method == 'edit') {
             $info['modules_list'] = $this->mdd->getModules();
             $info['group_item'] = $this->mdd->getGroupItem($this->element);
-        }
-        elseif ($this->method == 'del')
-        {
+        } elseif ($this->method == 'del') {
             $this->mdd->delGroup($this->element);
             redirect($this->base_path . '/group/');
-        }
-        else
-        {
+        } else {
             $info['mdd_group_list'] = $this->mdd->getGroup();
         }
 
@@ -162,10 +138,8 @@ final class modulesController extends cpLoader
         $fields = array();
         $result = $this->mdd->getFields($id);
 
-        if (!empty($result))
-        {
-            foreach ($result as $field)
-            {
+        if (!empty($result)) {
+            foreach ($result as $field) {
                 $fields[] = array(
                     'id'        =>  $field['id'],
                     'name'      =>  $field['f_name'],
@@ -190,7 +164,7 @@ final class modulesController extends cpLoader
             'f_sys_name',
             'f_binding',
             'f_type',
-            'f_width', 
+            'f_width',
             'f_ord',
             'f_in_list',
             'f_module',
@@ -214,29 +188,21 @@ final class modulesController extends cpLoader
             'f_table_list'
         ];
 
-        foreach($fields_names as $f_name)
-        {
-            if (isset($_POST[ $f_name ]) && !empty($_POST[ $f_name ]))
-            {
-                foreach($_POST[$f_name] as $iteration => $item)
-                {
-                    if (in_array($f_name, array('f_image_prefix', 'f_image_width', 'f_image_height', 'f_image_photo_method')))
-                    {
-                        foreach($item as $img_type => $img_size)
-                        {
+        foreach ($fields_names as $f_name) {
+            if (isset($_POST[ $f_name ]) && !empty($_POST[ $f_name ])) {
+                foreach ($_POST[$f_name] as $iteration => $item) {
+                    if (in_array($f_name, array('f_image_prefix', 'f_image_width', 'f_image_height', 'f_image_photo_method'))) {
+                        foreach ($item as $img_type => $img_size) {
                             $fields[$iteration][$f_name][$img_type] = $img_size;
                         }
-                    }
-                    else
-                    {
+                    } else {
                         $fields[$iteration][ $f_name ] = $item;
                     }
                 }
             }
         }
 
-        if (in_array($action, array('add', 'edit')))
-        {
+        if (in_array($action, array('add', 'edit'))) {
             $arr = array(
                 "name"      => __post('name'),
                 "sys_name"  => transliterate(__post('sys_name')),
@@ -249,39 +215,30 @@ final class modulesController extends cpLoader
                 "storage"   => __post('storage')
             );
 
-            if ($action == 'edit')
-            {
+            if ($action == 'edit') {
                 unset($arr['storage']);
             }
         }
 
-        if ($action == 'add')
-        {
+        if ($action == 'add') {
             $m_name     = __post('name');
             $m_sys_name = __post('sys_name');
 
-            if ($m_name && $m_sys_name)
-            {
+            if ($m_name && $m_sys_name) {
                 $id = $this->mdd->addModule($arr);
 
                 $this->mdd->addFields($id);
                 
                 $this->mdd->createTable($id);
                 
-                if (isset($_POST['apply']))
-                {
+                if (isset($_POST['apply'])) {
                     redirect($this->base_path . "/index/edit/" . $id);
-                }
-                else
-                {
+                } else {
                     redirect($this->base_path);
                 }
             }
-        }
-        elseif ($action == 'edit')
-        {
-            if (!$this->mdd->updateTable($this->element, $arr['sys_name']))
-            {
+        } elseif ($action == 'edit') {
+            if (!$this->mdd->updateTable($this->element, $arr['sys_name'])) {
                 return false;
             }
             
@@ -290,17 +247,12 @@ final class modulesController extends cpLoader
             $this->mdd->alterFields($this->element, __post('f_id'), __post('f_sys_name'), __post('f_type'));
             $this->mdd->updateFields($this->element, $fields);
             
-            if (isset($_POST['apply']))
-            {
+            if (isset($_POST['apply'])) {
                 redirect($this->base_path . "/index/edit/" . $this->element);
-            }
-            else
-            {
+            } else {
                 redirect($this->base_path);
             }
-        }
-        elseif ($action == 'add_bind')
-        {
+        } elseif ($action == 'add_bind') {
             $arr = array(
                 'name'      => __post('name'),
                 'func_name' => __post('func_name'),
@@ -312,32 +264,26 @@ final class modulesController extends cpLoader
             $partition  = PATH_MODULE . '/' . $arr['func_name'] . '/';
             $partition_tpl  = PATH_MODULE . '/' . $arr['func_name'] . '/tpl/';
 
-            if (!is_dir($partition))
-            {
+            if (!is_dir($partition)) {
                 mkdir($partition, 0755);
             }
 
-            if (!is_dir($partition_tpl))
-            {
+            if (!is_dir($partition_tpl)) {
                 mkdir($partition_tpl, 0755);
             }
 
-            if ($arr['func_name'] != '' && !file_exists($fns_code))
-            {
+            if ($arr['func_name'] != '' && !file_exists($fns_code)) {
                 $this->createModuleFiles($fns_code, $arr['func_name']);
             }
             
             $bind_id = $this->mdd->addBind($arr);
 
-            if (isset($_POST['apply']))
-            {
+            if (isset($_POST['apply'])) {
                 redirect($this->base_path . "/binds/edit/" . $bind_id . '?msg=apply');
             }
 
             redirect($this->base_path . "/binds");
-        }
-        elseif ($action == 'edit_bind')
-        {
+        } elseif ($action == 'edit_bind') {
             $arr = array(
                 'name'      => __post('name'),
                 'func_name' => __post('func_name'),
@@ -349,32 +295,26 @@ final class modulesController extends cpLoader
             $partition  = PATH_MODULE . '/' . $arr['func_name'] . '/';
             $partition_tpl  = PATH_MODULE . '/' . $arr['func_name'] . '/tpl/';
 
-            if (!is_dir($partition))
-            {
+            if (!is_dir($partition)) {
                 mkdir($partition, 0755);
             }
 
-            if (!is_dir($partition_tpl))
-            {
+            if (!is_dir($partition_tpl)) {
                 mkdir($partition_tpl, 0755);
             }
 
-            if ($arr['func_name'] != '' && !file_exists($fns_code))
-            {
+            if ($arr['func_name'] != '' && !file_exists($fns_code)) {
                 $this->createModuleFiles($fns_code, $arr['func_name']);
             }
             
             $this->mdd->editBind($this->element, $arr);
 
-            if (isset($_POST['apply']))
-            {
+            if (isset($_POST['apply'])) {
                 redirect($this->base_path . '/binds/edit/' . $this->element . '?msg=apply');
             }
             
             redirect($this->base_path . "/binds");
-        }
-        elseif ($action == 'add_group')
-        {
+        } elseif ($action == 'add_group') {
             $modules = __post('modules') ? __post('modules') : array();
 
             $arr = array(
@@ -387,20 +327,16 @@ final class modulesController extends cpLoader
 
             $id = $this->mdd->addGroup($arr);
 
-            if ($id == 0)
-            {
+            if ($id == 0) {
                 unset($_POST['apply']);
             }
 
-            if (isset($_POST['apply']))
-            {
+            if (isset($_POST['apply'])) {
                 redirect($this->base_path . "/group/edit/" . $id . '?msg=apply');
             }
 
             redirect($this->base_path . '/group');
-        }
-        elseif ($action == 'edit_group')
-        {
+        } elseif ($action == 'edit_group') {
             $modules = __post('modules') ? __post('modules') : array();
 
             $arr = array(
@@ -413,13 +349,11 @@ final class modulesController extends cpLoader
 
             $this->mdd->editGroup($arr, $this->element);
 
-            if ($this->element == 0)
-            {
+            if ($this->element == 0) {
                 unset($_POST['apply']);
             }
 
-            if (isset($_POST['apply']))
-            {
+            if (isset($_POST['apply'])) {
                 redirect($this->base_path . "/group/edit/" . $this->element);
             }
 
@@ -429,8 +363,7 @@ final class modulesController extends cpLoader
 
     public function createModuleFiles($filename, $f_name, $content = '')
     {
-        if ($content == '')
-        {
+        if ($content == '') {
             $content = "<?php
 
 class ". $f_name ."Module extends Module
@@ -541,15 +474,13 @@ class ". $f_name ."Module extends Module
         }
 
         
-        if ($f = fopen($filename, 'c+'))
-        {
+        if ($f = fopen($filename, 'c+')) {
             $source = '';
-            while (!feof($f))
-            {
-               $source .= fgets($f);
+            while (!feof($f)) {
+                $source .= fgets($f);
             }
             
-            file_put_contents( $filename, $content );
+            file_put_contents($filename, $content);
             fclose($f);
             
             @chmod($filename, 0644);

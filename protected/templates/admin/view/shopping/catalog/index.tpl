@@ -9,8 +9,8 @@
 		</select>
 	</div>
 
-	<a href="{$base_path}/catalog/add" class="button button-blue"><i class="icon icon-plus-square"></i>Добавить товар</a>
-	
+	<a href="{$base_path}/catalog/add" class="button button-green"><i class="icon icon-plus-square"></i>Добавить товар</a>
+
 	{if !empty($smarty.get)}
 	<a href="{$base_path}/catalog" class="button"><i class="icon icon-format-clear-all"></i>Сбросить фильтры</a>
 	{/if}
@@ -195,7 +195,7 @@
 				</td>
 
 			    <td class="module-table__column module-table__center">
-					<a href="{$base_path}/catalog/del/{$product.id}?backuri={$_backuri}" onclick="catalog.deleteProduct(event, {$product.id})" class="catalog-remove" title="Удалить" data-no-instant>
+					<a href="{$base_path}/catalog/del/{$product.id}?backuri={$_backuri}" onclick="return catalog.deleteProduct(event, {$product.id})" class="catalog-remove" title="Удалить" data-no-instant>
 			    		<i class="icon icon-delete"></i>
 			    	</a>
 			    </td>

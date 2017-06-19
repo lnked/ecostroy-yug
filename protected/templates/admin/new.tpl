@@ -68,6 +68,7 @@
 	{/if}
 
 	<script data-no-instant>
+        var initialFiles = {};
 	    var ADMIN_DIR = '{$ADMIN_DIR}',
             PATH_HASH = '{$PATH_HASH}',
 	        ADMIN_LOCALE = '{$ADMIN_LOCALE}',

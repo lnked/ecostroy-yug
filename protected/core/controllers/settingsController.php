@@ -3,20 +3,18 @@
 final class settingsController extends cpLoader
 {
     use Singleton;
-	
-	public function __construct()
-	{
+    
+    public function __construct()
+    {
         parent::__construct();
-	}
-	
-	public function index()
+    }
+    
+    public function index()
     {
         $settings = Q("SELECT `var`, `value` FROM `#__sys_settings`")->all('var');
 
-        if (!empty($settings))
-        {
-            foreach($settings as &$item)
-            {
+        if (!empty($settings)) {
+            foreach ($settings as &$item) {
                 $item = $item['value'];
             }
         }
@@ -33,17 +31,12 @@ final class settingsController extends cpLoader
 
     public function menu()
     {
-        if ($this->method == 'edit')
-        {
+        if ($this->method == 'edit') {
             $info['menu_edit'] = Q("SELECT `id`, `name`, `system`, `tree` FROM `#__str_menu` WHERE `id`=?i LIMIT 1", array( $this->element ))->row();
-        }
-        elseif ($this->method == 'del')
-        {
+        } elseif ($this->method == 'del') {
             Q("DELETE FROM `#__str_menu` WHERE `id`=?i LIMIT 1", array( $this->element ));
             redirect($this->base_path);
-        }
-        else
-        {
+        } else {
             $info['menu_list'] = Q("SELECT `id`, `name`, `system`, `tree` FROM `#__str_menu` ORDER BY `name`")->all();
         }
 
@@ -52,26 +45,21 @@ final class settingsController extends cpLoader
 
     public function widgets()
     {
-
     }
     
     public function modules()
     {
-        if ($this->method == 'visible' && $this->element)
-        {
+        if ($this->method == 'visible' && $this->element) {
             Q("UPDATE `#__cp_structure` SET `visible`=IF(`visible`!=1, 1, 0) WHERE `id`=?i LIMIT 1", array( $this->element ));
 
             return array(
                 'status' => true
             );
-        }
-        else
-        {
+        } else {
             $structure = array();
             $temp = Q("SELECT * FROM `#__cp_structure`")->all();
             
-            foreach ($temp as $mod)
-            {
+            foreach ($temp as $mod) {
                 $structure[$mod['pid']][] = $mod;
             }
 
@@ -92,22 +80,18 @@ final class settingsController extends cpLoader
     
     public function caching()
     {
-
     }
     
     public function filemanager()
     {
-
     }
     
     public function support()
     {
-
     }
 
     public function knowledge()
     {
-
     }
 
     public function optimize()
@@ -117,10 +101,8 @@ final class settingsController extends cpLoader
             'ADVPNG', 'Gifsicle', 'JpegOptim', 'JPEGTRAN', 'OPTIPNG', 'PNGCrush', 'PNGOUT'
         );
 
-        foreach($ext as $item)
-        {
-            if (extension_loaded($item))
-            {
+        foreach ($ext as $item) {
+            if (extension_loaded($item)) {
                 $supported[] = $item;
             }
         }
@@ -150,16 +132,13 @@ final class settingsController extends cpLoader
 
         $response = curl_exec($request);
 
-        if (curl_getinfo($request, CURLINFO_HTTP_CODE) === 201)
-        {
+        if (curl_getinfo($request, CURLINFO_HTTP_CODE) === 201) {
             $headers = substr($response, 0, curl_getinfo($request, CURLINFO_HEADER_SIZE));
 
-            foreach (explode("\r\n", $headers) as $header)
-            {
-                if (substr($header, 0, 10) === "Location: ")
-                {
+            foreach (explode("\r\n", $headers) as $header) {
+                if (substr($header, 0, 10) === "Location: ") {
                     $request = curl_init();
-                        curl_setopt_array($request, array(
+                    curl_setopt_array($request, array(
                         CURLOPT_URL => substr($header, 10),
                         CURLOPT_RETURNTRANSFER => true,
                         CURLOPT_SSL_VERIFYPEER => true
@@ -168,9 +147,7 @@ final class settingsController extends cpLoader
                     file_put_contents($output, curl_exec($request));
                 }
             }
-        }
-        else
-        {
+        } else {
             print(curl_error($request));
             print("Compression failed");
         }
@@ -194,18 +171,13 @@ final class settingsController extends cpLoader
         );
 
         $result = fopen($url, "r", false, stream_context_create($options));
-        if ($result)
-        {
-            foreach ($http_response_header as $header)
-            {
-                if (substr($header, 0, 10) === "Location: ")
-                {
+        if ($result) {
+            foreach ($http_response_header as $header) {
+                if (substr($header, 0, 10) === "Location: ") {
                     file_put_contents($output, fopen(substr($header, 10), "rb", false));
                 }
             }
-        } 
-        else
-        {
+        } else {
             print("Compression failed");
         }
     }
@@ -214,46 +186,31 @@ final class settingsController extends cpLoader
     {
         $action = __post('action');
 
-        if ($action == 'add') 
-        {
-            if ( isset($_POST['apply']) )
-            {
+        if ($action == 'add') {
+            if (isset($_POST['apply'])) {
+                redirect($this->base_path);
+            } else {
                 redirect($this->base_path);
             }
-            else
-            {
+        } elseif ($action == 'edit') {
+            if (isset($_POST['apply'])) {
+                redirect($this->base_path);
+            } else {
                 redirect($this->base_path);
             }
-        }
-        elseif ($action == 'edit')
-        {
-            if ( isset($_POST['apply']) )
-            {
-                redirect($this->base_path);
-            }
-            else
-            {
-                redirect($this->base_path);
-            }
-        }
-        elseif ($action == 'save_setting')
-        {
+        } elseif ($action == 'save_setting') {
             $constants = array(
                'COMPANY_NAME', 'SYSTEM_TIMEZONE', 'SYSTEM_LOCALE', 'SYSTEM_MAINPAGE', 'SYSTEM_DEBUG', 'SYSTEM_TRANSLATE', 'ENABLECACHE'
             );
 
-            foreach($constants as $item)
-            {
-                if (isset($_POST[$item]))
-                {
+            foreach ($constants as $item) {
+                if (isset($_POST[$item])) {
                     Q("INSERT INTO `#__sys_settings` (`var`, `value`, `date`, `uid`) VALUES ('" . $item . "', '".$_POST[$item]."', NOW(), '".$_SESSION['userinf']['id']."') ON DUPLICATE KEY UPDATE `var` = VALUES(`var`), `value` = VALUES(`value`), `date` = VALUES(`date`), `uid` = VALUES(`uid`)");
                 }
             }
 
             redirect($this->base_path);
-        }
-        elseif ($action == 'menu_add')
-        {
+        } elseif ($action == 'menu_add') {
             $name = __post('name');
             $system = __post('system');
             $tree = __post('tree');
@@ -261,9 +218,7 @@ final class settingsController extends cpLoader
             Q("INSERT INTO `#__str_menu` SET `name`=?s, `system`=?s, `tree`=?s", array( $name, $system, $tree ));
             
             redirect($this->base_path . '/menu');
-        }
-        elseif ($action == 'menu_edit')
-        {
+        } elseif ($action == 'menu_edit') {
             $name = __post('name');
             $system = __post('system');
             $tree = __post('tree');
@@ -271,12 +226,9 @@ final class settingsController extends cpLoader
             
             Q("UPDATE `#__str_menu` SET `name`=?s, `system`=?s, `tree`=?i WHERE `id`=?i LIMIT 1", array( $name, $system, $tree, $post_id ));
 
-            if ( isset($_POST['apply']) )
-            {
+            if (isset($_POST['apply'])) {
                 redirect($this->base_path . '/menu/edit/' . $post_id);
-            }
-            else
-            {
+            } else {
                 redirect($this->base_path . '/menu');
             }
         }

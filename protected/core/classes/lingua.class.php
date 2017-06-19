@@ -3,7 +3,7 @@
 class Lingua
 {
     public static $use_cache = 1;
-    private static $Stem_Cache = array();
+    private static $Stem_Cache = [];
     
     const VOWEL = '/аеиоуыэюя/u';
     const PERFECTIVEGROUND = '/((ив|ивши|ившись|ыв|ывши|ывшись)|((?<=[ая])(в|вши|вшись)))$/u';
@@ -27,30 +27,30 @@ class Lingua
         $word = mb_strtolower($word);
         $word = str_replace('ё', 'е', $word); //strtr($word, 'ё', 'е');
         # Check against cache of stemmed words
-        if (self::$use_cache && isset(self::$Stem_Cache[$word]))
+        if (self::$use_cache && isset(self::$Stem_Cache[$word])) {
             return self::$Stem_Cache[$word];
+        }
         $stem = $word;
-        do
-        {
-            if (!preg_match(self::RVRE, $word, $p))
+        do {
+            if (!preg_match(self::RVRE, $word, $p)) {
                 break;
+            }
             $start = $p[1];
             $RV = $p[2];
-            if (!$RV) break;
+            if (!$RV) {
+                break;
+            }
 
             # Step 1
-            if (!self::s($RV, self::PERFECTIVEGROUND, ''))
-            {
+            if (!self::s($RV, self::PERFECTIVEGROUND, '')) {
                 self::s($RV, self::REFLEXIVE, '');
 
-                if (self::s($RV, self::ADJECTIVE, ''))
-                {
+                if (self::s($RV, self::ADJECTIVE, '')) {
                     self::s($RV, self::PARTICIPLE, '');
-                }
-                else
-                {
-                    if (!self::s($RV, self::VERB, ''))
+                } else {
+                    if (!self::s($RV, self::VERB, '')) {
                         self::s($RV, self::NOUN, '');
+                    }
                 }
             }
 
@@ -58,21 +58,21 @@ class Lingua
             self::s($RV, '/и$/u', '');
 
             # Step 3
-            if (preg_match(self::DERIVATIONAL,$RV))
+            if (preg_match(self::DERIVATIONAL, $RV)) {
                 self::s($RV, '/ость?$/u', '');
+            }
 
             # Step 4
-            if (!self::s($RV, '/ь$/u', ''))
-            {
+            if (!self::s($RV, '/ь$/u', '')) {
                 self::s($RV, '/ейше?/u', '');
                 self::s($RV, '/нн$/u', 'н');
             }
 
             $stem = $start . $RV;
-        }
-        while (false);
-        if (self::$use_cache)
+        } while (false);
+        if (self::$use_cache) {
             self::$Stem_Cache[$word] = $stem;
+        }
         return $stem;
     }
 

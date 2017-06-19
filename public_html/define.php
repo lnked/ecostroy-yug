@@ -35,6 +35,7 @@ define('PATH_WEBROOT',      'public_html');
 define('PATH_SECURE',       dirname(PATH_ROOT).DS.PATH_PROTECTED);
 define('ADMIN_PATH', 		PATH_ROOT.DS.ADMIN_DIR);
 define('PATH_CORE',         PATH_SECURE.DS.'core');
+define('PATH_VENDORS',      PATH_SECURE.DS.'vendors');
 define('PATH_MODULE', 		PATH_SECURE.DS.'modules');
 define('PATH_RUNTIME', 		PATH_SECURE.DS.'runtime');
 define('PATH_TPL', 			PATH_SECURE.DS.'templates');
@@ -45,7 +46,7 @@ define('PATH_RESOURCE',     PATH_CORE.DS.'resource');
 # API
 define('TRANSLATE_API', 'trnsl.1.1.20150906T141528Z.634470d03ea1e762.2bad0e1f563db5cf22a91b87182866b13d349941');
 
-require_once PATH_CORE.DS.'config'.DS.'config.inc.php';
+require_once PATH_SECURE.DS.'config'.DS.'config.inc.php';
 
 // exit( t('add.something', ['string'=> 'ed']) );
 

@@ -2,12 +2,11 @@
 
 class crawler
 {
-	use Singleton, Tools;
+    use Singleton, Tools;
 
-	private $args = array();
+    private $args = array();
 
-	public function __construct()
-	{
-		
-	}
+    public function __construct()
+    {
+    }
 }

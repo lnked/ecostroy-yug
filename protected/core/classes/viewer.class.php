@@ -6,16 +6,13 @@ class Viewer extends Data
 
     public function __construct($driver = 'smarty', $dir = '', $caching = null)
     {
-        if (is_null($caching))
-        {
+        if (is_null($caching)) {
             $caching = $this->enabled_caching;
         }
         
-        if (file_exists(PATH_EXTENSIONS . DIRECTORY_SEPARATOR . $driver . 'ViewRenderer.php'))
-        {
-            if (!class_exists('templateRender'))
-            {
-                include PATH_EXTENSIONS . DIRECTORY_SEPARATOR . $driver . 'ViewRenderer.php';
+        if (file_exists(PATH_EXTENSIONS.DS.$driver . 'ViewRenderer.php')) {
+            if (!class_exists('templateRender')) {
+                include PATH_EXTENSIONS.DS.$driver . 'ViewRenderer.php';
 
                 $this->template = new templateRender($dir, $caching);
             }
@@ -34,8 +31,7 @@ class Viewer extends Data
 
     protected function display($pattern = '')
     {
-        if (DEV_MODE)
-        {
+        if (DEV_MODE) {
             $cache = new Cache;
             $cache->clearMemory();
         }

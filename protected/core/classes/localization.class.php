@@ -24,10 +24,8 @@ class Localization
 
         $prn_limit = 12;
 
-        if ($pager['page_count'] > 30)
-        {
-            if ($pager['all_items'] > $pager['limit'])
-            {
+        if ($pager['page_count'] > 30) {
+            if ($pager['all_items'] > $pager['limit']) {
                 $pager['advanced'] = 1;
                 $pager['arr_pages'] = array();
 
@@ -37,35 +35,28 @@ class Localization
                 $first_pager = $pager['curr_page'] - $prn_limit;
                 $last_pager = $first_pager + $prn_limit * 2;
 
-                if ($first_pager <= 0)
-                {
+                if ($first_pager <= 0) {
                     $first_pager = 0;
                     $last_pager = $first_pager + $prn_limit + ($prn_limit / 2);
                 }
 
-                if ($last_pager >= $pager['page_count'])
-                {
+                if ($last_pager >= $pager['page_count']) {
                     $last_pager = $pager['page_count'] - 1;
                     $first_pager = $last_pager - $prn_limit - ($prn_limit / 2);
                 }
 
-                for($i = $first_pager; $i <= $last_pager; $i++)
-                {
+                for ($i = $first_pager; $i <= $last_pager; $i++) {
                     $pager['arr_pages'][] = array(
                         'point'     =>    $i,
                         'qstring'   =>    '/' . ADMIN_DIR . '/locale/?page=' . $i
                    );
                 }
             }
-        }
-        else
-        {
-            if ($pager['all_items'] > $pager['limit'])
-            {
+        } else {
+            if ($pager['all_items'] > $pager['limit']) {
                 $pager['arr_pages'] = array();
                 
-                for($i = 0; $i < $pager['page_count']; $i++)
-                {
+                for ($i = 0; $i < $pager['page_count']; $i++) {
                     $pager['arr_pages'][] = array(
                         'point'     =>    $i,
                         'qstring'   =>    '/' . ADMIN_DIR . '/locale/?page=' . $i
@@ -78,12 +69,9 @@ class Localization
         $keys = implode(',', array_keys($temp));
         $temp = Q("SELECT * FROM `#" . $this->db_dictionary . "` WHERE FIND_IN_SET(`key`, ?s) ORDER BY `id` DESC", array(  $keys ))->all();
 
-        if (!empty($temp))
-        {
-            foreach ($temp as $t_item)
-            {
-                if (!isset($list[$t_item['key']]))
-                {
+        if (!empty($temp)) {
+            foreach ($temp as $t_item) {
+                if (!isset($list[$t_item['key']])) {
                     $list[$t_item['key']]['id'] = $t_item['id'];
                     $list[$t_item['key']]['system'] = $t_item['system'];
                 }
@@ -103,17 +91,13 @@ class Localization
         $item = array();
         $temp = Q("SELECT * FROM `#" . $this->db_dictionary . "` WHERE `key` LIKE ?s", array( $key ))->all();
 
-        if (!empty($temp))
-        {
-            foreach ($temp as $t_item)
-            {
-                if (!isset($item['key']))
-                {
+        if (!empty($temp)) {
+            foreach ($temp as $t_item) {
+                if (!isset($item['key'])) {
                     $item['key'] = $t_item['key'];
                 }
                
-                if (!isset($item['system']))
-                {
+                if (!isset($item['system'])) {
                     $item['system'] = $t_item['system'];
                 }
 
@@ -131,12 +115,10 @@ class Localization
 
     public function insertData($data = array())
     {
-        if (!empty($data))
-        {
+        if (!empty($data)) {
             $key = '';
 
-            if (!empty($data['key']))
-            {
+            if (!empty($data['key'])) {
                 $key = preg_replace('/[^A-Za-z0-9]/', '.', strtolower($data['key']));
                 $key = preg_replace('/\.+/', '.', $key);
                 $key = rtrim($key, '.');
@@ -144,10 +126,8 @@ class Localization
 
             $system = $data['system'];
 
-            foreach ($data['val'] as $lang => $value)
-            {
-                if ($value)
-                {
+            foreach ($data['val'] as $lang => $value) {
+                if ($value) {
                     $value = trim($value);
 
                     Q("INSERT INTO `#" . $this->db_dictionary . "` SET `key`=?s, `system`=?i, `locale`=?s, `val`=?s ON DUPLICATE KEY UPDATE `system`=?s, `val`=?s", array(

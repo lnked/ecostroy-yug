@@ -63,8 +63,14 @@
   width: auto;
   border: 0;
   -webkit-animation: blink 1.06s steps(1) infinite;
+  -moz-animation: blink 1.06s steps(1) infinite;
   animation: blink 1.06s steps(1) infinite;
   background-color: #7e7;
+}
+@-moz-keyframes blink {
+  0% {}
+  50% { background-color: transparent; }
+  100% {}
 }
 @-webkit-keyframes blink {
   0% {}
@@ -217,7 +223,6 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   cursor: default;
   z-index: 4;
 }
-.CodeMirror-gutter-wrapper ::-moz-selection { background-color: transparent }
 .CodeMirror-gutter-wrapper ::selection { background-color: transparent }
 .CodeMirror-gutter-wrapper ::-moz-selection { background-color: transparent }
 
@@ -226,7 +231,8 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   min-height: 1px; /* prevents collapsing before first draw */
 }
 .CodeMirror pre {
-  /* Reset some styles that the rest of the page might have set */ border-radius: 0;
+  /* Reset some styles that the rest of the page might have set */
+  -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
   border-width: 0;
   background: transparent;
   font-family: inherit;
@@ -241,8 +247,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
   overflow: visible;
   -webkit-tap-highlight-color: transparent;
   -webkit-font-variant-ligatures: contextual;
-  -moz-font-variant-ligatures: contextual;
-       font-variant-ligatures: contextual;
+  font-variant-ligatures: contextual;
 }
 .CodeMirror-wrap pre {
   word-wrap: break-word;
@@ -276,8 +281,8 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
 .CodeMirror-gutter,
 .CodeMirror-gutters,
 .CodeMirror-linenumber {
-  -webkit-box-sizing: content-box;
-          box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
 }
 
 .CodeMirror-measure {
@@ -310,7 +315,6 @@ div.CodeMirror-dragcursors {
 .CodeMirror-selected { background: #d9d9d9; }
 .CodeMirror-focused .CodeMirror-selected { background: #d7d4f0; }
 .CodeMirror-crosshair { cursor: crosshair; }
-.CodeMirror-line::-moz-selection, .CodeMirror-line > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection { background: #d7d4f0; }
 .CodeMirror-line::selection, .CodeMirror-line > span::selection, .CodeMirror-line > span > span::selection { background: #d7d4f0; }
 .CodeMirror-line::-moz-selection, .CodeMirror-line > span::-moz-selection, .CodeMirror-line > span > span::-moz-selection { background: #d7d4f0; }
 
@@ -344,6 +348,8 @@ span.CodeMirror-selectedtext { background: none; }
  */
 .datepicker {
   padding: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
   border-radius: 4px;
   direction: ltr;
 }
@@ -411,6 +417,7 @@ span.CodeMirror-selectedtext { background: none; }
   margin: 0;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
+  -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -420,6 +427,8 @@ span.CodeMirror-selectedtext { background: none; }
   text-align: center;
   width: 20px;
   height: 20px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
   border-radius: 4px;
   border: none;
 }
@@ -451,10 +460,11 @@ span.CodeMirror-selectedtext { background: none; }
 .datepicker table tr td.today.disabled,
 .datepicker table tr td.today.disabled:hover {
   background-color: #fde19a;
+  background-image: -moz-linear-gradient(to bottom, #fdd49a, #fdf59a);
+  background-image: -ms-linear-gradient(to bottom, #fdd49a, #fdf59a);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fdd49a), to(#fdf59a));
   background-image: -webkit-linear-gradient(to bottom, #fdd49a, #fdf59a);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fdd49a), to(#fdf59a));
-  background-image: -webkit-linear-gradient(top, #fdd49a, #fdf59a);
+  background-image: -o-linear-gradient(to bottom, #fdd49a, #fdf59a);
   background-image: linear-gradient(to bottom, #fdd49a, #fdf59a);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fdd49a', endColorstr='#fdf59a', GradientType=0);
@@ -506,6 +516,8 @@ span.CodeMirror-selectedtext { background: none; }
 .datepicker table tr td.range.disabled,
 .datepicker table tr td.range.disabled:hover {
   background: #eee;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
   border-radius: 0;
 }
 .datepicker table tr td.range.today,
@@ -513,16 +525,19 @@ span.CodeMirror-selectedtext { background: none; }
 .datepicker table tr td.range.today.disabled,
 .datepicker table tr td.range.today.disabled:hover {
   background-color: #f3d17a;
+  background-image: -moz-linear-gradient(to bottom, #f3c17a, #f3e97a);
+  background-image: -ms-linear-gradient(to bottom, #f3c17a, #f3e97a);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f3c17a), to(#f3e97a));
   background-image: -webkit-linear-gradient(to bottom, #f3c17a, #f3e97a);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f3c17a), to(#f3e97a));
-  background-image: -webkit-linear-gradient(top, #f3c17a, #f3e97a);
+  background-image: -o-linear-gradient(to bottom, #f3c17a, #f3e97a);
   background-image: linear-gradient(to bottom, #f3c17a, #f3e97a);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f3c17a', endColorstr='#f3e97a', GradientType=0);
   border-color: #f3e97a #f3e97a #edde34;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
   border-radius: 0;
 }
 .datepicker table tr td.range.today:hover,
@@ -562,10 +577,11 @@ span.CodeMirror-selectedtext { background: none; }
 .datepicker table tr td.selected.disabled,
 .datepicker table tr td.selected.disabled:hover {
   background-color: #9e9e9e;
+  background-image: -moz-linear-gradient(to bottom, #b3b3b3, #808080);
+  background-image: -ms-linear-gradient(to bottom, #b3b3b3, #808080);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#b3b3b3), to(#808080));
   background-image: -webkit-linear-gradient(to bottom, #b3b3b3, #808080);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#b3b3b3), to(#808080));
-  background-image: -webkit-linear-gradient(top, #b3b3b3, #808080);
+  background-image: -o-linear-gradient(to bottom, #b3b3b3, #808080);
   background-image: linear-gradient(to bottom, #b3b3b3, #808080);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b3b3b3', endColorstr='#808080', GradientType=0);
@@ -612,10 +628,11 @@ span.CodeMirror-selectedtext { background: none; }
 .datepicker table tr td.active.disabled,
 .datepicker table tr td.active.disabled:hover {
   background-color: #006dcc;
+  background-image: -moz-linear-gradient(to bottom, #08c, #0044cc);
+  background-image: -ms-linear-gradient(to bottom, #08c, #0044cc);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#08c), to(#0044cc));
   background-image: -webkit-linear-gradient(to bottom, #08c, #0044cc);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#08c), to(#0044cc));
-  background-image: -webkit-linear-gradient(top, #08c, #0044cc);
+  background-image: -o-linear-gradient(to bottom, #08c, #0044cc);
   background-image: linear-gradient(to bottom, #08c, #0044cc);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#08c', endColorstr='#0044cc', GradientType=0);
@@ -665,6 +682,8 @@ span.CodeMirror-selectedtext { background: none; }
   float: left;
   margin: 1%;
   cursor: pointer;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
   border-radius: 4px;
 }
 .datepicker table tr td span:hover,
@@ -682,10 +701,11 @@ span.CodeMirror-selectedtext { background: none; }
 .datepicker table tr td span.active.disabled,
 .datepicker table tr td span.active.disabled:hover {
   background-color: #006dcc;
+  background-image: -moz-linear-gradient(to bottom, #08c, #0044cc);
+  background-image: -ms-linear-gradient(to bottom, #08c, #0044cc);
   background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#08c), to(#0044cc));
   background-image: -webkit-linear-gradient(to bottom, #08c, #0044cc);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#08c), to(#0044cc));
-  background-image: -webkit-linear-gradient(top, #08c, #0044cc);
+  background-image: -o-linear-gradient(to bottom, #08c, #0044cc);
   background-image: linear-gradient(to bottom, #08c, #0044cc);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#08c', endColorstr='#0044cc', GradientType=0);
@@ -764,9 +784,13 @@ span.CodeMirror-selectedtext { background: none; }
   text-align: center;
 }
 .input-daterange input:first-child {
+  -webkit-border-radius: 3px 0 0 3px;
+  -moz-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
 }
 .input-daterange input:last-child {
+  -webkit-border-radius: 0 3px 3px 0;
+  -moz-border-radius: 0 3px 3px 0;
   border-radius: 0 3px 3px 0;
 }
 .input-daterange .add-on {
@@ -797,10 +821,14 @@ span.CodeMirror-selectedtext { background: none; }
   background-color: #fff;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
   border-radius: 5px;
   -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
   background-clip: padding-box;
   *border-right-width: 2px;
   *border-bottom-width: 2px;
@@ -814,3 +842,4 @@ span.CodeMirror-selectedtext { background: none; }
 .datepicker.datepicker-inline td {
   padding: 4px 5px;
 }
+/*# sourceMappingURL=bootstrap-datepicker.standalone.css.map */

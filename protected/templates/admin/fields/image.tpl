@@ -2,7 +2,7 @@
 <!-- Fine Uploader Thumbnails template w/ customization
 ====================================================================== -->
 <script>
-	var initialFiles = {$item.json_list};
+    initialFiles['{$value}']={if isset($json)}{$json}{else}[]{/if};
 </script>
 
 <script type="text/template" id="upload-template">
@@ -32,19 +32,17 @@
 
 					<div class="attachments-file__control">
 						<button type="button" class="attachments-file__control__link is-delete qq-upload-delete-selector qq-upload-delete">
-                            <i class="icon icon-close" aria-label="Delete"></i>
+                            <i class="icon icon-delete" aria-label="Delete"></i>
                         </button>
-						{*
+
 						<button type="button" class="attachments-file__control__link is-edit" onclick="return editOrd({$e.id}, {$e.ord})" title="Редактировать порядок">
 							<i class="icon icon-edit"></i>
 						</button>
-						*}
 
-						{*
 						<button type="button" class="attachments-file__control__link is-visible" onclick="return editVisible({$e.id}, {$e.visible})">
 							<i class="icon icon-eye{if $e.visible == 0}-off{/if}" id="fvisible_{$e.id}"></i>
 						</button>
-						*}
+						
 					</div>
 
 					<div class="qq-progress-bar-container-selector attachments-file__progress progress progress-xss active no-radius">
@@ -57,7 +55,7 @@
 
 					<div class="attachments-file__content">
 						<div class="attachments-file__name">
-							<span class="attachments-file__name__title qq-upload-file-selector qq-upload-file" title="Редактировать alt | title"></span>
+							<i class="icon icon-edit"></i> <span class="attachments-file__name__title qq-upload-file-selector qq-upload-file" title="Редактировать alt | title"></span>
 						</div>
 
 						<div class="attachments-file__date-size qq-upload-size-selector qq-upload-size"></div>

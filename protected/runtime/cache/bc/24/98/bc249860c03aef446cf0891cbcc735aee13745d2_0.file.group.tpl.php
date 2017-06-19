@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.32-dev-1, created on 2017-06-19 11:10:27
+/* Smarty version 3.1.31, created on 2017-06-19 11:25:15
   from "/Users/edik/web/ecostroy.dev/protected/templates/admin/system/group.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '3.1.32-dev-1',
-  'unifunc' => 'content_594786f33960a9_79812383',
+  'version' => '3.1.31',
+  'unifunc' => 'content_59478a6b94ce30_28290965',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_594786f33960a9_79812383 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59478a6b94ce30_28290965 (Smarty_Internal_Template $_smarty_tpl) {
 if (!$_smarty_tpl->tpl_vars['type']->value) {
 $_smarty_tpl->_assignInScope('type', 'radio');
 }?><div class="group"><?php

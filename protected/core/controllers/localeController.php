@@ -43,8 +43,7 @@ final class localeController extends cpLoader
     
     public function del()
     {
-        if (is_numeric($this->method))
-        {
+        if (is_numeric($this->method)) {
             $this->localization->deleteDictionaryItem($this->method);
             redirect($this->base_path);
         }
@@ -58,38 +57,28 @@ final class localeController extends cpLoader
         $apply_url = '';
         $redirect_url = '';
 
-        if ($back_page)
-        {
+        if ($back_page) {
             $redirect_url = '?page=' . $back_page;
             $apply_url = '&back_to_page=' . $back_page;
         }
 
-        if (count($_POST))
-        {
+        if (count($_POST)) {
             $arr = $_POST;
 
             unset($arr['form_action'], $arr['apply']);
         }
 
-        if ($action == "add")
-        {
+        if ($action == "add") {
             $last_key = $this->localization->insertData($arr);
 
-            if ( isset($_POST['apply']) && $last_key)
-            {
+            if (isset($_POST['apply']) && $last_key) {
                 redirect($this->base_path . '/edit/' . $last_key . '/?msg=apply' . $apply_url);
-            }
-            elseif ( isset($_GET['backuri']) )
-            {
+            } elseif (isset($_GET['backuri'])) {
                 redirect($_GET['backuri']);
-            }
-            else
-            {
+            } else {
                 redirect($this->base_path);
             }
-        }
-        elseif ($action == "edit")
-        {
+        } elseif ($action == "edit") {
             // $this->meta->updateData($this->element, $this->argument);
 
             // if (isset($_POST['apply']))

@@ -40,7 +40,7 @@
                 <a style="float:left;margin: 0 5px 0 0;" title="Редактировать порядок" onclick="return editOrd({$e.id}, '{$e.ord}')" href="#"><i class="icon icon-edit"></i></a> <span id="ordfile_{$e.id}">{$e.ord}</span>
             </td>
             <td>
-                <button type="button" class="btn btn-default btn-xs" onclick="return cp.ajaxFileDelete({$e.id}, 'file_photo_{$e.id}');" href="#" data-no-instant>Удалить</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="return Module.ajaxFileDelete({$e.id}, 'file_photo_{$e.id}');" href="#" data-no-instant>Удалить</button>
             </td>
         </tr>
         {/foreach}

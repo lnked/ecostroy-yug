@@ -1,0 +1,31 @@
+{
+    "name": "fastest/fastest",
+    "description": "Fast PHP CMS",
+    "license": "MIT",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Edik Bulikyan",
+            "email": "ed.proff@gmail.com"
+        }
+    ],
+    "config": {
+        "vendor-dir": "protected/vendors",
+        "preferred-install": "dist"
+    },
+    "require": {
+        "smarty/smarty": "^3.1",
+        "samdark/sitemap": "^2.0",
+        "matthiasmullie/scrapbook": "^1.4",
+        "intervention/image": "^2.3",
+        "lnked/q": "dev-master",
+        "phpmailer/phpmailer": "^5.2",
+        "electrolinux/phpquery": "^0.9.6",
+        "tubalmartin/cssmin": "^4.1",
+        "linkorb/jsmin-php": "^1.0",
+        "mrclay/minify": "^3.0",
+        "matthiasmullie/minify": "^1.3"
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev"
+}

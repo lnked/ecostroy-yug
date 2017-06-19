@@ -3,7 +3,6 @@
 
 <div class="button-container clearfix">
     <div class="button-container--right">
-        {*
         {if $meta_filter}
             {foreach $meta_filter as $name => $filter}
                 {if !empty($filter.list)}
@@ -20,11 +19,10 @@
                 {/if}
             {/foreach}
         {/if}
-        *}
 
         <div class="button-container-limit">
             <select name="limit" onchange="Module.setLimit(this, {$module_id})">
-                <option value="">На странице</option>
+                <option value="10">На странице</option>
                 {foreach $page_count as $page}
                     <option value="{$page}"{if isset($smarty.cookies[$pagerCookie]) && $smarty.cookies[$pagerCookie] == $page} selected{/if}>{$page}</option>
                 {/foreach}
@@ -32,9 +30,20 @@
         </div>
     </div>
 
-    <a href="{$base_path}/module/add/{$module_id}{if isset($back_to_page ) && $back_to_page !== '' && $back_to_page > 0}?back_to_page={$back_to_page}{/if}" class="button"><i class="icon icon-plus-square"></i>Добавить поле</a>
+    <a href="{$base_path}/module/add/{$module_id}?backuri={$_backuri}" class="button button-green"><i class="icon icon-plus-square"></i>Добавить поле</a>
+
     {if $smarty.session.userinf.gid == 10}
     <a href="/{$ADMIN_DIR}/modules/index/edit/{$module_id}" class="button button-gray"><i class="icon icon-settings"></i>Настройки модуля</a>
     {/if}
+
+    {if !empty($smarty.get) || $filter}
+    <a href="{$base_path}/module/clearfilter/{$module_id}?backuri={$_backuri}" class="button"><i class="icon icon-format-clear-all"></i>Сбросить фильтры</a>
+    {/if}
+
+    <span class="catalog-disable" id="remove-button">
+        <button type="button" class="button button-red" onclick="Module.deleteAll(event)">
+            <i class="icon icon-delete"></i>Удалить выбранные товары
+        </button>
+    </span>
 </div>
 {/strip}

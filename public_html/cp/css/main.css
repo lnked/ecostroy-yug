@@ -7460,12 +7460,13 @@ input + .option-combo {
       text-align: center;
       display: block;
       background: none;
-      outline: none; }
-      .attachments-file__control__link.is-delete {
+      outline: none;
+      color: #cdcdcd; }
+      .attachments-file__control__link.is-delete:hover {
         color: #f44336; }
-      .attachments-file__control__link.is-edit {
+      .attachments-file__control__link.is-edit:hover {
         color: #0099FF; }
-      .attachments-file__control__link.is-visible {
+      .attachments-file__control__link.is-visible:hover {
         color: #3f536e; }
     .attachments-file__control__link .icon {
       font-size: 12px;
@@ -8629,6 +8630,19 @@ a.button {
   width: 175px;
   padding-right: 25px;
   position: relative; }
+  .calendar__field {
+    background-color: #fff; }
+  .calendar__icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    bottom: 0;
+    cursor: pointer;
+    color: #557DE2;
+    font-size: 16px;
+    font-size: 1.6rem;
+    line-height: 1;
+    transform: translate3d(0, -50%, 0); }
 
 .calendar_datetime {
   padding-right: 0; }
@@ -8646,21 +8660,6 @@ a.button {
 
 .calendar input {
   width: 100% !important; }
-
-.calendar__field {
-  background-color: #fff; }
-
-.calendar__icon {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  bottom: 0;
-  cursor: pointer;
-  color: #557DE2;
-  font-size: 14px;
-  font-size: 1.4rem;
-  line-height: 1;
-  transform: translate3d(0, -50%, 0); }
 
 .calendar-wrapper .controll {
   float: left;
@@ -10038,21 +10037,32 @@ a.label:hover, a.label:focus {
     .module-table__sort.desc {
       background-image: url(/cp/images/ico/sort-descending.svg); }
   .module-table__header {
-    padding: 9px;
+    padding: 11px 9px;
     text-align: left;
     font-weight: 400;
     line-height: 1;
     vertical-align: middle;
     color: #fefefe;
     background-color: #A7AEBB; }
+    .module-table__header:first-child {
+      border-left: 1px solid #A7AEBB; }
+    .module-table__header:last-child {
+      border-right: 1px solid #A7AEBB; }
   .module-table__sub-header {
-    padding: 5px 1px;
+    line-height: 1;
+    padding: 8px 2px;
+    vertical-align: middle;
     background: #e4e6ea;
     border-bottom: 2px solid #bdc6cc; }
+    .module-table__sub-header:first-child {
+      border-left: 1px solid #e4e6ea; }
+    .module-table__sub-header:last-child {
+      border-right: 1px solid #e4e6ea; }
     .module-table__sub-header .switch {
       display: inline-block;
       vertical-align: middle; }
   .module-table__column {
+    line-height: 1;
     padding: 10px 9px;
     vertical-align: middle;
     color: #333;
@@ -10487,10 +10497,20 @@ a.label:hover, a.label:focus {
 .redactor-box {
   margin-bottom: 0 !important; }
 
+.redactor-box {
+  margin-left: -1px;
+  margin-right: -1px;
+  border-style: solid;
+  border-width: 0 1px 1px 1px;
+  border-color: #e4e6ea; }
+  .module__td_redactor .redactor-box {
+    border-bottom: 0; }
+
 .redactor-toolbar {
   box-shadow: 0 1px 0px rgba(0, 0, 0, 0.2) !important; }
 
 .redactor-editor {
+  border: 0 !important;
   padding: 15px !important; }
 
 .redactor-placeholder:after {
@@ -13331,8 +13351,10 @@ a.text-dark:hover {
 
 .catalog-edit {
   color: #bdc6cc;
-  font-size: 14px;
-  font-size: 1.4rem;
+  font-size: 12px;
+  font-size: 1.2rem;
+  position: relative;
+  top: 0px;
   margin-right: 5px; }
 
 .catalog-view,

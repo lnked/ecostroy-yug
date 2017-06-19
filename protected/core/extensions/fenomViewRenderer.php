@@ -2,13 +2,13 @@
 
 class templateRender
 {
-	protected $data = array();
+    protected $data = array();
     protected $template = null;
     protected $charset = 'utf-8';
     protected $fileExtension = '.tpl';
 
-	public function __construct($dir = '', $caching = null)
-	{
+    public function __construct($dir = '', $caching = null)
+    {
 
         // if (!file_exists(FENOM_RESOURCES . '/compile')) {
         //     mkdir(FENOM_RESOURCES . '/compile', 0777, true);
@@ -25,54 +25,51 @@ class templateRender
         // $this->values = $this->getVars();
 
 
-    	// require_once PATH_CORE . "/lib/templaters/fenom/Fenom.php";
-    	
-    	// Fenom::registerAutoload(PATH_CORE . "/lib/templaters/fenom/Fenom/");
+        // require_once PATH_CORE . "/lib/templaters/fenom/Fenom.php";
+        
+        // Fenom::registerAutoload(PATH_CORE . "/lib/templaters/fenom/Fenom/");
 
         // require_once PATH_CORE . "/lib/templaters/fenom/Fenom/Provider.php";
         // require_once PATH_CORE . "/lib/templaters/fenom/Fenom/ProviderInterface.php";
 
         // require_once PATH_CORE . "/lib/templaters/fenom/Fenom/Smarty.php";
 
-		require_once PATH_CORE.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'templaters'.DIRECTORY_SEPARATOR.'fenom'.DIRECTORY_SEPARATOR.'Fenom.php';
-		
-		Fenom::registerAutoload();
-	
-		$this->template = Fenom::factory(PATH_CORE.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'templaters'.DIRECTORY_SEPARATOR.'fenom'.DIRECTORY_SEPARATOR.'Fenom', PATH_RUNTIME.DIRECTORY_SEPARATOR.'cache');
-		$this->template = new Fenom($provider = new \Fenom\Provider(PATH_TPL.DIRECTORY_SEPARATOR.$dir));
+        require_once PATH_CORE.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'templaters'.DIRECTORY_SEPARATOR.'fenom'.DIRECTORY_SEPARATOR.'Fenom.php';
+        
+        Fenom::registerAutoload();
+    
+        $this->template = Fenom::factory(PATH_CORE.DIRECTORY_SEPARATOR.'lib'.DIRECTORY_SEPARATOR.'templaters'.DIRECTORY_SEPARATOR.'fenom'.DIRECTORY_SEPARATOR.'Fenom', PATH_RUNTIME.DIRECTORY_SEPARATOR.'cache');
+        $this->template = new Fenom($provider = new \Fenom\Provider(PATH_TPL.DIRECTORY_SEPARATOR.$dir));
 
-		$this->template->setCompileDir(PATH_RUNTIME.DIRECTORY_SEPARATOR.'cache');
+        $this->template->setCompileDir(PATH_RUNTIME.DIRECTORY_SEPARATOR.'cache');
 
-		$this->template->setOptions(Fenom::AUTO_STRIP);
-		$this->template->setOptions(Fenom::FORCE_COMPILE);
+        $this->template->setOptions(Fenom::AUTO_STRIP);
+        $this->template->setOptions(Fenom::FORCE_COMPILE);
 
-		// $this->fenom->getProvider()->setClearCachedStats();
+        // $this->fenom->getProvider()->setClearCachedStats();
 
-		//$this->template->clearAllCompiles();
+        //$this->template->clearAllCompiles();
 
         // $this->template = Smarty::factory(PATH_TPL . '/' . $dir, PATH_RUNTIME . '/cache/');
         // $this->template->setSmartySupport();
-   	}
+    }
 
-	public function assign($key = '', $value = '', $caching = false)
+    public function assign($key = '', $value = '', $caching = false)
     {
-    	if (is_array($value))
-		{
-		    $this->data[$key] = $value;
-		}
-		else
-		{
-		    $this->data[$key] = htmlspecialchars($value, ENT_QUOTES, $this->charset);
-		}
+        if (is_array($value)) {
+            $this->data[$key] = $value;
+        } else {
+            $this->data[$key] = htmlspecialchars($value, ENT_QUOTES, $this->charset);
+        }
     }
 
     public function fetch($template = '', $cache_id = '', $compile_id = '')
     {
-    	return $this->template->fetch($template, $this->data);
+        return $this->template->fetch($template, $this->data);
     }
 
     public function display($template = '')
     {
-    	$this->template->display($template . $this->fileExtension, $this->data);
+        $this->template->display($template . $this->fileExtension, $this->data);
     }
 }

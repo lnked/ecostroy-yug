@@ -81,6 +81,7 @@
                                 name        =   $item.f_sys_name
                                 value       =   $item.value
                                 list        =   $list
+                                json        =   $item.json
                                 width       =   $item.f_width
                                 settings    =   $item.f_settings
                                 class_name  =   $class_name

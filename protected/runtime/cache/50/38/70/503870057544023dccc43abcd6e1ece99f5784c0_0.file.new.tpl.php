@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32-dev-1, created on 2017-06-19 10:59:13
+/* Smarty version 3.1.31, created on 2017-06-19 11:25:15
   from "/Users/edik/web/ecostroy.dev/protected/templates/admin/new.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '3.1.32-dev-1',
-  'unifunc' => 'content_59478451a39e88_37188204',
+  'version' => '3.1.31',
+  'unifunc' => 'content_59478a6bb16324_25710133',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '503870057544023dccc43abcd6e1ece99f5784c0' => 
     array (
       0 => '/Users/edik/web/ecostroy.dev/protected/templates/admin/new.tpl',
-      1 => 1495858478,
+      1 => 1497753137,
       2 => 'file',
     ),
   ),
@@ -21,8 +21,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:system/include.code.tpl' => 1,
   ),
 ),false)) {
-function content_59478451a39e88_37188204 (Smarty_Internal_Template $_smarty_tpl) {
-if (!is_callable('smarty_modifier_capi')) require_once '/Users/edik/web/ecostroy.dev/protected/core/lib/templaters/smarty/plugins_cms/modifier.capi.php';
+function content_59478a6bb16324_25710133 (Smarty_Internal_Template $_smarty_tpl) {
+if (!is_callable('smarty_modifier_capi')) require_once '/Users/edik/web/ecostroy.dev/protected/core/lib/smarty.plugins/modifier.capi.php';
 ?>
 <!DOCTYPE html>
 <!-- (c) lnk. celebro | celebro.ru -->
@@ -91,7 +91,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 }
 echo '<script'; ?>
- data-no-instant>var ADMIN_DIR = '<?php echo $_smarty_tpl->tpl_vars['ADMIN_DIR']->value;?>
+ data-no-instant>var initialFiles = {};var ADMIN_DIR = '<?php echo $_smarty_tpl->tpl_vars['ADMIN_DIR']->value;?>
 ',PATH_HASH = '<?php echo $_smarty_tpl->tpl_vars['PATH_HASH']->value;?>
 ',ADMIN_LOCALE = '<?php echo $_smarty_tpl->tpl_vars['ADMIN_LOCALE']->value;?>
 ',CONFIGURE = <?php echo json_encode($_smarty_tpl->tpl_vars['_config']->value);?>

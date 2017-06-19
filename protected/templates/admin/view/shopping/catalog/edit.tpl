@@ -140,6 +140,7 @@
                         action      =   $fields.action
                         name        =   $fields.name
                         list        =   $fields.list
+                        json        =   $fields.json
                         value       =   $fields.value
                         settings    =   $fields.settings
                     }

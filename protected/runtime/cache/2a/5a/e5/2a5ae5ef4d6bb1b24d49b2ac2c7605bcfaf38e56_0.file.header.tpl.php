@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.32-dev-1, created on 2017-06-19 10:59:15
+/* Smarty version 3.1.31, created on 2017-06-19 11:25:17
   from "/Users/edik/web/ecostroy.dev/protected/templates/themes/base/smarty/components/header.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '3.1.32-dev-1',
-  'unifunc' => 'content_594784531877d9_35929708',
+  'version' => '3.1.31',
+  'unifunc' => 'content_59478a6db7d644_94804218',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,8 +20,8 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_594784531877d9_35929708 (Smarty_Internal_Template $_smarty_tpl) {
-if (!is_callable('smarty_function_unit')) require_once '/Users/edik/web/ecostroy.dev/protected/core/lib/templaters/smarty/plugins_cms/function.unit.php';
+function content_59478a6db7d644_94804218 (Smarty_Internal_Template $_smarty_tpl) {
+if (!is_callable('smarty_function_unit')) require_once '/Users/edik/web/ecostroy.dev/protected/core/lib/smarty.plugins/function.unit.php';
 ?>
 <div class="layout-header__similar"></div><header class="layout-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader"><a href="/action" class="action-sticker j-navigation"><span class="action-sticker__text">АКЦИЯ!</span></a><div class="layout-header__container"><div class="layout-header__wrapper layout"><a href="/" class="layout-header__logo logo j-navigation" rel="home" itemprop="url" accesskey="1" data-instant><span itemprop="name"><?php echo smarty_function_unit(array('item'=>'11'),$_smarty_tpl);?>
 </span></a><?php $_smarty_tpl->_assignInScope('accesskey', 1);

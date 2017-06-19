@@ -2,37 +2,33 @@
 
 class templateRender
 {
-	protected $data = array();
-	protected $strip = true;
+    protected $data = array();
+    protected $strip = true;
     protected $charset = 'utf-8';
-	protected $template_dir = null;
+    protected $template_dir = null;
     protected $fileExtension = '.php';
 
-	public function __construct($dir = '', $caching = null)
-	{
-		$this->template_dir = $dir;
-	}
-
-	public function assign($key = '', $value = '', $caching = false)
+    public function __construct($dir = '', $caching = null)
     {
-    	if (is_array($value))
-		{
-		    $this->data[$key] = $value;
-		}
-		else
-		{
-		    $this->data[$key] = htmlspecialchars($value, ENT_QUOTES, $this->charset);
-		}
+        $this->template_dir = $dir;
+    }
+
+    public function assign($key = '', $value = '', $caching = false)
+    {
+        if (is_array($value)) {
+            $this->data[$key] = $value;
+        } else {
+            $this->data[$key] = htmlspecialchars($value, ENT_QUOTES, $this->charset);
+        }
     }
 
     public function fetch($template = '', $cache_id = '', $compile_id = '')
     {
-    	if (file_exists($template . $this->fileExtension))
-    	{
-    		return include($template . $this->fileExtension);
-    	}
+        if (file_exists($template . $this->fileExtension)) {
+            return include($template . $this->fileExtension);
+        }
 
-    	return '';
+        return '';
     }
 
     /**
@@ -40,48 +36,40 @@ class templateRender
      */
     public function e($v = '')
     {
-    	return htmlspecialchars((string) $v, ENT_QUOTES, $this->charset);
+        return htmlspecialchars((string) $v, ENT_QUOTES, $this->charset);
     }
 
     public function display($template = '')
-	{
-		try {
-		    $file = PATH_TPL . '/' . $this->template_dir . $template . $this->fileExtension;
+    {
+        try {
+            $file = PATH_TPL . '/' . $this->template_dir . $template . $this->fileExtension;
 
-		    if (file_exists($file))
-		    {
-		    	ob_start();
+            if (file_exists($file)) {
+                ob_start();
 
-			    if (extension_loaded('zlib'))
-	            {
-	                ob_implicit_flush(0);
-	                header('Content-Encoding: gzip');
-	            }
+                if (extension_loaded('zlib')) {
+                    ob_implicit_flush(0);
+                    header('Content-Encoding: gzip');
+                }
 
-	            extract($this->data);
+                extract($this->data);
 
-				include_once($file);
-				
-				$output = ob_get_contents();
-				
-				ob_end_clean();
-				
-				if ($this->strip)
-				{
-					$output = preg_replace("#[\n\t]#", '', $output);
-				}
+                include_once($file);
+                
+                $output = ob_get_contents();
+                
+                ob_end_clean();
+                
+                if ($this->strip) {
+                    $output = preg_replace("#[\n\t]#", '', $output);
+                }
 
-				echo $output;
-		    }
-		    else
-		    {
-		        throw new Exception('Template ' . $template . ' not found!');
-		    }
-
-		}
-		catch (Exception $e)
-		{
-		    echo $e->getMessage();
-		}
+                echo $output;
+            } else {
+                throw new Exception('Template ' . $template . ' not found!');
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
     }
 }

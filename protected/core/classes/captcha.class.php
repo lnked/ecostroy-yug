@@ -58,10 +58,10 @@ final class Captcha
         if (function_exists("imagejpeg")) {
             header("Content-Type: image/jpeg");
             imagejpeg($this->captcha, null, $this->quality);
-        } else if (function_exists("imagegif")) {
+        } elseif (function_exists("imagegif")) {
             header("Content-Type: image/gif");
             imagegif($this->captcha);
-        } else if (function_exists("imagepng")) {
+        } elseif (function_exists("imagepng")) {
             header("Content-Type: image/x-png");
             imagepng($this->captcha);
         }
@@ -158,7 +158,6 @@ final class Captcha
                         if ($shift == 1000) {
                             $shift = mt_rand(4, 6);
                         }
-
                     }
                 } else {
                     $shift = 1;
@@ -206,7 +205,7 @@ final class Captcha
 
                 if ($color == 255 && $color_x == 255 && $color_y == 255 && $color_xy == 255) {
                     continue;
-                } else if ($color == 0 && $color_x == 0 && $color_y == 0 && $color_xy == 0) {
+                } elseif ($color == 0 && $color_x == 0 && $color_y == 0 && $color_xy == 0) {
                     $newred   = $this->foreground_color[0];
                     $newgreen = $this->foreground_color[1];
                     $newblue  = $this->foreground_color[2];
@@ -266,7 +265,6 @@ final class Captcha
             if (!preg_match('/cp|cb|ck|c6|c9|rn|rm|mm|co|do|cl|db|qp|qb|dp|ww/', $this->keystring)) {
                 break;
             }
-
         }
     }
 

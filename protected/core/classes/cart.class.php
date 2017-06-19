@@ -5,14 +5,13 @@ class cartItem extends Module
     public $product;
 
     protected $sample = [
-        'id', 'name', 'system', 'balance', 'discount', 'article', 
+        'id', 'name', 'system', 'balance', 'discount', 'article',
         'category', 'infinity', 'special', 'sales', 'photo', 'price', 'old_price', 'manufacturer'
     ];
 
     public function __construct($product = [])
     {
-        if (!empty($product))
-        {
+        if (!empty($product)) {
             $this->product = $this->convertToObject(
                 array_intersect_key($product, array_flip($this->sample))
             );
@@ -58,8 +57,7 @@ class Cart extends Module
     {
         $product = Q("SELECT * FROM `#__shop_catalog` WHERE `id`=?i AND `visible`=?i LIMIT 1", [ $id, 1 ])->row();
 
-        if ($product['discount'] > 0)
-        {
+        if ($product['discount'] > 0) {
             $product['old_price'] = $product['price'];
             $product['price'] = ceil($product['price'] - ($product['price'] / (100 / $product['discount'])));
         }
@@ -69,16 +67,12 @@ class Cart extends Module
 
     public function addItem(cartItem $product)
     {
-        if (!empty($product->product))
-        {
+        if (!empty($product->product)) {
             $id = $product->getId();
 
-            if (isset($this->items[$id]))
-            {
+            if (isset($this->items[$id])) {
                 $this->updateItem($product, $this->items[$id]['count'] + 1);
-            }
-            else
-            {
+            } else {
                 $this->items[$id] = ['item' => $product->product, 'count' => 1, 'time' => time()];
                 $this->ids[] = $id;
 
@@ -91,16 +85,12 @@ class Cart extends Module
 
     public function updateItem(cartItem $product, $count = 1)
     {
-        if (!empty($product->product))
-        {
+        if (!empty($product->product)) {
             $id = $product->getId();
 
-            if ($count === 0)
-            {
+            if ($count === 0) {
                 $this->deleteItem($product);
-            }
-            elseif (($count > 0) && ($count != $this->items[$id]['count']))
-            {
+            } elseif (($count > 0) && ($count != $this->items[$id]['count'])) {
                 $this->items[$id]['count'] = $count;
             }
 
@@ -110,12 +100,10 @@ class Cart extends Module
 
     public function deleteItem(cartItem $product)
     {
-        if (!empty($product->product))
-        {
+        if (!empty($product->product)) {
             $id = $product->getId();
 
-            if (isset($this->items[$id]))
-            {
+            if (isset($this->items[$id])) {
                 unset($this->items[$id]);
         
                 $index = array_search($id, $this->ids);
@@ -130,8 +118,7 @@ class Cart extends Module
 
     public function clean()
     {
-        if (isset($_SESSION[$this->sessname]))
-        {
+        if (isset($_SESSION[$this->sessname])) {
             unset($_SESSION[$this->sessname]);
         }
     }
@@ -140,8 +127,7 @@ class Cart extends Module
     {
         $count = 0;
 
-        foreach ($this->items as $product)
-        {
+        foreach ($this->items as $product) {
             $count += intval($product['count']);
         }
 
@@ -152,14 +138,10 @@ class Cart extends Module
     {
         $amount = 0;
 
-        if (!empty($this->items))
-        {
-            foreach ($this->items as $product)
-            {
-                if (isset($product['item']))
-                {
-                    if (isset($product['item']->price) || isset($product['count']))
-                    {
+        if (!empty($this->items)) {
+            foreach ($this->items as $product) {
+                if (isset($product['item'])) {
+                    if (isset($product['item']->price) || isset($product['count'])) {
                         $amount += $product['item']->price * intval($product['count']);
                     }
                 }
@@ -171,31 +153,24 @@ class Cart extends Module
 
     public function cartContent()
     {
-        if (!$this->isEmpty())
-        {
+        if (!$this->isEmpty()) {
             $files = new Files();
 
-            foreach ($this->items as &$item)
-            {
-                if (isset($item['item']))
-                {
-                    if (!isset($item['item']->image))
-                    {
+            foreach ($this->items as &$item) {
+                if (isset($item['item'])) {
+                    if (!isset($item['item']->image)) {
                         $item['item']->image = $files->getFilesByGroupCount($item['item']->photo, array( 'original' ), array( 'id', 'title', 'file', 'ord' ), true);
                     }
 
-                    if (!isset($item['item']->link))
-                    {
+                    if (!isset($item['item']->link)) {
                         $category = Q("SELECT `id`, `system` FROM `#__shop_category` WHERE `id`=?i LIMIT 1", [ $item['item']->category ])->row();
 
-                        if (!empty($category))
-                        {
+                        if (!empty($category)) {
                             $item['item']->link = '/' . $category['id'] . '-' . $category['system'] . '/' . $item['item']->id . '-' . $item['item']->system;
                         }
                     }
 
-                    if (!isset($item['date']))
-                    {
+                    if (!isset($item['date'])) {
                         $item['date'] = Dates($item['time']);
                     }
 
@@ -211,10 +186,8 @@ class Cart extends Module
 
     protected function checkEmpty()
     {
-        foreach ($this->items as $id => $product)
-        {
-            if (!isset($product['item']))
-            {
+        foreach ($this->items as $id => $product) {
+            if (!isset($product['item'])) {
                 unset($this->items[$id]);
                 unset($_SESSION[$this->sessname]['items'][$id]);
             }
@@ -223,15 +196,12 @@ class Cart extends Module
 
     protected function session()
     {
-        if (isset($_SESSION[$this->sessname]))
-        {
-            if (isset($_SESSION[$this->sessname]['ids']))
-            {
+        if (isset($_SESSION[$this->sessname])) {
+            if (isset($_SESSION[$this->sessname]['ids'])) {
                 $this->ids = $_SESSION[$this->sessname]['ids'];
             }
 
-            if (isset($_SESSION[$this->sessname]['items']))
-            {
+            if (isset($_SESSION[$this->sessname]['items'])) {
                 $this->items = $_SESSION[$this->sessname]['items'];
             }
         }
@@ -241,8 +211,7 @@ class Cart extends Module
     {
         $errors = [];
 
-        if (!$system)
-        {
+        if (!$system) {
             $system = $this->current['system'];
         }
 
@@ -250,8 +219,7 @@ class Cart extends Module
             $system = 'delivery';
         }
 
-        if (in_array($system, [ 'register', 'guest' ]))
-        {
+        if (in_array($system, [ 'register', 'guest' ])) {
             unset($_SESSION['auth_user'], $_SESSION['cart_user']);
             $_SESSION['cart_user'] = $data;
         }
@@ -260,65 +228,48 @@ class Cart extends Module
 
         $_SESSION[$system]['data'] = $data;
 
-        foreach ($data as $name => $item)
-        {
-            if (!empty($fields))
-            {
-                if (isset($fields[$name]))
-                {
-                    if (isset($fields[$name]['required']))
-                    {
+        foreach ($data as $name => $item) {
+            if (!empty($fields)) {
+                if (isset($fields[$name])) {
+                    if (isset($fields[$name]['required'])) {
                         $required = $fields[$name]['required'];
 
-                        if (is_array($required))
-                        {
+                        if (is_array($required)) {
                             $check = [];
                             $values = [];
 
-                            foreach ($required as $val)
-                            {
+                            foreach ($required as $val) {
                                 $values[$val] = $data[$val];
 
-                                if (!$data[$val])
-                                {
+                                if (!$data[$val]) {
                                     $check[$val] = $data[$val];
                                 }
                             }
 
-                            if ((count($check) == count($required)) || (count(array_unique($values)) == 2))
-                            {
-                                foreach ($required as $val)
-                                {
+                            if ((count($check) == count($required)) || (count(array_unique($values)) == 2)) {
+                                foreach ($required as $val) {
                                     $errors[] = $val;
                                 }
                             }
-                        }
-                        else
-                        {
-                            if (!$item)
-                            {
+                        } else {
+                            if (!$item) {
                                 $errors[] = $name;
                             }
                         }
                     }
 
-                    if (isset($fields[$name]['is_email']) && !is_email($item))
-                    {
+                    if (isset($fields[$name]['is_email']) && !is_email($item)) {
                         $errors[] = $name;
                     }
 
-                    if (isset($fields[$name]['is_phone']) && !is_phone($item))
-                    {
+                    if (isset($fields[$name]['is_phone']) && !is_phone($item)) {
                         $errors[] = $name;
                     }
                 }
-            }
-            else
-            {
-                if (!$item && in_array($name, $this->required))
-                {
+            } else {
+                if (!$item && in_array($name, $this->required)) {
                     $errors[] = $name;
-                }   
+                }
             }
         }
 
@@ -335,25 +286,19 @@ class Cart extends Module
 
         $_backuri = '/' . $this->module_root;
     
-        if (isset($data['_backuri']))
-        {
+        if (isset($data['_backuri'])) {
             $_backuri = base64_decode($data['_backuri']);
         }
 
-        if (isset($data['_method']) && isset($this->fields[$data['_method']]))
-        {
+        if (isset($data['_method']) && isset($this->fields[$data['_method']])) {
             $method = $data['_method'];
             $fields = $this->fields[$method];
 
-            if (!$this->check($data, $fields, $method))
-            {
+            if (!$this->check($data, $fields, $method)) {
                 redirect($_backuri);
             }
-        }
-        else
-        {
-            if (!$this->check($data))
-            {
+        } else {
+            if (!$this->check($data)) {
                 redirect($_backuri);
             }
         }
@@ -367,19 +312,15 @@ class Cart extends Module
 
         $address = Q("SELECT `id`, `coords`, `region`, `street`, `work_time`, `phone` FROM `#_mdd_addresses` WHERE `visible`=1 ORDER BY `ord`")->all();
 
-        foreach ($address as &$a)
-        {
-            if (isset($region[$a['region']]))
-            {
+        foreach ($address as &$a) {
+            if (isset($region[$a['region']])) {
                 $a['city'] = $region[$a['region']];
             }
 
             $phone = preg_split('/\,+/', $a['phone'], -1, PREG_SPLIT_NO_EMPTY);
 
-            if (!empty($phone))
-            {
-                foreach ($phone as &$p)
-                {
+            if (!empty($phone)) {
+                foreach ($phone as &$p) {
                     $p = $this->formatPhone($this->phone($p));
                 }
             }
@@ -394,8 +335,7 @@ class Cart extends Module
     {
         $current = 'index';
 
-        if (isset($this->arguments[0]) && isset($this->step[$this->arguments[0]]))
-        {
+        if (isset($this->arguments[0]) && isset($this->step[$this->arguments[0]])) {
             $current = $this->arguments[0];
         }
 
@@ -412,10 +352,8 @@ class Cart extends Module
         $prev = [];
         $step = $this->current['system'];
 
-        foreach ($this->step as $key => $ar)
-        {
-            if ($ar['system'] == $step)
-            {
+        foreach ($this->step as $key => $ar) {
+            if ($ar['system'] == $step) {
                 $prev = prev($this->step);
                 
                 break;
@@ -438,8 +376,7 @@ class Cart extends Module
         $list = array_keys($this->step);
         $index = array_search($step, $list);
 
-        if (isset($list[$index+1]))
-        {
+        if (isset($list[$index+1])) {
             $next = $this->step[$list[$index+1]];
         }
 
@@ -473,25 +410,20 @@ class Cart extends Module
 
     protected function save(cartItem $product = null)
     {
-        if (!isset($_SESSION[$this->sessname]))
-        {
+        if (!isset($_SESSION[$this->sessname])) {
             $_SESSION[$this->sessname] = [
                 'ids' => [],
                 'items' => []
             ];
         }
 
-        if (!empty($product->product))
-        {
-            if (!in_array($product->product->id, $_SESSION[$this->sessname]['ids']))
-            {
+        if (!empty($product->product)) {
+            if (!in_array($product->product->id, $_SESSION[$this->sessname]['ids'])) {
                 $_SESSION[$this->sessname]['ids'][] = $product->product->id;
             }
 
             $_SESSION[$this->sessname]['items'][$product->product->id] = $this->items[$product->product->id];
-        }
-        else
-        {
+        } else {
             $_SESSION[$this->sessname]['items'] = $this->items;
         }
     }

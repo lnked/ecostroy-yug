@@ -51,9 +51,9 @@ class Search extends Sitemap
 
     public function saveSettings($post = array())
     {
-        $new_rules      = __post('new_rules',       $post);
-        $new_cat_rules  = __post('new_cat_rules',   $post);
-        $new_templates  = __post('new_templates',   $post);
+        $new_rules      = __post('new_rules', $post);
+        $new_cat_rules  = __post('new_cat_rules', $post);
+        $new_templates  = __post('new_templates', $post);
         
         Q("TRUNCATE TABLE `#__srch_links_settings`");
         
@@ -71,8 +71,8 @@ class Search extends Sitemap
     public function getTitle($html)
     {
         $title = strstr($html, '<title');
-        $title = trim(substr($title,7));
-        $title = trim(substr($title,0,(0 - strlen($title) + strpos($title, '</title>'))));
+        $title = trim(substr($title, 7));
+        $title = trim(substr($title, 0, (0 - strlen($title) + strpos($title, '</title>'))));
 
         $title = '<title' . $title . '</title>';
         $title = trim(strip_tags($title));
@@ -84,24 +84,20 @@ class Search extends Sitemap
     {
         preg_match_all('/<[\s]*meta[\s]*name="?' . '([^>"]*)"?[\s]*' . 'content="?([^>"]*)"?[\s]*[\/]?[\s]*>/si', $html, $match);
 
-        if (isset($match) && is_array($match) && count($match) == 3)
-        {
+        if (isset($match) && is_array($match) && count($match) == 3) {
             $originals = $match[0];
             $names = $match[1];
             $values = $match[2];
             
-            if (count($originals) == count($names) && count($names) == count($values))
-            {
+            if (count($originals) == count($names) && count($names) == count($values)) {
                 $meta = array();
                 
-                for ($i=0, $limiti=count($names); $i < $limiti; $i++)
-                {
+                for ($i=0, $limiti=count($names); $i < $limiti; $i++) {
                     $meta[$names[$i]] = trim($values[$i]);
                 }
             }
 
-            if (!empty($meta['description']))
-            {
+            if (!empty($meta['description'])) {
                 return $meta['description'];
             }
         }
@@ -111,14 +107,13 @@ class Search extends Sitemap
 
     public function getContent($html)
     {
-        $html = str_replace("\n"," ",str_replace("\r","", $html));
+        $html = str_replace("\n", " ", str_replace("\r", "", $html));
         
         $content = '';
         
-        if ($content = strstr($html, $this->start_separator))
-        {
+        if ($content = strstr($html, $this->start_separator)) {
             $content = trim(substr($content, strlen($this->start_separator)));
-            $content = trim(substr($content,0,(0 - strlen($content) + strpos($content, $this->end_separator))));
+            $content = trim(substr($content, 0, (0 - strlen($content) + strpos($content, $this->end_separator))));
         }
 
         $content = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', "", $content);
@@ -126,7 +121,7 @@ class Search extends Sitemap
         $content = preg_replace("/<[^>]*>/", " ", $content);
         $content = preg_replace("/\&[^\;]*\;/", " ", $content);
         $content = htmlspecialchars($content);
-        $content = str_replace('&quot;','', $content);
+        $content = str_replace('&quot;', '', $content);
         $content = trim($content);
 
         return $content;
@@ -134,8 +129,7 @@ class Search extends Sitemap
 
     public function getData($url)
     {
-        if (function_exists('curl_init'))
-        {
+        if (function_exists('curl_init')) {
             $ch = curl_init();
             $userAgent = 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)';
             
@@ -150,10 +144,8 @@ class Search extends Sitemap
             
             $data = curl_exec($ch);
             curl_close($ch);
-        }
-        else
-        {
-            $data = file_get_contents( $url );   
+        } else {
+            $data = file_get_contents($url);
         }
 
         return $data;
@@ -165,10 +157,8 @@ class Search extends Sitemap
         $description   = $this->getDescription($html);
         $content = $this->getContent($html);
         
-        if ($content)
-        {
-            if ($description)
-            {
+        if ($content) {
+            if ($description) {
                 $content = $description;
             }
 
@@ -182,10 +172,8 @@ class Search extends Sitemap
     {
         $this->truncateLinks();
         
-        if (!empty($this->sitemap_urls))
-        {
-            foreach($this->sitemap_urls as $link)
-            {
+        if (!empty($this->sitemap_urls)) {
+            foreach ($this->sitemap_urls as $link) {
                 $html = $this->getData($link);
 
                 $this->insertPage($link, $html);

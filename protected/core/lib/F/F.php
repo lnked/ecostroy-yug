@@ -12,8 +12,7 @@ function imageLoader($class)
 {
     $path = PATH_CORE.DS.'lib'.DS.'image'.DS.'src'.DS.'Intervention'.DS.'Image'.DS.str_replace(['\\', 'Intervention/Image'], [DS, ''], $class).'.php';
 
-    if (file_exists($path))
-    {
+    if (file_exists($path)) {
         include $path;
     }
 }
@@ -22,15 +21,14 @@ spl_autoload_register('\imageLoader');
 
 function FConfig($config = array())
 {
-	if (!empty($config))
-	{
-		file_driver::config($config);
-	}
+    if (!empty($config)) {
+        file_driver::config($config);
+    }
 }
 
 function F($args = array())
 {
-	return new file_driver($args);
+    return new file_driver($args);
 }
 
 /*
