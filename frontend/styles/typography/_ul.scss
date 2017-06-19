@@ -1,6 +1,9 @@
 ol, ul {
     &:not([class]) {
         margin-top: 0;
+        font-size: 1.8rem;
+        line-height: 1.6;
+        text-align: left;
         margin-left: 17px;
         margin-bottom: 25px;
     }
@@ -22,6 +25,7 @@ ul {
 
 ol ol,ol ul,ul ol,ul ul {
     &:not([class]) {
+        margin-top: 15px;
         margin-bottom: 0;
     }
 }

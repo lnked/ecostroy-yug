@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.32-dev-1, created on 2017-06-17 03:57:39
+/* Smarty version 3.1.32-dev-1, created on 2017-06-19 10:59:13
   from "/Users/edik/web/ecostroy.dev/protected/templates/admin/system/include.code.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32-dev-1',
-  'unifunc' => 'content_59447e83a990f8_32638766',
+  'unifunc' => 'content_59478451a8afb6_83803743',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59447e83a990f8_32638766 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59478451a8afb6_83803743 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div id="clipsmodal" style="display: none;">
     <section>

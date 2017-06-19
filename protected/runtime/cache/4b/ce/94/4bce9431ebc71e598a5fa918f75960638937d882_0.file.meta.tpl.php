@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.32-dev-1, created on 2017-06-17 03:57:42
+/* Smarty version 3.1.32-dev-1, created on 2017-06-19 10:59:15
   from "/Users/edik/web/ecostroy.dev/protected/templates/themes/base/smarty/components/meta.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32-dev-1',
-  'unifunc' => 'content_59447e86098ea0_84890596',
+  'unifunc' => 'content_59478453096737_49566618',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4bce9431ebc71e598a5fa918f75960638937d882' => 
     array (
       0 => '/Users/edik/web/ecostroy.dev/protected/templates/themes/base/smarty/components/meta.tpl',
-      1 => 1497647958,
+      1 => 1497661366,
       2 => 'file',
     ),
   ),
@@ -20,14 +20,14 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59447e86098ea0_84890596 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59478453096737_49566618 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_function_compress')) require_once '/Users/edik/web/ecostroy.dev/protected/core/lib/templaters/smarty/plugins_cms/function.compress.php';
 ?>
 <!DOCTYPE html>
 <!-- (c) lnk. Celebro Studio | https://celebro.ru -->
 <html class="no-js" itemscope="itemscope" itemtype="http://schema.org/<?php if (!isset($_smarty_tpl->tpl_vars['uri']->value[1])) {?>WebPage<?php } else { ?>ItemPage<?php }?>" lang="<?php echo $_smarty_tpl->tpl_vars['_page']->value['lang'];?>
 "><head><title itemprop="name"><?php echo $_smarty_tpl->tpl_vars['_page']->value['title'];?>
-</title><meta charset="UTF-8"><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"><meta content="width=device-width,initial-scale=1,maximum-scale=5" name="viewport"><meta content="skype_toolbar_parser_compatible" name="skype_toolbar"><meta content="telephone=no" name="format-detection"><meta name="yandex-verification" content="1da0468787e53eac" /><meta content="true" name="HandheldFriendly"><meta content="320" name="MobileOptimized"><meta content="on" http-equiv="cleartype"><meta content="<?php echo $_smarty_tpl->tpl_vars['_page']->value['lang'];?>
+</title><meta charset="UTF-8"><meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"><meta content="width=device-width,initial-scale=1,maximum-scale=5" name="viewport"><meta content="skype_toolbar_parser_compatible" name="skype_toolbar"><meta content="telephone=no" name="format-detection"><meta name="yandex-verification" content="1da0468787e53eac" /><meta content="true" name="HandheldFriendly"><meta content="320" name="MobileOptimized"><meta content="on" http-equiv="cleartype"><meta name="cms" content="celebro.cms"><meta name="author" content="https://celebro.ru/"><meta content="<?php echo $_smarty_tpl->tpl_vars['_page']->value['lang'];?>
 " itemprop="inLanguage"><meta content="<?php echo $_smarty_tpl->tpl_vars['_page']->value['robots'];?>
 " name="robots"><meta content="<?php echo $_smarty_tpl->tpl_vars['_page']->value['keywords'];?>
 " name="keywords"><meta content="<?php echo $_smarty_tpl->tpl_vars['_page']->value['description'];?>

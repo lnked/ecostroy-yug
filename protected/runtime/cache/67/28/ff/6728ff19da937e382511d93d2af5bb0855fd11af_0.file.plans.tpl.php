@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.32-dev-1, created on 2017-06-17 03:57:41
+/* Smarty version 3.1.32-dev-1, created on 2017-06-19 10:59:14
   from "/Users/edik/web/ecostroy.dev/protected/modules/plans/tpl/plans.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.32-dev-1',
-  'unifunc' => 'content_59447e85cd3bf0_40048152',
+  'unifunc' => 'content_59478452cc80f7_32015974',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_59447e85cd3bf0_40048152 (Smarty_Internal_Template $_smarty_tpl) {
+function content_59478452cc80f7_32015974 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <div class="s-plans__group"><?php if ($_smarty_tpl->tpl_vars['tabs']->value) {
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['tabs']->value, 'tab', false, 'liter', 'liters', array (
