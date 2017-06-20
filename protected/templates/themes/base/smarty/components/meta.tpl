@@ -27,6 +27,7 @@
 	{compress
 		mode   = 'css'
 		media  = 'all'
+        type   = 'inline'
 		source = [
 			[ file => '/css/vendors.min.css' ],
 			[ file => '/css/main.min.css' ]
