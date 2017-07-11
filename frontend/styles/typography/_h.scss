@@ -16,6 +16,11 @@ h2 {
     &:not([class]) {
         font-size: 2.2rem;
         margin-bottom: 20px;
+
+        .s-affordable-apartments & {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
     }
 }
 
@@ -23,6 +28,11 @@ h3 {
     &:not([class]) {
         font-size: 2rem;
         margin-bottom: 20px;
+
+        .s-affordable-apartments & {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
     }
 }
 

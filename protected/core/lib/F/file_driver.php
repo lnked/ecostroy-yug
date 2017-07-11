@@ -281,6 +281,7 @@ class file_driver
                     }
 
                     $this->file_name = $name !== '' ? $name : strtolower(basename($_source));
+                    $this->file_name = $this->_prepare_name($this->file_name);
 
                     $this->_createDir();
 
@@ -342,17 +343,17 @@ class file_driver
 
         $this->last_id =
             Q("INSERT INTO `" . $this->db . "` SET 
-				`gid`=?s,
-				`fid`=?i,
-				`prefix`=?s,
-				`name`=?s,
-				`file`=?s,
-				`size`=?i,
-				`alt`=?s,
-				`title`=?s,
-				`ord`=?i,
-				`created`=?i,
-				`updated`=?i ON DUPLICATE KEY UPDATE `updated`=?i",
+                `gid`=?s,
+                `fid`=?i,
+                `prefix`=?s,
+                `name`=?s,
+                `file`=?s,
+                `size`=?i,
+                `alt`=?s,
+                `title`=?s,
+                `ord`=?i,
+                `created`=?i,
+                `updated`=?i ON DUPLICATE KEY UPDATE `updated`=?i",
             [
                 $this->group_id,
                 $this->file_id,
@@ -659,12 +660,13 @@ class file_driver
 
     private function _prepare_name($name = '', $tmp_name = '')
     {
-        $temp = explode('.', $name);
+        $extension = pathinfo($name, PATHINFO_EXTENSION);
 
-        $file_name = substr(md5(uniqid()), 0, 5);
+        $file_name = substr(md5(uniqid()), 0, 4);
         $file_name .= '_';
-        $file_name .= substr(md5(uniqid()), 5, 10);
-        $file_name .= '.' . end($temp);
+        $file_name .= substr(md5($name), 4, 9);
+
+        $file_name .= '.' . $extension;
 
         return $file_name;
     }

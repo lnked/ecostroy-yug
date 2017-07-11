@@ -26,6 +26,10 @@
         .s-infrastructure & {
             font-size: 2rem;
         }
+    
+        &_small {
+            font-size: 1.8rem;
+        }
 
         @media (max-width: 480px) {
             font-size: 1.8rem;
